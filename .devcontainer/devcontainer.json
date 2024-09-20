@@ -1,0 +1,32 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+	"name": "Android Java",
+	"image": "mcr.microsoft.com/devcontainers/java:17",
+	"features": {
+		"ghcr.io/nordcominc/devcontainer-features/android-sdk:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {}
+	},
+	"onCreateCommand": "./gradlew assembleDebug ; echo Done.",
+	"customizations": {
+		"codespaces": {
+			"openFiles": [
+				"TeamCode/src/main/java/org/firstinspires/ftc/teamcode/readme.md"
+			]
+		},
+		"vscode": {
+			"extensions": [
+				"-vscjava.vscode-java-pack",
+				"-dbaeumer.vscode-eslint",
+				"GitHub.copilot",
+				"GitHub.vscode-github-actions",
+				"antonydalmiere.android-support",
+				"redhat.java"
+			],
+			"settings": {
+				"java.server.launchMode": "LightWeight",
+				"android.sdkLocation": "${ANDROID_SDK_ROOT}"
+			}
+		}
+	}
+}
