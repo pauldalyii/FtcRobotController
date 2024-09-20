@@ -88,3 +88,28 @@ jobs:
         asset_path: ${{ env.ARTIFACT_NAME }}.apk
         asset_name: ${{ env.ARTIFACT_NAME }}.apk
         asset_content_type: application/vnd.android.package-archive
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Set BUILD_NUMBER environment variable
+        run: |
+          $date = Get-Date -Format "yyMM"
+          $buildNumber = "${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.$date.${{ github.run_number }}"
+          [System.Environment]::SetEnvironmentVariable('BUILD_NUMBER', $buildNumber, [System.EnvironmentVariableTarget]::Process)
+          echo "BUILD_NUMBER=$buildNumber" >> $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: Set ARTIFACT_NAME environment variable
+        run: |
+          $artifactName = "${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}"
+          [System.Environment]::SetEnvironmentVariable('ARTIFACT_NAME', $artifactName, [System.EnvironmentVariableTarget]::Process)
+          echo "ARTIFACT_NAME=$artifactName" >> $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: Download release asset
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}.apk
+          path: ./downloaded-artifacts
