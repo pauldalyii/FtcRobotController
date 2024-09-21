@@ -88,3 +88,11 @@ jobs:
         asset_path: ${{ env.ARTIFACT_NAME }}.apk
         asset_name: ${{ env.ARTIFACT_NAME }}.apk
         asset_content_type: application/vnd.android.package-archive
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Say Hello to the World!
+        run: |
+          echo "Hello World!"
