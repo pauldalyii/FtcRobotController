@@ -88,3 +88,22 @@ jobs:
         asset_path: ${{ env.ARTIFACT_NAME }}.apk
         asset_name: ${{ env.ARTIFACT_NAME }}.apk
         asset_content_type: application/vnd.android.package-archive
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Set BUILD_NUMBER environment variable
+        run: |
+          DATE=$(date +'%y%m')
+          echo "BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${DATE}.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+
+      - name: Set ARTIFACT_NAME environment variable
+        run: |
+          echo "ARTIFACT_NAME=${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}" >> $GITHUB_ENV
+
+      - name: Download release asset
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}.apk
+          path: ./downloaded-artifacts
