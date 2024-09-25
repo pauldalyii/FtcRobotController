@@ -20,7 +20,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-output
-          path: ./  # Download to the 'build' directory
+          path: .  # Download to the 'root' directory
 
       - name: Set APK Name from Build
         run: echo "APK_NAME=${{ github.event.workflow_run.outputs.apk_name }}" >> $GITHUB_ENV
