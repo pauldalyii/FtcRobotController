@@ -17,9 +17,9 @@ env:
 
 on:
   push:
-    branches: [ "users/*" ]
+    branches: [main, develop]
   pull_request:
-    branches: [ "main" ]
+    branches: [main, develop]
 
 jobs:
   build:
@@ -93,5 +93,19 @@ jobs:
         asset_name: ${{ env.ARTIFACT_NAME }}.apk
         asset_content_type: application/vnd.android.package-archive
 
-    outputs:
-      apk_name: ${{ env.ARTIFACT_NAME }}.apk
+  deploy:
+    runs-on: self-hosted
+    needs: build
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: ${{ env.ARTIFACT_NAME }}.apk
+
+      # Run adb commands to uninstall and install the APK on the specified device
+      - name: Uninstall Previous APK
+        run: adb -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
+
+      - name: Install New APK
+        run: adb -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
