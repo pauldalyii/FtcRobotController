@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Download Build Artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: build-output
-          path: ./build  # Download to the 'build' directory
+          path: ./  # Download to the 'build' directory
 
       - name: Set APK Name from Build
         run: echo "APK_NAME=${{ github.event.workflow_run.outputs.apk_name }}" >> $GITHUB_ENV
