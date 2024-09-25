@@ -47,6 +47,7 @@ jobs:
           ${{ runner.os }}-gradle-
 
     - name: Set BUILD_NUMBER environment variable
+      id: set-build-number
       run: |
         DATE=$(date +'%y%m')
         echo "BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${DATE}.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
@@ -65,7 +66,7 @@ jobs:
     - name: Pubish apk as an artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: build-output
         path: ${{ env.ARTIFACT_NAME }}.apk
 
     - name: Create release
@@ -88,3 +89,6 @@ jobs:
         asset_path: ${{ env.ARTIFACT_NAME }}.apk
         asset_name: ${{ env.ARTIFACT_NAME }}.apk
         asset_content_type: application/vnd.android.package-archive
+
+    outputs:
+      apk_name: ${{ env.ARTIFACT_NAME }}.apk
