@@ -1,8 +1,8 @@
-name: Deploy-Test
+name: Deploy
 
 on:
   workflow_run:
-    workflows: ["Build-Test"]
+    workflows: ["Build"]
     types:
       - completed
 
