@@ -1,0 +1,23 @@
+name: Build-Test
+
+on:
+  push:
+    branches:
+      - 'users/*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create artifact file
+        run: echo "Hello World" > hello.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-artifact
+          path: hello.txt
