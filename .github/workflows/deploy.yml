@@ -1,0 +1,33 @@
+name: Deploy to Control Hub
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    name: Deploy Job
+    runs-on: self-hosted  # Uses the self-hosted runner with adb installed
+
+    # Define input parameters
+    env:
+      DEVICE_SERIAL: ${{ github.event.inputs.device_serial || '811e4b3436c7263c' }}  # Default to specific device serial
+
+    steps:
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-output
+          path: ./build  # Download to the 'build' directory
+
+      - name: Set APK Name from Build
+        run: echo "APK_NAME=${{ github.event.workflow_run.outputs.apk_name }}" >> $GITHUB_ENV
+
+      # Run adb commands to uninstall and install the APK on the specified device
+      - name: Uninstall Previous APK
+        run: adb -s $DEVICE_SERIAL uninstall com.qualcomm.ftcrobotcontroller
+
+      - name: Install New APK
+        run: adb -s $DEVICE_SERIAL install "./${{ env.APK_NAME }}"
