@@ -94,18 +94,17 @@ jobs:
     runs-on: self-hosted
     needs: build
     steps:
-
       - name: Set BUILD_NUMBER environment variable
         id: set-build-number
         run: |
-          $date = Get-Date -Format "yyMM"
-          echo "BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.$date.${{ github.run_number }}" >> $env:GITHUB_ENV
-        shell: powershell
+          for /f %%i in ('date /t') do set DATE=%%i
+          set DATE=%DATE:~-2%%DATE:~3,2%
+          echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%DATE%.${{ github.run_number }}>> %GITHUB_ENV%
+        shell: cmd
     
       - name: Set ARTIFACT_NAME environment variable
-        run: |
-          echo "ARTIFACT_NAME=${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}" >> $env:GITHUB_ENV
-        shell: powershell
+        run: echo ARTIFACT_NAME=${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}>> %GITHUB_ENV%
+        shell: cmd
 
       - name: Download artifact
         uses: actions/download-artifact@v4
