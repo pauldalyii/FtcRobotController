@@ -62,9 +62,6 @@ jobs:
     - name: Move apk to root and rename it
       run: |
         mv **/build/outputs/apk/release/TeamCode-release.apk ${{ env.ARTIFACT_NAME }}.apk
-
-    - name: List Files in Root Directory
-      run: ls -R ./
     
     - name: Pubish apk as an artifact
       uses: actions/upload-artifact@v4
