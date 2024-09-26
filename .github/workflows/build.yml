@@ -110,7 +110,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-output
-          path: ${{ env.ARTIFACT_NAME }}.apk
+          path: ./build
 
       - name: List devices
         run: C:\android\platform-tools\adb.exe devices
@@ -121,4 +121,4 @@ jobs:
         run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
 
       - name: Install New APK
-        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
+        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./build/${{ env.ARTIFACT_NAME }}"
