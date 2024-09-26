@@ -122,3 +122,6 @@ jobs:
 
       - name: Install New APK
         run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./build/${{ env.ARTIFACT_NAME }}.apk"
+
+      - name: Run APK
+        run: C:\android\platform-tools\adb.exe shell am start -n com.qualcomm.ftcrobotcontroller/org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity
