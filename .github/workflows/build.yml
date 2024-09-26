@@ -62,9 +62,6 @@ jobs:
     - name: Move apk to root and rename it
       run: |
         mv **/build/outputs/apk/release/TeamCode-release.apk ${{ env.ARTIFACT_NAME }}.apk
-
-    - name: List Files in Root Directory
-      run: ls -R ./
     
     - name: Pubish apk as an artifact
       uses: actions/upload-artifact@v4
@@ -105,7 +102,7 @@ jobs:
 
       # Run adb commands to uninstall and install the APK on the specified device
       - name: Uninstall Previous APK
-        run: adb -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
+        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
 
       - name: Install New APK
-        run: adb -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
+        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
