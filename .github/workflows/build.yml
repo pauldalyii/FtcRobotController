@@ -100,8 +100,12 @@ jobs:
           name: build-output
           path: ${{ env.ARTIFACT_NAME }}.apk
 
+      - name: List devices
+        run: C:\android\platform-tools\adb.exe devices
+
       # Run adb commands to uninstall and install the APK on the specified device
       - name: Uninstall Previous APK
+        continue-on-error: true
         run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
 
       - name: Install New APK
