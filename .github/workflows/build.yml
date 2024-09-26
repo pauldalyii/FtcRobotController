@@ -106,3 +106,4 @@ jobs:
 
       - name: Install New APK
         run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
+]]
