@@ -97,9 +97,9 @@ jobs:
       - name: Set BUILD_NUMBER environment variable
         id: set-build-number
         run: |
-          for /f %%i in ('date /t') do set DATE=%%i
-          set DATE=%DATE:~-2%%DATE:~3,2%
-          echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%DATE%.${{ github.run_number }}>> %GITHUB_ENV%
+          for /f "tokens=2-8 delims=/ " %%a in ('date /t') do set MM=%%a& set YY=%%c
+          set YY=%YY:~2%
+          echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%YY%%MM%.${{ github.run_number }}>> %GITHUB_ENV%
         shell: cmd
     
       - name: Set ARTIFACT_NAME environment variable
@@ -110,7 +110,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-output
-          path: ${{ env.ARTIFACT_NAME }}.apk
+          path: ./build
 
       - name: List devices
         run: C:\android\platform-tools\adb.exe devices
@@ -121,4 +121,4 @@ jobs:
         run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c uninstall com.qualcomm.ftcrobotcontroller
 
       - name: Install New APK
-        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./${{ env.ARTIFACT_NAME }}"
+        run: C:\android\platform-tools\adb.exe -s 811e4b3436c7263c install "./build/${{ env.ARTIFACT_NAME }}.apk"
