@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
 import static org.firstinspires.ftc.teamcode.BuildConfig.BUILD_NUMBER;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.LED;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
-@Autonomous(name = "TouchSensor, LED and Build_Number Sample", group = "Autonomous")
-public class TouchSensorLEDAndBuildNumberSample extends LinearOpMode {
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+
+import com.qualcomm.robotcore.hardware.TouchSensor;
+import com.qualcomm.robotcore.hardware.LED;
+
+@Autonomous(name = "Sample OpMode", group = "Autonomous")
+public class SampleOpMode extends LinearOpMode {
     private TouchSensor button;
     private LED redLed;
     private LED greenLed;
