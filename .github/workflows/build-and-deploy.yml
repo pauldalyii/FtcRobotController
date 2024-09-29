@@ -92,6 +92,9 @@ jobs:
 
   deploy:
     runs-on: self-hosted
+    environment: ${{ 
+      github.ref == 'refs/heads/main' && 'production' || 
+      github.ref == 'refs/heads/develop' && 'development' }}
     needs: build
     steps:
       - name: Set BUILD_NUMBER environment variable
@@ -118,10 +121,10 @@ jobs:
       # Run adb commands to uninstall and install the APK on the specified device
       - name: Uninstall Previous APK
         continue-on-error: true
-        run: adb -s ${{ env.CONTROL_HUB_USB_SERIAL }} uninstall com.qualcomm.ftcrobotcontroller
+        run: adb -s ${{ vars.CONTROL_HUB_USB_SERIAL }} uninstall com.qualcomm.ftcrobotcontroller
 
       - name: Install New APK
-        run: adb -s ${{ env.CONTROL_HUB_USB_SERIAL }} install "./build/${{ env.ARTIFACT_NAME }}.apk"
+        run: adb -s ${{ vars.CONTROL_HUB_USB_SERIAL }} install "./build/${{ env.ARTIFACT_NAME }}.apk"
 
       - name: Run APK
         run: adb shell am start -n com.qualcomm.ftcrobotcontroller/org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity
