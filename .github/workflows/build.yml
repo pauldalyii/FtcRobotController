@@ -67,3 +67,26 @@ jobs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ${{ env.ARTIFACT_NAME }}.apk
+
+    - name: Create release
+      id: create_release
+      if: github.ref == 'refs/heads/main'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_DEPLOYMENT_SECRET }}
+      with:
+        tag_name: ${{ env.BUILD_NUMBER }}
+        release_name: Release ${{ env.BUILD_NUMBER }}
+        draft: false
+        prerelease: false
+  
+    - name: Upload release asset
+      if: github.ref == 'refs/heads/main'
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.RELEASE_DEPLOYMENT_SECRET }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ${{ env.ARTIFACT_NAME }}.apk
+        asset_name: ${{ env.ARTIFACT_NAME }}.apk
+        asset_content_type: application/vnd.android.package-archive
