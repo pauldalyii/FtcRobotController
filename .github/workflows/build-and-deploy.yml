@@ -92,6 +92,9 @@ jobs:
 
   deploy:
     runs-on: self-hosted
+    environment: ${{ 
+      github.ref == 'refs/heads/main' && 'production' || 
+      github.ref == 'refs/heads/develop' && 'development' }}
     needs: build
     steps:
       - name: Set BUILD_NUMBER environment variable
