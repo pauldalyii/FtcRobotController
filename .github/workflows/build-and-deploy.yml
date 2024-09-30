@@ -100,7 +100,8 @@ jobs:
     needs: build
     steps:
       - name: Set BUILD_NUMBER environment variable
-        id: set-build-number
+        if: runner.os == 'Windows'
+        id: set-build-number-windows
         run: |
           for /f "tokens=2-8 delims=/ " %%a in ('date /t') do set MM=%%a& set YY=%%c
           set YY=%YY:~2%
@@ -108,8 +109,24 @@ jobs:
         shell: cmd
     
       - name: Set ARTIFACT_NAME environment variable
+        if: runner.os == 'Windows'
+        id: set-artifact-name-windows
         run: echo ARTIFACT_NAME=${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}>> %GITHUB_ENV%
         shell: cmd
+
+      - name: Set BUILD_NUMBER environment variable
+        if: runner.os == 'Linux'
+        id: set-build-number-linux
+        run: |
+          DATE=$(date +'%y%m')
+          echo "BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${DATE}.${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+  
+      - name: Set ARTIFACT_NAME environment variable
+        if: runner.os == 'Linux'
+        id: set-artifact-name-linux
+        run: |
+          echo "ARTIFACT_NAME=${{ env.TEAM_NAME }}-${{ env.TEAM_NUMBER }}-${{ env.BUILD_NUMBER }}" >> $GITHUB_ENV
+  
 
       - name: Download artifact
         uses: actions/download-artifact@v4
