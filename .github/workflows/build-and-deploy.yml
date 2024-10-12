@@ -100,9 +100,10 @@ jobs:
       - name: Set BUILD_NUMBER environment variable
         id: set-build-number
         run: |
-          for /f "tokens=2-8 delims=/ " %%a in ('date /t') do set MM=%%a& set YY=%%c
-          set YY=%YY:~2%
-          echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%YY%%MM%.${{ github.run_number }}>> %GITHUB_ENV%
+          # for /f "tokens=2-8 delims=/ " %%a in ('date /t') do set MM=%%a& set YY=%%c
+          # set YY=%YY:~2%
+          # echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%YY%%MM%.${{ github.run_number }}>> %GITHUB_ENV%
+          echo BUILD_NUMBER=${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.2410.${{ github.run_number }}>> %GITHUB_ENV%
         shell: cmd
     
       - name: Set ARTIFACT_NAME environment variable
