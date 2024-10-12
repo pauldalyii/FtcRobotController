@@ -21,5 +21,10 @@ public class BasicDrive extends OpMode {
     double rotate = gamepad1.right_stick_x;
 
     this.robot.drive(drive, strafe, rotate);
+
+    telemetry.addData("Front Left Motor Velocity", this.robot.frontLeft.getVelocity());
+    telemetry.addData("Front Right Motor Velocity", this.robot.frontRight.getVelocity());
+    telemetry.addData("Back Left Motor Velocity", this.robot.rearLeft.getVelocity());
+    telemetry.addData("Back Right Motor Velocity", this.robot.rearRight.getVelocity());
   }
 }

@@ -9,7 +9,7 @@ public class Robot {
   public DcMotorEx rearLeft;
   public DcMotorEx rearRight;
 
-  private double driveVelocity;
+  private double driveVelocity = 720;
 
   public Robot(HardwareMap hardwareMap) {
     this.frontLeft = hardwareMap.get(DcMotorEx.class, "FrontLeft");
