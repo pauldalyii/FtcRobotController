@@ -14,6 +14,7 @@ public class Robot {
   public Robot(HardwareMap hardwareMap) {
     this.frontLeft = hardwareMap.get(DcMotorEx.class, "FrontLeft");
     this.frontRight = hardwareMap.get(DcMotorEx.class, "FrontRight");
+        this.frontRight.setDirection(DcMotorEx.Direction.REVERSE);
     this.rearLeft = hardwareMap.get(DcMotorEx.class, "RearLeft");
     this.rearRight = hardwareMap.get(DcMotorEx.class, "RearRight");
   }
