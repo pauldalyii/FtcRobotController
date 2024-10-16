@@ -5,22 +5,30 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name = "Sample OpMode", group = "Autonomous")
 public class SampleOpMode extends OpMode {
-    private TelemetryStrategy telemetryStrategy;
+    SampleOpModeApp app = null;
+
+    public SampleOpMode() {
+        super();
+        
+        String buildNumber = System.getProperty("buildNumber", "unknown");
+        TelemetryStrategy telemetryStrategy = new RobotCoreTelemetryStrategy(telemetry);
+
+        app = new SampleOpModeApp(  buildNumber,
+                                    telemetryStrategy);
+    }
 
     @Override
     public void init() {
-        String buildNumber = System.getProperty("buildNumber", "unknown");
-        telemetryStrategy = new SimpleTelemetryStrategy(telemetry, buildNumber);
+        app.init();
     }
 
     @Override
     public void loop() {
-        telemetryStrategy.log("Hello, World!");
-        telemetryStrategy.write();
+        app.loop();
     }
 
     @Override
     public void stop() {
-        telemetryStrategy.write();
+        app.stop();
     }
 }

@@ -21,7 +21,8 @@
 				"GitHub.copilot",
 				"GitHub.vscode-github-actions",
 				"antonydalmiere.android-support",
-				"redhat.java"
+				"redhat.java",
+				"vscjava.vscode-java-test"
 			],
 			"settings": {
 				"java.server.launchMode": "LightWeight",

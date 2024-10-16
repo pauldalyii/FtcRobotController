@@ -10,6 +10,10 @@
 
 
 // Custom definitions may go here
+plugins {
+    id 'com.android.application'
+    id 'jacoco'
+}
 
 // Include common definitions from above.
 apply from: '../build.common.gradle'
@@ -25,4 +29,39 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
+
+	testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-core:5.14.1'
 }
+
+
+jacoco {
+    toolVersion = "0.8.7"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+    finalizedBy jacocoTestReport
+}
+
+tasks.register('jacocoTestReport', JacocoReport) {
+    dependsOn test
+    reports {
+        xml.required.set(false)
+        csv.required.set(false)
+        html.outputLocation.set(layout.buildDirectory.dir('jacocoHtml'))
+    }
+}
+
+
+tasks.register('jacocoTestCoverageVerification', JacocoCoverageVerification) {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
