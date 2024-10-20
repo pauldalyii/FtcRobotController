@@ -50,8 +50,7 @@ jobs:
     - name: Set BUILD_NUMBER environment variable
       id: set-build-number
       run: |
-        DATE=$(date +'%y%m')
-        echo ::set-output name=build_number::${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.%YY%%MM%.${{ github.run_number }}
+        echo ::set-output name=build_number::${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.$(date +'%y%m').${{ github.run_number }}
 
     - name: Set ARTIFACT_NAME environment variable
       id: set-artifact-name
