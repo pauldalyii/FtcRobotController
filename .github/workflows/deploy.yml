@@ -1,0 +1,62 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
+
+name: Deploy
+
+env:
+  TEAM_NAME: Botsmiths
+  TEAM_NUMBER: 18693
+  MAJOR_VERSION: 1
+  MINOR_VERSION: 0
+
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+jobs:
+  deploy:
+    runs-on: self-hosted
+    environment: ${{ 
+      github.ref == 'refs/heads/main' && 'production' || 
+      github.ref == 'refs/heads/develop' && 'development' }}
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: ./build
+
+      - name: Read build metadata
+        id: read-build-metadata
+        run: |
+            source ./build/metadata.txt
+            echo "BUILD_NUMBER=$BUILD_NUMBER"
+            echo "ARTIFACT_NAME=$ARTIFACT_NAME"
+            echo "::set-output name=build_number::$BUILD_NUMBER"
+            echo "::set-output name=artifact_name::$ARTIFACT_NAME"
+
+      # wake up the adb sever if it is not already running
+      - name: Start adb server
+        run: adb start-server
+
+      # helps with debugging if the device is not detected  
+      - name: List devices
+        run: adb devices 
+
+      # Run adb commands to uninstall the previous APK
+      - name: Uninstall Previous APK
+        continue-on-error: true # just incase the app is not installed
+        run: adb -s ${{ vars.CONTROL_HUB_USB_SERIAL }} uninstall com.qualcomm.ftcrobotcontroller
+
+      # Run adb commands to install the new APK
+      - name: Install New APK
+        run: adb -s ${{ vars.CONTROL_HUB_USB_SERIAL }} install "./build/${{ steps.read-build-metadata.outputs.artifact_name }}.apk"
+      
+      # Run adb commands to start the new APK
+      - name: Run APK
+        run: adb shell am start -n com.qualcomm.ftcrobotcontroller/org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity
