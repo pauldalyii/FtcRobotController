@@ -9,10 +9,10 @@ This document helps track exactly what is plugged into each of the Control Hub's
 ### Motors
 | Port | Motor Name         | Description                        
 |------|--------------------|------------------------------------
-| 0    |                    |                                    
-| 1    |                    |                                    
-| 2    |                    |                                    
-| 3    |                    |                                    
+| 0    | DRIVE_FRONT_RIGHT  | Yellow Jacket Planetary Gear Motor 
+| 1    | DRIVE_FRONT_LEFT   | Yellow Jacket Planetary Gear Motor 
+| 2    | DRIVE_REAR_RIGHT   | Yellow Jacket Planetary Gear Motor 
+| 3    | DRIVE_REAR_LEFT    | Yellow Jacket Planetary Gear Motor  
 
 ### Servos
 | Port | Servo Name         | Description                        
