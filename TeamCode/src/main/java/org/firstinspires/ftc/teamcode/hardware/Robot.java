@@ -48,7 +48,7 @@ public class Robot {
     this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
 
-    this.intake = new Intake(this.intakeElbow, this.extendingArm);
+    this.intake = new Intake(this.intakeElbow, this.intakeWheel, this.extendingArm);
   }
 
   public void drive(double drive, double strafe, double rotate) {
@@ -114,7 +114,7 @@ public class Robot {
     public CRServo intakeWheel;
     public DcMotorEx extendingArm;
 
-    Intake(Servo intakeElbow, DcMotorEx extendingArm) {
+    Intake(Servo intakeElbow, CRServo intakeWheel, DcMotorEx extendingArm) {
       this.intakeElbow = intakeElbow;
       this.intakeWheel = intakeWheel;
       this.extendingArm = extendingArm;
@@ -125,13 +125,15 @@ public class Robot {
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
       this.intakeElbow.setPosition(0.2);
+      this.intakeWheel.setPower(1);
     }
 
     public void constrict() {
-      this.extendingArm.setTargetPosition(0);
+      this.extendingArm.setTargetPosition(500);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
       this.intakeElbow.setPosition(1);
+      this.intakeWheel.setPower(0);
     }
 
     public void tip() {
@@ -139,6 +141,7 @@ public class Robot {
       this.extendingArm.setTargetPosition(0);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
+      this.intakeWheel.setPower(0);
     }
   }
 }
