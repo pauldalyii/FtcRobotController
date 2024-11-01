@@ -145,7 +145,7 @@ public class Robot {
     }
 
     public void expand() {
-      this.intakeElbow.setPosition(0.15);
+      this.intakeElbow.setPosition(0.2);
       this.intakeWheel.setPower(1);
 
       this.extendingArm.setTargetPosition(800);
