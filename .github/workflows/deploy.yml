@@ -23,7 +23,7 @@ permissions:
 jobs:
   deploy:
     runs-on: self-hosted
-    environment: common
+    environment: ${{ inputs.environment}}
     steps:
       - name: Deploy to ${{ inputs.environment }}
         run: |
