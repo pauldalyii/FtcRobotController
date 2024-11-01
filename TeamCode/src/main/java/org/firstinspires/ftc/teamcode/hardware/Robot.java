@@ -81,7 +81,7 @@ public class Robot {
     }
 
     public void raise() {
-      this.intake.constrict(true);
+      this.intake.constrict(false);
 
       this.riserLeft.setTargetPosition(3000);
       this.riserRight.setTargetPosition(3000);
@@ -94,7 +94,6 @@ public class Robot {
     }
 
     public void lower() {
-      this.intake.expand();
       this.riserLeft.setTargetPosition(0);
       this.riserRight.setTargetPosition(0);
 
@@ -134,15 +133,17 @@ public class Robot {
     }
 
     public void constrict(boolean eject) {
-      this.extendingArm.setTargetPosition(500);
+      if (eject) {
+        this.extendingArm.setTargetPosition(300);
+        this.intakeWheel.setPower(-1);
+      } else {
+        this.extendingArm.setTargetPosition(500);
+        this.intakeWheel.setPower(1);
+      }
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
       this.intakeElbow.setPosition(1);
-      if (eject) {
-        this.intakeWheel.setPower(-1);
-      } else {
-        this.intakeWheel.setPower(1);
-      }
+
     }
 
     public void tip() {
@@ -150,6 +151,11 @@ public class Robot {
       this.extendingArm.setTargetPosition(0);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
+      this.intakeWheel.setPower(0);
+    }
+
+    public void hover() {
+      this.intakeElbow.setPosition(0.5);
       this.intakeWheel.setPower(0);
     }
   }
