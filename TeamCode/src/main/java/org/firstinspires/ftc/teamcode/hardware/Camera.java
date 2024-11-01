@@ -172,6 +172,9 @@ public class Camera {
     public AprilTagPosition position = AprilTagPosition.UNKNOWN;
 
     public AprilTag(AprilTagDetection detection) {
+      super(detection.id, detection.hamming, detection.decisionMargin, detection.center, detection.corners,
+          detection.metadata, detection.ftcPose, detection.rawPose, detection.robotPose,
+          detection.frameAcquisitionNanoTime);
       if (detection.metadata == null) {
         throw new IllegalStateException(String.format("Detection with ID: %d has no metadata", detection.id));
       }
