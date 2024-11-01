@@ -48,6 +48,7 @@ public class Robot {
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
     //this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
+    this.liftBucket.setDirection(Servo.Direction.REVERSE);
 
     this.intake = new Intake(this.intakeElbow, this.intakeWheel, this.extendingArm);
     this.lift = new Lift(this.riserLeft, this.riserRight);
