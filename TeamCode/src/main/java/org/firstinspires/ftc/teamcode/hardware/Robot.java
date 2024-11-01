@@ -21,6 +21,8 @@ public class Robot {
   public CRServo intakeWheel;
   public Servo liftBucket;
 
+  public Intake intake;
+
   private double driveVelocity = 2750;
 
   public Robot(HardwareMap hardwareMap) {
@@ -33,6 +35,7 @@ public class Robot {
     this.rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
 
     this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
+    this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
     this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
@@ -40,8 +43,12 @@ public class Robot {
     this.lift = new Lift(this.riserLeft, this.riserRight);
 
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_ELBOW");
+    this.intakeElbow.scaleRange(0.0, 0.6);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
+    this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
+
+    this.intake = new Intake(this.intakeElbow, this.extendingArm);
   }
 
   public void drive(double drive, double strafe, double rotate) {
@@ -99,6 +106,32 @@ public class Robot {
 
       this.riserLeft.setPower(0);
       this.riserRight.setPower(0);
+    }
+  }
+
+  public class Intake {
+    public Servo intakeElbow;
+    public CRServo intakeWheel;
+    public DcMotorEx extendingArm;
+
+    Intake(Servo intakeElbow, DcMotorEx extendingArm) {
+      this.intakeElbow = intakeElbow;
+      this.intakeWheel = intakeWheel;
+      this.extendingArm = extendingArm;
+    }
+
+    public void expand() {
+      this.extendingArm.setTargetPosition(800);
+      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.extendingArm.setPower(0.5);
+      this.intakeElbow.setPosition(0.2);
+    }
+
+    public void constrict() {
+      this.extendingArm.setTargetPosition(0);
+      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.extendingArm.setPower(0.5);
+      this.intakeElbow.setPosition(0.6);
     }
   }
 }
