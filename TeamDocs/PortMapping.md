@@ -81,7 +81,7 @@ This document helps track exactly what is plugged into each of the Control Hub's
 |------|--------------------|------------------------------------
 | 0    | EXTENDING_ARM      | Yellow Jacket Planetary Gear Motor
 | 1    | RISER_LEFT         | Yellow Jacket Planetary Gear Motor
-| 2    | RISER_RIGHT         | Yellow Jacket Planetary Gear Motor
+| 2    | RISER_RIGHT        | Yellow Jacket Planetary Gear Motor
 | 3    |                    |
 
 ### Servos
