@@ -12,8 +12,10 @@ public class Robot {
   public DcMotorEx rearRight;
 
   public DcMotorEx extendingArm;
-  public DcMotorEx riserLeft;
-  public DcMotorEx riserRight;
+
+  private DcMotorEx riserLeft;
+  private DcMotorEx riserRight;
+  public Lift lift;
 
   public Servo intakeElbow;
   public CRServo intakeWheel;
@@ -32,8 +34,10 @@ public class Robot {
 
     this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
     this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
+    this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
-    this.riserRight.setDirection(DcMotorEx.Direction.REVERSE);
+
+    this.lift = new Lift(this.riserLeft, this.riserRight);
 
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_ELBOW");
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
@@ -50,5 +54,42 @@ public class Robot {
     frontRight.setVelocity(frontRightPower * this.driveVelocity);
     rearLeft.setVelocity(rearLeftPower * this.driveVelocity);
     rearRight.setVelocity(rearRightPower * this.driveVelocity);
+  }
+
+  public class Lift {
+    public DcMotorEx riserLeft;
+    public DcMotorEx riserRight;
+
+    Lift(DcMotorEx riserLeft, DcMotorEx riserRight) {
+      this.riserLeft = riserLeft;
+      this.riserRight = riserRight;
+
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
+      this.riserLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+      this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    }
+
+    public void raise() {
+      this.riserLeft.setTargetPosition(3000);
+      this.riserRight.setTargetPosition(3000);
+
+      this.riserLeft.setPower(0.5);
+      this.riserRight.setPower(0.5);
+    }
+
+    public void lower() {
+      this.riserLeft.setTargetPosition(0);
+      this.riserRight.setTargetPosition(0);
+
+      this.riserLeft.setPower(0.5);
+      this.riserRight.setPower(0.5);
+    }
+
+    public void stop() {
+      this.riserLeft.setPower(0);
+      this.riserRight.setPower(0);
+    }
   }
 }
