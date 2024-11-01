@@ -27,7 +27,7 @@ public class BasicDrive extends OpMode {
     } else if (gamepad2.dpad_down) {
       this.robot.lift.lower();
     } else if (gamepad2.dpad_left) {
-      this.robot.lift.stop();
+      //this.robot.lift.stop();
     }
 
     telemetry.addData("Front Left Motor Velocity", this.robot.frontLeft.getVelocity());
@@ -55,7 +55,7 @@ public class BasicDrive extends OpMode {
       this.robot.intake.hover();
     }
     if (gamepad2.b) {
-      this.robot.intake.constrict(this.robot.intake.extendingArm.getCurrentPosition() <= 500);
+      //this.robot.intake.constrict(this.robot.intake.extendingArm.getCurrentPosition() <= 500);
     }
   }
 }
