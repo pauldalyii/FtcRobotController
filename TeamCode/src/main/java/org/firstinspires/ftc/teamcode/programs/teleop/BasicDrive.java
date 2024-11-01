@@ -26,7 +26,7 @@ public class BasicDrive extends OpMode {
       this.robot.lift.raise();
     } else if (gamepad2.dpad_down) {
       this.robot.lift.lower();
-    } else {
+    } else if (gamepad2.dpad_left) {
       this.robot.lift.stop();
     }
 
