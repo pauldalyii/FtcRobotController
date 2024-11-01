@@ -5,6 +5,7 @@ on:
     workflows: ["build"]
     branches:
       - common
+      - users/**
     types:
       - completed
 
