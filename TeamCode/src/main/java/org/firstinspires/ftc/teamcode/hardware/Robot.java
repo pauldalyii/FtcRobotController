@@ -115,13 +115,10 @@ public class Robot {
       this.riserRight.setPower(this.riserRight.getCurrentPosition() < 200 ? 0 : 0.5);
     }
 
-    /*public void stop() {
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-    
+    public void stop() {
       this.riserLeft.setPower(0);
       this.riserRight.setPower(0);
-    }*/
+    }
   }
 
   public class Intake {

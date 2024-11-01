@@ -57,6 +57,8 @@ public class IntoTheDeep extends OpMode {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.lower();
       }
+    } else {
+      this.robot.lift.stop();
     }
 
     if (gamepad2.right_bumper) {
