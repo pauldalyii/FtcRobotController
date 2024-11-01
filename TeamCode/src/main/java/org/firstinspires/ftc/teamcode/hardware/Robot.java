@@ -9,15 +9,15 @@ public class Robot {
   public DcMotorEx rearLeft;
   public DcMotorEx rearRight;
 
-  private double driveVelocity = 720;
+  private double driveVelocity = 2750;
 
   public Robot(HardwareMap hardwareMap) {
     this.frontLeft = hardwareMap.get(DcMotorEx.class, "DRIVE_FRONT_LEFT");
-      this.frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
+    this.frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.frontRight = hardwareMap.get(DcMotorEx.class, "DRIVE_FRONT_RIGHT");
-      //this.frontRight.setDirection(DcMotorEx.Direction.REVERSE);
+    //this.frontRight.setDirection(DcMotorEx.Direction.REVERSE);
     this.rearLeft = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_LEFT");
-      this.rearLeft.setDirection(DcMotorEx.Direction.REVERSE);
+    this.rearLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
   }
 
