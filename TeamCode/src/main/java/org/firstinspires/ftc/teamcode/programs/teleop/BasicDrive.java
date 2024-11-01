@@ -22,9 +22,9 @@ public class BasicDrive extends OpMode {
 
     this.robot.drive(drive, strafe, rotate);
 
-    if (gamepad1.dpad_up) {
+    if (gamepad2.dpad_up) {
       this.robot.lift.raise();
-    } else if (gamepad1.dpad_down) {
+    } else if (gamepad2.dpad_down) {
       this.robot.lift.lower();
     } else {
       this.robot.lift.stop();
