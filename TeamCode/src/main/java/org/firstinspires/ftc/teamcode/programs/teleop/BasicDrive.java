@@ -26,5 +26,14 @@ public class BasicDrive extends OpMode {
     telemetry.addData("Front Right Motor Velocity", this.robot.frontRight.getVelocity());
     telemetry.addData("Back Left Motor Velocity", this.robot.rearLeft.getVelocity());
     telemetry.addData("Back Right Motor Velocity", this.robot.rearRight.getVelocity());
+
+    telemetry.addData("Extending Arm Position", this.robot.extendingArm.getCurrentPosition());
+    telemetry.addData("Riser Left Position", this.robot.riserLeft.getCurrentPosition());
+    telemetry.addData("Riser Right Position", this.robot.riserRight.getCurrentPosition());
+
+    telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
+    telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
+    telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
+
   }
 }
