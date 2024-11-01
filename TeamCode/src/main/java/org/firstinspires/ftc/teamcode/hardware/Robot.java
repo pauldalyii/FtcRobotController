@@ -78,9 +78,11 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
+    int highBasket = 4250;
+
     public void raise() {
-      this.riserLeft.setTargetPosition(3000);
-      this.riserRight.setTargetPosition(3000);
+      this.riserLeft.setTargetPosition(highBasket);
+      this.riserRight.setTargetPosition(highBasket);
 
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
@@ -89,9 +91,11 @@ public class Robot {
       this.riserRight.setPower(0.5);
     }
 
+    int lowBasket = 2500;
+
     public void halfRaise() {
-      this.riserLeft.setTargetPosition(1500);
-      this.riserRight.setTargetPosition(1500);
+      this.riserLeft.setTargetPosition(lowBasket);
+      this.riserRight.setTargetPosition(lowBasket);
 
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
