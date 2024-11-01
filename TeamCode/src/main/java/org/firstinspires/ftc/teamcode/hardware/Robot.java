@@ -132,7 +132,7 @@ public class Robot {
     }
 
     public void hover() {
-      this.intakeElbow.setPosition(0.5);
+      this.intakeElbow.setPosition(0.3);
       this.intakeWheel.setPower(0);
 
       this.extendingArm.setTargetPosition(800);
