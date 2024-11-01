@@ -30,20 +30,20 @@ public class IntoTheDeep extends OpMode {
   }
 
   void operatorLoop() {
-    if (gamepad2.left_trigger > 0.5) {
-      if (gamepad2.right_trigger < 0.5) {
-        this.robot.intake.hover();
-      } else {
-        this.robot.intake.expand();
-      }
-    }
-
     if (gamepad2.a) {
       this.robot.intake.constrict();
       if (gamepad2.left_bumper) {
         this.robot.intakeWheel.setPower(-1);
       } else {
         this.robot.intakeWheel.setPower(1);
+      }
+    } else {
+      if (gamepad2.left_trigger > 0.5) {
+        if (gamepad2.right_trigger < 0.5) {
+          this.robot.intake.hover();
+        } else {
+          this.robot.intake.expand();
+        }
       }
     }
 
