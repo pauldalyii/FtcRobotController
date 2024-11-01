@@ -34,19 +34,19 @@ public class Robot {
     this.rearLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
 
+    this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
+    this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
+    this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
+
+    this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
+    this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_ELBOW");
     this.intakeElbow.scaleRange(0.0, 0.6);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
     //this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
+
     this.intake = new Intake(this.intakeElbow, this.intakeWheel, this.extendingArm);
-
-    this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
-    this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
-    this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
-    this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
-    this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
-
     this.lift = new Lift(this.riserLeft, this.riserRight, this.intake);
 
   }
