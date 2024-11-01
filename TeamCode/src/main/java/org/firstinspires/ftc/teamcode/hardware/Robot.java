@@ -64,8 +64,8 @@ public class Robot {
       this.riserLeft = riserLeft;
       this.riserRight = riserRight;
 
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
       this.riserLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -75,6 +75,9 @@ public class Robot {
       this.riserLeft.setTargetPosition(3000);
       this.riserRight.setTargetPosition(3000);
 
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
       this.riserLeft.setPower(0.5);
       this.riserRight.setPower(0.5);
     }
@@ -83,11 +86,17 @@ public class Robot {
       this.riserLeft.setTargetPosition(0);
       this.riserRight.setTargetPosition(0);
 
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
       this.riserLeft.setPower(0.5);
       this.riserRight.setPower(0.5);
     }
 
     public void stop() {
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+
       this.riserLeft.setPower(0);
       this.riserRight.setPower(0);
     }
