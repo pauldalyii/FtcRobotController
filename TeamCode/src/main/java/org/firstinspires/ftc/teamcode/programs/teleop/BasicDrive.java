@@ -43,11 +43,12 @@ public class BasicDrive extends OpMode {
     telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
 
-    this.robot.intakeElbow
-        .setPosition(this.robot.intakeElbow.getPosition() - gamepad2.right_stick_y * 0.01);
-    this.robot.liftBucket
-        .setPosition(this.robot.liftBucket.getPosition() - gamepad2.left_stick_y * 0.01);
-
     this.robot.intakeWheel.setPower(gamepad2.right_trigger - gamepad2.left_trigger);
+
+    if (gamepad2.a) {
+      this.robot.intake.expand();
+    } else if (gamepad2.b) {
+      this.robot.intake.constrict();
+    }
   }
 }
