@@ -34,6 +34,7 @@ public class IntoTheDeep extends OpMode {
       this.robot.intake.constrict();
       if (gamepad2.left_bumper) {
         this.robot.intakeWheel.setPower(-1);
+        this.robot.liftBucket.setPosition(0);
       } else {
         this.robot.intakeWheel.setPower(1);
       }
@@ -63,8 +64,8 @@ public class IntoTheDeep extends OpMode {
 
     if (gamepad2.right_bumper) {
       this.robot.liftBucket.setPosition(1);
-    } else {
-      this.robot.liftBucket.setPosition(0);
+    } else if (!this.gamepad2.left_bumper) {
+      this.robot.liftBucket.setPosition(0.5);
     }
   }
 
