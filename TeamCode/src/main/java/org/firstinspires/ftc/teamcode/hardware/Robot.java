@@ -123,15 +123,22 @@ public class Robot {
     public void expand() {
       this.extendingArm.setTargetPosition(800);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.5);
+      this.extendingArm.setPower(0.25);
       this.intakeElbow.setPosition(0.2);
     }
 
     public void constrict() {
       this.extendingArm.setTargetPosition(0);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.5);
-      this.intakeElbow.setPosition(0.6);
+      this.extendingArm.setPower(0.25);
+      this.intakeElbow.setPosition(1);
+    }
+
+    public void tip() {
+      this.intakeElbow.setPosition(0);
+      this.extendingArm.setTargetPosition(0);
+      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.extendingArm.setPower(0.25);
     }
   }
 }
