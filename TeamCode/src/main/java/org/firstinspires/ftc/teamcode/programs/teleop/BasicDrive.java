@@ -55,7 +55,7 @@ public class BasicDrive extends OpMode {
       this.robot.intake.hover();
     }
     if (gamepad2.b) {
-      this.robot.intake.constrict(this.robot.intake.extendingArm.getTargetPosition() <= 500);
+      this.robot.intake.constrict(this.robot.intake.extendingArm.getCurrentPosition() <= 500);
     }
   }
 }
