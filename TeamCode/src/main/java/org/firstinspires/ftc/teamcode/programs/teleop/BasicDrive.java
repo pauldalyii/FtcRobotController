@@ -48,9 +48,11 @@ public class BasicDrive extends OpMode {
     if (gamepad2.a) {
       this.robot.intake.expand();
     } else if (gamepad2.b) {
-      this.robot.intake.constrict(false);
+      this.robot.intake.constrict(true);
     } else if (gamepad2.x) {
       this.robot.intake.tip();
+    } else if (gamepad2.y) {
+      this.robot.intake.hover();
     }
   }
 }
