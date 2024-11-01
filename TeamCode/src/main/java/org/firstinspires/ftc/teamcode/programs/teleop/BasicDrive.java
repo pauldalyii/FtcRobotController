@@ -63,5 +63,8 @@ public class BasicDrive extends OpMode {
       this.robot.liftBucket.setPosition(1.0);
     }
 
+    this.robot.intakeElbow
+        .setPosition(this.robot.intakeElbow.getPosition() - gamepad1.left_trigger + gamepad1.right_trigger);
+
   }
 }
