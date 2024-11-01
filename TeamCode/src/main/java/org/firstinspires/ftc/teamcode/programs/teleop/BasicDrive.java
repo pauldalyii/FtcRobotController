@@ -14,6 +14,8 @@ public class BasicDrive extends OpMode {
     this.robot = new Robot(hardwareMap);
   }
 
+  boolean bPressed = false;
+
   @Override
   public void loop() {
     double drive = -gamepad1.left_stick_y;
@@ -47,12 +49,18 @@ public class BasicDrive extends OpMode {
 
     if (gamepad2.a) {
       this.robot.intake.expand();
-    } else if (gamepad2.b) {
-      this.robot.intake.constrict(true);
-    } else if (gamepad2.x) {
+    }
+    if (gamepad2.x) {
       this.robot.intake.tip();
-    } else if (gamepad2.y) {
+    }
+    if (gamepad2.y) {
       this.robot.intake.hover();
+    }
+    if (gamepad2.b && !bPressed) {
+      bPressed = true;
+      this.robot.intake.constrict(this.robot.intake.intakeElbow.getPosition() == 1);
+    } else {
+      bPressed = false;
     }
   }
 }

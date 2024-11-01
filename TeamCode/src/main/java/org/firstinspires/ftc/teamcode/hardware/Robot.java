@@ -155,6 +155,9 @@ public class Robot {
     }
 
     public void hover() {
+      this.extendingArm.setTargetPosition(0);
+      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.extendingArm.setPower(0.25);
       this.intakeElbow.setPosition(0.5);
       this.intakeWheel.setPower(0);
     }
