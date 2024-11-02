@@ -16,10 +16,10 @@ public class IntoTheDeep extends OpMode {
   }
 
   @Override
-  public void start(){
-    this.robot.intake.clearLift();
+  public void start() {
+    this.robot.intake.constrict();
   }
-  
+
   @Override
   public void loop() {
     driverLoop();
