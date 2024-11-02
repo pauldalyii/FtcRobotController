@@ -17,6 +17,6 @@ public class StrafeRight extends OpMode {
 
   @Override
   public void loop() {
-    this.robot.drive(0.25, 0, 0);
+    this.robot.drive(0, 0.25, 0);
   }
 }
