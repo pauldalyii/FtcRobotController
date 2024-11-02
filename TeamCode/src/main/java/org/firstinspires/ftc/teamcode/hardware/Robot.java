@@ -115,8 +115,8 @@ public class Robot {
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-      this.riserLeft.setPower(this.riserLeft.getCurrentPosition() < 200 ? 0 : 0.5);
-      this.riserRight.setPower(this.riserRight.getCurrentPosition() < 200 ? 0 : 0.5);
+      this.riserLeft.setPower(0.5);
+      this.riserRight.setPower(0.5);
     }
 
     public void stop() {
