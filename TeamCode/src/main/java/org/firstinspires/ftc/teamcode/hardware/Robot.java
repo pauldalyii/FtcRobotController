@@ -91,8 +91,8 @@ public class Robot {
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-      this.riserLeft.setPower(0.5);
-      this.riserRight.setPower(0.5);
+      this.riserLeft.setPower(0.75);
+      this.riserRight.setPower(0.75);
     }
 
     int lowBasket = 2500;
@@ -115,8 +115,8 @@ public class Robot {
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-      this.riserLeft.setPower(0.5);
-      this.riserRight.setPower(0.5);
+      this.riserLeft.setPower(0.75);
+      this.riserRight.setPower(0.75);
     }
 
     public void stop() {
