@@ -172,14 +172,17 @@ public class Robot {
     }
 
     public boolean clearLift() {
+      if (this.extendingArm.getCurrentPosition() >= 450) {
+        return true;
+      }
       this.intakeElbow.setPosition(0.75);
       this.intakeWheel.setPower(0);
 
       this.extendingArm.setTargetPosition(500);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.25);
+      this.extendingArm.setPower(0.75);
 
-      return this.extendingArm.getCurrentPosition() >= 450;
+      return false;
     }
   }
 }
