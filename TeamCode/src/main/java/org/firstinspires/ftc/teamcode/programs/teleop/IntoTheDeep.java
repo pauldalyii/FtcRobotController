@@ -92,7 +92,7 @@ public class IntoTheDeep extends OpMode {
         this.robot.lift.halfRaise();
       }
     } else if (gamepad2.dpad_down) {
-      if (this.robot.intake.clearLift()) {
+      if (gamepad2.y || this.robot.intake.clearLift()) {
         this.robot.lift.lower();
       }
     } else {
