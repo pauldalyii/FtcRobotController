@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 
 @TeleOp(name = "Into The Deep")
@@ -131,6 +132,8 @@ public class IntoTheDeep extends OpMode {
     telemetry.addData("Extending Arm Position", this.robot.extendingArm.getCurrentPosition());
     telemetry.addData("Riser Left Position", this.robot.lift.riserLeft.getCurrentPosition());
     telemetry.addData("Riser Right Position", this.robot.lift.riserRight.getCurrentPosition());
+    telemetry.addData("Riser Left Current", this.robot.lift.riserLeft.getCurrent(CurrentUnit.AMPS));
+    telemetry.addData("Riser Right Current", this.robot.lift.riserRight.getCurrent(CurrentUnit.AMPS));
 
     telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
