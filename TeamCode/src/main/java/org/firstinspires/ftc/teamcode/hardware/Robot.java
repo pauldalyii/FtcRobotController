@@ -140,7 +140,7 @@ public class Robot {
       this.intakeElbow.setPosition(0.3);
       this.intakeWheel.setPower(0);
 
-      this.extendingArm.setTargetPosition(800);
+      this.extendingArm.setTargetPosition(750);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
     }
@@ -149,7 +149,7 @@ public class Robot {
       this.intakeElbow.setPosition(0.2);
       this.intakeWheel.setPower(1);
 
-      this.extendingArm.setTargetPosition(800);
+      this.extendingArm.setTargetPosition(750);
       this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       this.extendingArm.setPower(0.25);
     }
