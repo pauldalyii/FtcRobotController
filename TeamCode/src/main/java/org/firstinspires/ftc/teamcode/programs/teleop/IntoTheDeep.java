@@ -116,6 +116,8 @@ public class IntoTheDeep extends OpMode {
 
     if (gamepad2.left_trigger > 0.5) {
       this.robot.intake.constrict();
+    } else if (gamepad2.y) {
+      this.robot.intake.tip();
     }
 
   }
