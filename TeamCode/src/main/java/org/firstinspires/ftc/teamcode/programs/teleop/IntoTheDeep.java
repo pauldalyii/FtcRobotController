@@ -30,7 +30,7 @@ public class IntoTheDeep extends OpMode {
   }
 
   void operatorLoop() {
-    if (gamepad2.a) {
+    /*if (gamepad2.a) {
       this.robot.intake.constrict();
       if (gamepad2.left_bumper) {
         this.robot.intakeWheel.setPower(-1);
@@ -45,7 +45,22 @@ public class IntoTheDeep extends OpMode {
         this.robot.intake.hover();
       }
     }
-
+    
+    if (gamepad2.dpad_up) {
+      if (this.robot.intake.clearLift()) {
+        this.robot.lift.raise();
+      }
+    } else if (gamepad2.dpad_left || gamepad2.dpad_right) {
+      if (this.robot.intake.clearLift()) {
+        this.robot.lift.halfRaise();
+      }
+    } else if (gamepad2.dpad_down) {
+      if (this.robot.intake.clearLift()) {
+        this.robot.lift.lower();
+      }
+    } else {
+      this.robot.lift.stop();
+    }*/
     if (gamepad2.dpad_up) {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
@@ -62,11 +77,31 @@ public class IntoTheDeep extends OpMode {
       this.robot.lift.stop();
     }
 
-    if (gamepad2.right_bumper) {
+    if (gamepad2.a) {
       this.robot.liftBucket.setPosition(1);
     } else if (!this.gamepad2.left_bumper) {
       this.robot.liftBucket.setPosition(0.4);
     }
+
+    if (gamepad2.right_bumper && gamepad2.right_trigger > 0.5) {
+      this.robot.intake.expand();
+      this.robot.intakeWheel.setPower(1);
+    } else if (gamepad2.right_trigger > 0.5) {
+      this.robot.intake.hover();
+      this.robot.intakeWheel.setPower(0);
+    } else if (gamepad2.right_bumper) {
+      this.robot.intakeWheel.setPower(1);
+    } else if (gamepad2.left_bumper) {
+      this.robot.intakeWheel.setPower(-1);
+      this.robot.liftBucket.setPosition(0.3);
+    } else {
+      this.robot.intakeWheel.setPower(0);
+    }
+
+    if (gamepad2.left_trigger > 0.5) {
+      this.robot.intake.constrict();
+    }
+
   }
 
   void telemetries() {
