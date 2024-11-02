@@ -22,11 +22,27 @@ public class IntoTheDeep extends OpMode {
   }
 
   void driverLoop() {
-    double drive = -gamepad1.left_stick_y;
+    /*double drive = -gamepad1.left_stick_y;
     double strafe = gamepad1.left_stick_x;
     double rotate = gamepad1.right_stick_x;
+    
+    this.robot.drive(drive, strafe, rotate);*/
+    double x = gamepad1.left_stick_x / 3;
+    x *= 2;
+    x -= gamepad1.right_bumper ? gamepad1.left_stick_x / 3 : 0;
+    x += gamepad1.left_bumper ? gamepad1.left_stick_x / 3 : 0;
+    double y = -gamepad1.left_stick_y / 3;
+    y *= 2;
+    y -= gamepad1.right_bumper ? -gamepad1.left_stick_y / 3 : 0;
+    y += gamepad1.left_bumper ? -gamepad1.left_stick_y / 3 : 0;
+    double z = gamepad1.right_stick_x / 3;
+    z *= 2;
+    z -= gamepad1.right_bumper ? gamepad1.right_stick_x / 3 : 0;
+    z += gamepad1.left_bumper ? gamepad1.right_stick_x / 3 : 0;
 
-    this.robot.drive(drive, strafe, rotate);
+    // robot.Drive System
+    this.robot.drive(x, y, z);
+
   }
 
   void operatorLoop() {
