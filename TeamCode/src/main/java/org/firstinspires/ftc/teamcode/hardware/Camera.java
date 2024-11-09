@@ -62,7 +62,6 @@ public class Camera {
    *
    * @return         	A list of AprilTag objects representing the detected tags.
    * @throws CameraNotStreamingException  If the camera is not currently streaming.
-   * @throws NoTagsFoundException         If no AprilTags are found in the current frame.
    * @throws CameraNotAttachedException   If the camera is not attached.
    */
   public List<AprilTag> getAprilTags()
