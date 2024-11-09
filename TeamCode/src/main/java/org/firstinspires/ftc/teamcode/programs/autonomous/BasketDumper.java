@@ -51,7 +51,7 @@ public class BasketDumper extends OpMode {
             double x = tag.ftcPose.x;
             double yaw = tag.ftcPose.yaw;
             double range = tag.ftcPose.range;
-            this.robot.drive(-this.parseSpeed(range - 10), this.parseSpeed(x + 2), -this.parseSpeed(yaw - 45));
+            this.robot.drive(-this.parseSpeed(range - 10), this.parseSpeed(x + 2), /*-this.parseSpeed(yaw - 45)*/0);
             tagfound = true;
           }
         }
