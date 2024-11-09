@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.List;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -17,6 +18,7 @@ import com.qualcomm.robotcore.util.Range;
 public class BasketDumper extends OpMode {
   private Robot robot;
   private Camera camera;
+  private ElapsedTime runtime = new ElapsedTime();
 
   @Override
   public void init() {
@@ -42,8 +44,8 @@ public class BasketDumper extends OpMode {
     return Range.clip(speed * sensitivity, -speedLimit, speedLimit);
   }
 
-  /** Stages: 0: start; 1: aligned: 2: ready to dump; */
   int stage = 0;
+  double timer = 0;
 
   @Override
   public void loop() {
@@ -60,12 +62,30 @@ public class BasketDumper extends OpMode {
         if (this.align(9, 1.5, 50) && this.robot.lift.isRaised()) {
           stage = 2;
         }
+        timer = this.runtime.milliseconds();
         break;
       case 2:
         this.robot.lift.raise();
         this.robot.liftBucket.setPosition(1);
         this.robot.drive(0, 0, 0);
+        if (this.runtime.milliseconds() - timer > 1000) {
+          stage = 3;
+        }
         break;
+      case 3:
+        if (this.align(12, -1.5, 45)) {
+          stage = 4;
+        }
+        break;
+      case 4:
+        this.robot.liftBucket.setPosition(0.4);
+        this.robot.lift.lower();
+        if (this.robot.lift.isLowered()) {
+          stage = 5;
+        }
+        break;
+      case 5:
+        requestOpModeStop();
     }
   }
 
