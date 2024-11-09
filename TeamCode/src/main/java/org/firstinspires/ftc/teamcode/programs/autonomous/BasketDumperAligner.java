@@ -13,8 +13,8 @@ import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTag;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous(name = "Basket Dumper")
-public class BasketDumper extends OpMode {
+@Autonomous(name = "Basket Dumper Aligner")
+public class BasketDumperAligner extends OpMode {
   private Robot robot;
   private Camera camera;
 
