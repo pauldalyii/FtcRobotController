@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-@Autonomous(name = "Drivetrain Diagnostics", group = "B")
+@Autonomous(name = "Drivetrain Diagnostics", group = "Diagnostics")
 public class DrivetrainDiagnostics extends LinearOpMode {
 
   public DcMotorEx frontLeft = null;
