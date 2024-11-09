@@ -30,6 +30,11 @@ public class BasketDumper extends OpMode {
     }
   }
 
+  @Override
+  public void init_loop() {
+    this.camera.telemetryAprilTag(telemetry);
+  }
+
   private double sensitivity = 0.05;
   private double speedLimit = 0.15;
 
