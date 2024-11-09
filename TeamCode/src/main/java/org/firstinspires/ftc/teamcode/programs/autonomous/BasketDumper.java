@@ -120,7 +120,7 @@ public class BasketDumper extends OpMode {
       if (!tagfound) {
         telemetry.speak("No basket found");
         this.robot.drive(-this.parseSpeed(lastRange) * -0.5, this.parseSpeed(lastX) * -0.5,
-            -this.parseSpeed(lastRange) * -0.5);
+            -this.parseSpeed(lastRange) * -0.25);
       }
     } catch (Camera.CameraNotStreamingException e) {
       telemetry.speak("Camera not streaming");
