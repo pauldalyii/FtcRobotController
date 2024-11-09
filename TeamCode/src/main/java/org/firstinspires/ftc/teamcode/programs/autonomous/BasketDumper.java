@@ -66,6 +66,31 @@ public class BasketDumper extends OpMode {
         telemetry.speak("Camera not attached");
         requestOpModeStop();
       }
+    } else if (gamepad1.b) {
+      try {
+        this.camera.getAprilTags();
+        List<AprilTag> tags = this.camera.getAprilTags();
+        boolean tagfound = false;
+        for (AprilTag tag : tags) {
+          if (tag.position == AprilTagPosition.BASKETS) {
+            double x = tag.ftcPose.x;
+            double yaw = tag.ftcPose.yaw;
+            double range = tag.ftcPose.range;
+            this.robot.drive(-this.parseSpeed(range - 10), this.parseSpeed(x - 1.5), -this.parseSpeed(yaw - 45));
+            tagfound = true;
+          }
+        }
+        if (!tagfound) {
+          telemetry.speak("No basket found");
+          this.robot.drive(0, 0, 0);
+        }
+      } catch (Camera.CameraNotStreamingException e) {
+        telemetry.speak("Camera not streaming");
+        this.robot.drive(0, 0, 0);
+      } catch (Camera.CameraNotAttachedException e) {
+        telemetry.speak("Camera not attached");
+        requestOpModeStop();
+      }
     } else {
       this.robot.drive(0, 0, 0);
     }
