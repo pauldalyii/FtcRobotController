@@ -95,6 +95,10 @@ public class Robot {
       this.riserRight.setPower(0.75);
     }
 
+    public boolean isRaised() {
+      return this.riserLeft.getCurrentPosition() >= highBasket;
+    }
+
     int lowBasket = 2500;
 
     public void halfRaise() {
