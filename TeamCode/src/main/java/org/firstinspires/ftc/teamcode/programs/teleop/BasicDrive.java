@@ -22,7 +22,7 @@ public class BasicDrive extends OpMode {
     double strafe = gamepad1.left_stick_x;
     double rotate = gamepad1.right_stick_x;
 
-    this.robot.drive(drive, strafe, rotate);
+    this.robot.drive(strafe, drive, rotate);
 
     if (gamepad2.dpad_up) {
       this.robot.lift.raise();

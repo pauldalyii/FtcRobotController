@@ -47,7 +47,7 @@ public class IntoTheDeep extends OpMode {
     z += gamepad1.left_bumper ? gamepad1.right_stick_x / 3 : 0;
 
     // robot.Drive System
-    this.robot.drive(y, x, z);
+    this.robot.drive(x, y, z);
 
   }
 

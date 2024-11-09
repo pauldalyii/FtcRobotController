@@ -55,11 +55,11 @@ public class Robot {
 
   }
 
-  public void drive(double drive, double strafe, double rotate) {
-    double frontLeftPower = drive + strafe + rotate;
-    double frontRightPower = drive - strafe - rotate;
-    double rearLeftPower = drive - strafe + rotate;
-    double rearRightPower = drive + strafe - rotate;
+  public void drive(double x, double y, double rotate) {
+    double frontLeftPower = y + x + rotate;
+    double frontRightPower = y - x - rotate;
+    double rearLeftPower = y - x + rotate;
+    double rearRightPower = y + x - rotate;
 
     frontLeft.setVelocity(frontLeftPower * this.driveVelocity);
     frontRight.setVelocity(frontRightPower * this.driveVelocity);
