@@ -60,7 +60,7 @@ public class BasketDumper extends OpMode {
         break;
       case 1:
         this.robot.lift.raise();
-        if (this.align(9, 1.5, 50) && this.robot.lift.isRaised()) {
+        if (this.align(9, 2, 50) && this.robot.lift.isRaised()) {
           stage = 2;
         }
         timer = this.runtime.milliseconds();
