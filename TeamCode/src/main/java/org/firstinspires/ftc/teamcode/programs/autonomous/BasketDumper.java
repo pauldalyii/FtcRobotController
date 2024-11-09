@@ -51,6 +51,7 @@ public class BasketDumper extends OpMode {
   public void start() {
     this.runtime.reset();
     this.robot.liftBucket.setPosition(0.3);
+    this.robot.intake.clearLift();
   }
 
   @Override
