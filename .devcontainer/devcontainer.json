@@ -26,7 +26,8 @@
 				"GitHub.vscode-github-actions",
 				"antonydalmiere.android-support",
 				"redhat.java",
-				"aaron-bond.better-comments"
+				"aaron-bond.better-comments",
+				"eamodio.gitlens"
 			],
 			"settings": {
 				"java.server.launchMode": "LightWeight", //Make sure `redhat.java` dosen't try to start a server, it just needs to do syntax highlighting
