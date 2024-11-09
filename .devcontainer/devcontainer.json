@@ -20,13 +20,13 @@
 		},
 		"vscode": {
 			"extensions": [
-				"-vscjava.vscode-java-pack", //Most of these extensions aren't necessary, but they're added by the image
-				"-dbaeumer.vscode-eslint", //This is a js linter, so it's not necessary. It's added by the image for a Node backend
-				"GitHub.copilot", //Super helpful for writing code
-				"GitHub.vscode-github-actions", //This is for GitHub Actions
-				"antonydalmiere.android-support", //This is what makes the programming possible, including the intellisense and error reporting
-				"redhat.java" //This dosen't actually do anything, it's just used for the syntax coloring
-				//Do we want to add any other extensions? (`VisualStudioExptTeam.vscodeintellicode`, `vscjava.vscode-java-test`)
+				"-vscjava.vscode-java-pack",
+				"-dbaeumer.vscode-eslint",
+				"GitHub.copilot",
+				"GitHub.vscode-github-actions",
+				"antonydalmiere.android-support",
+				"redhat.java",
+				"aaron-bond.better-comments"
 			],
 			"settings": {
 				"java.server.launchMode": "LightWeight", //Make sure `redhat.java` dosen't try to start a server, it just needs to do syntax highlighting
