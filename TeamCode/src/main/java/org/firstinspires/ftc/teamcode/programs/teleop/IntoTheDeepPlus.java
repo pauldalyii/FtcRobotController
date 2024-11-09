@@ -72,6 +72,11 @@ public class IntoTheDeepPlus extends OpMode {
         this.robot.liftBucket.setPosition(0.3);
       }
     } else {
+      try {
+        this.camera.pause();
+      } catch (Camera.CameraNotAttachedException e) {
+        // Do nothing for now
+      }
       this.robot.drive(x, y, z);
       this.lastRange = 0;
       this.lastX = 0;
