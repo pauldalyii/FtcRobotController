@@ -81,7 +81,7 @@ public class BasketDumper extends OpMode {
           double rangeSpeed = tag.ftcPose.range - range;
           double xSpeed = tag.ftcPose.x - x;
           double yawSpeed = tag.ftcPose.yaw - yaw;
-          this.robot.drive(-this.parseSpeed(rangeSpeed), this.parseSpeed(xSpeed), -this.parseSpeed(yawSpeed));
+          this.robot.drive(-this.parseSpeed(rangeSpeed), this.parseSpeed(xSpeed), -this.parseSpeed(yawSpeed) * 0.5);
           return rangeSpeed < this.successThreshold && xSpeed < this.successThreshold
               && yawSpeed < this.successThreshold;
         }
