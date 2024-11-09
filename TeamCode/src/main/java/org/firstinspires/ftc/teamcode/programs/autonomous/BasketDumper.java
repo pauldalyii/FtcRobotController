@@ -90,8 +90,8 @@ public class BasketDumper extends OpMode {
         }
         break;
       case 5:
-        this.robot.drive(0, -0.1, 0);
-        if (this.runtime.milliseconds() - timer > 1000) {
+        this.robot.drive(0, -0.15, 0);
+        if (this.runtime.milliseconds() - timer > 3000) {
           requestOpModeStop();
         }
     }
