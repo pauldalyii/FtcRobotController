@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTag;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
 import com.qualcomm.robotcore.util.Range;
 
-@Autonomous(name = "Basket Dumper")
+@Autonomous(name = "Basket Dumper", preselectTeleOp = "Into The Deep+")
 public class BasketDumper extends OpMode {
   private Robot robot;
   private Camera camera;
