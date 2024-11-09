@@ -136,7 +136,7 @@ public class IntoTheDeep extends OpMode {
     telemetry.addData("Back Left Motor Velocity", this.robot.rearLeft.getVelocity());
     telemetry.addData("Back Right Motor Velocity", this.robot.rearRight.getVelocity());
 
-    telemetry.addData("Extending Arm Position", this.robot.extendingArm.getCurrentPosition());
+    //!telemetry.addData("Extending Arm Position", this.robot.extendingArm.getCurrentPosition());
     telemetry.addData("Riser Left Position", this.robot.lift.riserLeft.getCurrentPosition());
     telemetry.addData("Riser Right Position", this.robot.lift.riserRight.getCurrentPosition());
     telemetry.addData("Riser Left Current", this.robot.lift.riserLeft.getCurrent(CurrentUnit.AMPS));
