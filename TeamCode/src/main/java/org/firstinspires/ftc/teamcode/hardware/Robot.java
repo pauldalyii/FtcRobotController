@@ -123,6 +123,10 @@ public class Robot {
       this.riserRight.setPower(0.75);
     }
 
+    public boolean isLowered() {
+      return this.riserLeft.getCurrentPosition() <= 10;
+    }
+
     public void stop() {
       this.riserLeft.setPower(0);
       this.riserRight.setPower(0);
