@@ -35,34 +35,36 @@ public class IntoTheDeepPlus extends OpMode {
     telemetries();
   }
 
+  boolean rightBumperLast = true;
+
   void driverLoop() {
     double x = gamepad1.left_stick_x / 3;
     x *= 2;
-    x -= gamepad1.right_bumper ? gamepad1.left_stick_x / 3 : 0;
-    x += gamepad1.left_bumper ? gamepad1.left_stick_x / 3 : 0;
+    x -= gamepad1.right_trigger * (gamepad1.left_stick_x / 3);
+    x += gamepad1.left_trigger * (gamepad1.left_stick_x / 3);
     double y = -gamepad1.left_stick_y / 3;
     y *= 2;
-    y -= gamepad1.right_bumper ? -gamepad1.left_stick_y / 3 : 0;
-    y += gamepad1.left_bumper ? -gamepad1.left_stick_y / 3 : 0;
+    y -= gamepad1.right_trigger * (-gamepad1.left_stick_y / 3);
+    y += gamepad1.left_trigger * (-gamepad1.left_stick_y / 3);
     double z = gamepad1.right_stick_x / 3;
     z *= 2;
-    z -= gamepad1.right_bumper ? gamepad1.right_stick_x / 3 : 0;
-    z += gamepad1.left_bumper ? gamepad1.right_stick_x / 3 : 0;
+    z -= gamepad1.right_trigger * (gamepad1.right_stick_x / 3);
+    z += gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
-    if (gamepad1.b) {
+    if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
       }
-      if (this.align(9, 2.2, 50)) {
+      if (this.align(9, 2.2, 50) || gamepad1.left_bumper) {
         this.robot.liftBucket.setPosition(1);
       } else {
         this.robot.liftBucket.setPosition(0.3);
       }
-    } else if (gamepad1.a) {
+    } else if (gamepad1.left_bumper) {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.halfRaise();
       }
-      if (this.align(9, 2.2, 50)) {
+      if (this.align(9, 2.2, 50) || gamepad1.right_bumper) {
         this.robot.liftBucket.setPosition(1);
       } else {
         this.robot.liftBucket.setPosition(0.3);
@@ -107,8 +109,8 @@ public class IntoTheDeepPlus extends OpMode {
           lastRange = rangeSpeed;
           lastX = xSpeed;
           lastYaw = yawSpeed;
-          this.robot.drive(-this.parseSpeed(rangeSpeed) + gamepad1.left_stick_x,
-              this.parseSpeed(xSpeed) - gamepad1.left_stick_y,
+          this.robot.drive(-this.parseSpeed(rangeSpeed) - gamepad1.left_stick_x,
+              this.parseSpeed(xSpeed) + gamepad1.left_stick_y,
               (-this.parseSpeed(yawSpeed) * 0.5) + gamepad1.right_stick_x);
           return rangeSpeed < this.successThreshold && xSpeed < this.successThreshold
               && yawSpeed < this.successThreshold;
