@@ -52,6 +52,7 @@ public class IntoTheDeepPlus extends OpMode {
     z += gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
+      rightBumperLast = true;
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
       }
@@ -61,6 +62,7 @@ public class IntoTheDeepPlus extends OpMode {
         this.robot.liftBucket.setPosition(0.3);
       }
     } else if (gamepad1.left_bumper) {
+      rightBumperLast = false;
       if (this.robot.intake.clearLift()) {
         this.robot.lift.halfRaise();
       }
