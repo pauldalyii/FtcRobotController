@@ -119,8 +119,11 @@ public class IntoTheDeepPlus extends OpMode {
         }
       }
       if (!tagfound) {
-        this.robot.drive(-this.parseSpeed(lastRange) * 0.5, this.parseSpeed(lastX) * 0.5,
-            -this.parseSpeed(lastRange) * 0.25);
+        this.robot.drive((-this.parseSpeed(lastRange) * 0.5)
+            - gamepad1.left_stick_x,
+            (this.parseSpeed(lastX) * 0.5)
+                + gamepad1.left_stick_y,
+            (-this.parseSpeed(lastRange) * 0.25) + gamepad1.right_stick_x);
         gamepad1.rumble(1);
       } else {
         gamepad1.rumble(0);
