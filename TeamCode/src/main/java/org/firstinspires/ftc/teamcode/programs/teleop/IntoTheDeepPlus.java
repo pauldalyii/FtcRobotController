@@ -69,6 +69,9 @@ public class IntoTheDeepPlus extends OpMode {
       }
     } else {
       this.robot.drive(x, y, z);
+      this.lastRange = 0;
+      this.lastX = 0;
+      this.lastYaw = 0;
     }
     // robot.Drive System
     this.robot.drive(x, y, z);
@@ -76,7 +79,7 @@ public class IntoTheDeepPlus extends OpMode {
   }
 
   private double sensitivity = 0.05;
-  private double speedLimit = 0.15;
+  private double speedLimit = 0.25;
 
   public double parseSpeed(double speed) {
     return Range.clip(speed * sensitivity, -speedLimit, speedLimit);
@@ -112,7 +115,6 @@ public class IntoTheDeepPlus extends OpMode {
         }
       }
       if (!tagfound) {
-        telemetry.speak("No basket found");
         this.robot.drive(-this.parseSpeed(lastRange) * 0.5, this.parseSpeed(lastX) * 0.5,
             -this.parseSpeed(lastRange) * 0.25);
         gamepad1.rumble(1);
