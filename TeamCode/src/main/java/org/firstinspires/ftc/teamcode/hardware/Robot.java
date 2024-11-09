@@ -165,7 +165,7 @@ public class Robot {
     }
 
     public void constrict() {
-      this.intakeElbow.setPosition(0.75);
+      this.intakeElbow.setPosition(1);
 
       ////this.extendingArm.setTargetPosition(150);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
