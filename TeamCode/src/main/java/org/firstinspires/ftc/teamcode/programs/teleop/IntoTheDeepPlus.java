@@ -151,7 +151,7 @@ public class IntoTheDeepPlus extends OpMode {
       if (gamepad2.y || this.robot.intake.clearLift()) {
         this.robot.lift.lower();
       }
-    } else if (!gamepad1.b && !gamepad1.a) {
+    } else if (!gamepad1.left_bumper && !gamepad1.right_bumper) {
       this.robot.lift.stop();
     }
 
