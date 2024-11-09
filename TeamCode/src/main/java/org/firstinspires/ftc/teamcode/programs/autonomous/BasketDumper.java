@@ -48,6 +48,12 @@ public class BasketDumper extends OpMode {
   double timer = 0;
 
   @Override
+  public void start() {
+    this.runtime.reset();
+    this.robot.liftBucket.setPosition(0.3);
+  }
+
+  @Override
   public void loop() {
     telemetry.addData("Stage", stage);
     this.camera.telemetryAprilTag(telemetry);
