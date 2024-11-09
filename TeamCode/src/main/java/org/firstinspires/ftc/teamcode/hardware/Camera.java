@@ -75,7 +75,8 @@ public class Camera {
       throw new CameraNotStreamingException();
     }
     List<AprilTagDetection> currentDetections = aprilTag.getDetections();
-    return currentDetections.stream().map(aprilTag -> new AprilTag(aprilTag)).collect(Collectors.toList());
+    return currentDetections.stream().filter(aprilTag -> aprilTag.metadata != null)
+        .map(aprilTag -> new AprilTag(aprilTag)).collect(Collectors.toList());
   }
 
   public void pause() throws CameraNotAttachedException {
