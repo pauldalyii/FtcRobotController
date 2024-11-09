@@ -82,13 +82,10 @@ public class IntoTheDeepPlus extends OpMode {
       this.lastX = 0;
       this.lastYaw = 0;
     }
-    // robot.Drive System
-    this.robot.drive(x, y, z);
-
   }
 
   private double sensitivity = 0.05;
-  private double speedLimit = 0.25;
+  private double speedLimit = 0.15;
 
   public double parseSpeed(double speed) {
     return Range.clip(speed * sensitivity, -speedLimit, speedLimit);
