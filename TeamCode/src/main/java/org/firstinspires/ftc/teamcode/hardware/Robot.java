@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class Robot {
   public DcMotorEx frontLeft;
@@ -11,7 +12,7 @@ public class Robot {
   public DcMotorEx rearLeft;
   public DcMotorEx rearRight;
 
-  public DcMotorEx extendingArm;
+  ////public DcMotorEx extendingArm;
 
   private DcMotorEx riserLeft;
   private DcMotorEx riserRight;
@@ -40,9 +41,9 @@ public class Robot {
     this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
     this.riserRight.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
-    this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
-    this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
-    this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+    ////this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
+    ////this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
+    ////this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_ELBOW");
     this.intakeElbow.scaleRange(0.0, 0.6);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
@@ -50,7 +51,7 @@ public class Robot {
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
     this.liftBucket.setDirection(Servo.Direction.REVERSE);
 
-    this.intake = new Intake(this.intakeElbow, this.intakeWheel, this.extendingArm);
+    this.intake = new Intake(this.intakeElbow, this.intakeWheel/*////, this.extendingArm*/);
     this.lift = new Lift(this.riserLeft, this.riserRight);
 
   }
@@ -136,59 +137,69 @@ public class Robot {
   public class Intake {
     public Servo intakeElbow;
     public CRServo intakeWheel;
-    public DcMotorEx extendingArm;
+    private ElapsedTime runtime = new ElapsedTime();
+    ////public DcMotorEx extendingArm;
 
-    Intake(Servo intakeElbow, CRServo intakeWheel, DcMotorEx extendingArm) {
+    Intake(Servo intakeElbow, CRServo intakeWheel/*////, DcMotorEx extendingArm*/) {
       this.intakeElbow = intakeElbow;
       this.intakeWheel = intakeWheel;
-      this.extendingArm = extendingArm;
+      ////this.extendingArm = extendingArm;
     }
 
     public void hover() {
       this.intakeElbow.setPosition(0.275);
       this.intakeWheel.setPower(0);
 
-      this.extendingArm.setTargetPosition(750);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.25);
+      ////this.extendingArm.setTargetPosition(750);
+      ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      ////this.extendingArm.setPower(0.25);
     }
 
     public void expand() {
       this.intakeElbow.setPosition(0.2);
       this.intakeWheel.setPower(1);
 
-      this.extendingArm.setTargetPosition(750);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.25);
+      ////this.extendingArm.setTargetPosition(750);
+      ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      ////this.extendingArm.setPower(0.25);
     }
 
     public void constrict() {
-      this.intakeElbow.setPosition(1);
+      this.intakeElbow.setPosition(0.75);
 
-      this.extendingArm.setTargetPosition(150);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.25);
+      ////this.extendingArm.setTargetPosition(150);
+      ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      ////this.extendingArm.setPower(0.25);
     }
 
     public void tip() {
       this.intakeElbow.setPosition(0);
       this.intakeWheel.setPower(0);
 
-      this.extendingArm.setTargetPosition(0);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.25);
+      ////this.extendingArm.setTargetPosition(0);
+      ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      ////this.extendingArm.setPower(0.25);
     }
 
+    double timer = 0;
+
     public boolean clearLift() {
-      if (this.extendingArm.getCurrentPosition() >= 450) {
-        return true;
+      if (this.intakeElbow.getPosition() == 0.5) {
+        if (this.runtime.milliseconds() - this.timer > 1000) {
+          return true;
+        }
+      } else {
+        this.timer = this.runtime.milliseconds();
       }
-      this.intakeElbow.setPosition(0.75);
+      /*if (this.extendingArm.getCurrentPosition() >= 450) {
+        return true;
+      }*/
+      this.intakeElbow.setPosition(0.5);
       this.intakeWheel.setPower(0);
 
-      this.extendingArm.setTargetPosition(500);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.75);
+      ////this.extendingArm.setTargetPosition(500);
+      ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      ////this.extendingArm.setPower(0.75);
 
       return false;
     }
