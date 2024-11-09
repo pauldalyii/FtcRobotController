@@ -127,6 +127,7 @@ public class Camera {
       for (AprilTag detection : currentDetections) {
         if (detection.metadata != null) {
           telemetry.addLine(String.format("\n==== (ID %d) %s", detection.id, detection.metadata.name));
+          telemetry.addLine(String.format("Location: %s", detection.position.toString()));
           telemetry.addLine(String.format("XYZ %6.1f %6.1f %6.1f  (inch)", detection.ftcPose.x, detection.ftcPose.y,
               detection.ftcPose.z));
           telemetry
