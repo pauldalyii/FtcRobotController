@@ -71,10 +71,12 @@ public class BasketDumper extends OpMode {
         this.robot.drive(0, 0, 0);
         if (this.runtime.milliseconds() - timer > 1000) {
           stage = 3;
+          timer = this.runtime.milliseconds();
         }
         break;
       case 3:
-        if (this.align(12, -1.5, 45)) {
+        this.robot.drive(0, -0.25, 0);
+        if (this.runtime.milliseconds() - timer > 1000) {
           stage = 4;
         }
         break;
