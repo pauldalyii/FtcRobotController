@@ -49,6 +49,7 @@ public class BasketDumper extends OpMode {
 
   @Override
   public void loop() {
+    telemetry.addData("Stage", stage);
     this.camera.telemetryAprilTag(telemetry);
     switch (stage) {
       case 0:
@@ -91,20 +92,35 @@ public class BasketDumper extends OpMode {
 
   public double successThreshold = 0.5;
 
+  public double lastRange = 0;
+  public double lastX = 0;
+  public double lastYaw = 0;
+
   public boolean align(double range, double x, double yaw) {
     try {
       this.camera.getAprilTags();
       //Get the list of april tags, identify which one has a position of BASKETS, then line up by driving so that the range: 10, x: -2, and yaw: 45
       List<AprilTag> tags = this.camera.getAprilTags();
+      boolean tagfound = false;
       for (AprilTag tag : tags) {
         if (tag.position == AprilTagPosition.BASKETS) {
+          tagfound = true;
           double rangeSpeed = tag.ftcPose.range - range;
           double xSpeed = tag.ftcPose.x - x;
           double yawSpeed = tag.ftcPose.yaw - yaw;
+
+          lastRange = rangeSpeed;
+          lastX = xSpeed;
+          lastYaw = yawSpeed;
           this.robot.drive(-this.parseSpeed(rangeSpeed), this.parseSpeed(xSpeed), -this.parseSpeed(yawSpeed) * 0.5);
           return rangeSpeed < this.successThreshold && xSpeed < this.successThreshold
               && yawSpeed < this.successThreshold;
         }
+      }
+      if (!tagfound) {
+        telemetry.speak("No basket found");
+        this.robot.drive(-this.parseSpeed(lastRange) * -0.5, this.parseSpeed(lastX) * -0.5,
+            -this.parseSpeed(lastRange) * -0.5);
       }
     } catch (Camera.CameraNotStreamingException e) {
       telemetry.speak("Camera not streaming");
