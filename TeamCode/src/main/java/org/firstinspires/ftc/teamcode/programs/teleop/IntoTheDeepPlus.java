@@ -21,6 +21,11 @@ public class IntoTheDeepPlus extends OpMode {
   public void init() {
     this.robot = new Robot(hardwareMap);
     this.camera = new Camera(hardwareMap);
+    try {
+      this.camera.resume();
+    } catch (Camera.CameraNotAttachedException _e) {
+      telemetry.speak("Camera not attached");
+    }
   }
 
   @Override
@@ -53,11 +58,6 @@ public class IntoTheDeepPlus extends OpMode {
 
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       rightBumperLast = true;
-      try {
-        this.camera.resume();
-      } catch (Camera.CameraNotAttachedException _e) {
-        telemetry.speak("Camera not attached");
-      }
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
       }
@@ -68,11 +68,6 @@ public class IntoTheDeepPlus extends OpMode {
       }
     } else if (gamepad1.left_bumper) {
       rightBumperLast = false;
-      try {
-        this.camera.resume();
-      } catch (Camera.CameraNotAttachedException _e) {
-        telemetry.speak("Camera not attached");
-      }
       if (this.robot.intake.clearLift()) {
         this.robot.lift.halfRaise();
       }
@@ -82,11 +77,6 @@ public class IntoTheDeepPlus extends OpMode {
         this.robot.liftBucket.setPosition(0.3);
       }
     } else {
-      try {
-        this.camera.pause();
-      } catch (Camera.CameraNotAttachedException e) {
-        // Do nothing for now
-      }
       this.robot.drive(x, y, z);
       this.lastRange = 0;
       this.lastX = 0;
