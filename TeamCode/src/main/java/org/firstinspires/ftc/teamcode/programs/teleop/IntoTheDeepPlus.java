@@ -62,7 +62,8 @@ public class IntoTheDeepPlus extends OpMode {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
       }
-      if (this.align(9, 2.2, 50) || gamepad1.left_bumper) {
+      this.align(9, 2.2, 50);
+      if (gamepad1.left_bumper) {
         this.robot.liftBucket.setPosition(1);
       } else {
         this.robot.liftBucket.setPosition(0.3);
@@ -72,7 +73,8 @@ public class IntoTheDeepPlus extends OpMode {
       if (this.robot.intake.clearLift()) {
         this.robot.lift.halfRaise();
       }
-      if (this.align(9, 2.2, 50) || gamepad1.right_bumper) {
+      this.align(9, 2.2, 50);
+      if (gamepad1.right_bumper) {
         this.robot.liftBucket.setPosition(1);
       } else {
         this.robot.liftBucket.setPosition(0.3);
@@ -128,7 +130,7 @@ public class IntoTheDeepPlus extends OpMode {
             (this.parseSpeed(lastX) * 0.5)
                 + gamepad1.left_stick_y / 3,
             (-this.parseSpeed(lastRange) * 0.25) + gamepad1.right_stick_x / 3);
-        gamepad1.rumble(1, 1, Gamepad.RUMBLE_DURATION_CONTINUOUS);
+        //gamepad1.rumble(1, 1, Gamepad.RUMBLE_DURATION_CONTINUOUS);
       } else {
         gamepad1.stopRumble();
       }
