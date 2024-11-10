@@ -113,26 +113,32 @@ public class IntoTheDeepPlus extends OpMode {
           lastRange = rangeSpeed;
           lastX = xSpeed;
           lastYaw = yawSpeed;
-          this.robot.drive(-this.parseSpeed(rangeSpeed) - gamepad1.left_stick_x,
-              this.parseSpeed(xSpeed) + gamepad1.left_stick_y,
-              (-this.parseSpeed(yawSpeed) * 0.5) + gamepad1.right_stick_x);
+          this.robot.drive(-this.parseSpeed(rangeSpeed) - gamepad1.left_stick_x / 3,
+              this.parseSpeed(xSpeed) + gamepad1.left_stick_y / 3,
+              (-this.parseSpeed(yawSpeed) * 0.5) + gamepad1.right_stick_x / 3);
           return rangeSpeed < this.successThreshold && xSpeed < this.successThreshold
               && yawSpeed < this.successThreshold;
         }
       }
       if (!tagfound) {
         this.robot.drive((-this.parseSpeed(lastRange) * 0.5)
-            - gamepad1.left_stick_x,
+            - gamepad1.left_stick_x / 3,
             (this.parseSpeed(lastX) * 0.5)
-                + gamepad1.left_stick_y,
-            (-this.parseSpeed(lastRange) * 0.25) + gamepad1.right_stick_x);
+                + gamepad1.left_stick_y / 3,
+            (-this.parseSpeed(lastRange) * 0.25) + gamepad1.right_stick_x / 3);
         gamepad1.rumble(1);
       } else {
         gamepad1.rumble(0);
       }
     } catch (Camera.CameraNotStreamingException e) {
       telemetry.speak("Camera not streaming");
-      this.robot.drive(0, 0, 0);
+      try {
+        this.camera.resume();
+      } catch (Camera.CameraNotAttachedException _e) {
+        telemetry.speak("Camera not attached");
+        requestOpModeStop();
+      }
+      this.robot.drive(-gamepad1.left_stick_x / 3, gamepad1.left_stick_y / 3, gamepad1.right_stick_x / 3);
     } catch (Camera.CameraNotAttachedException e) {
       telemetry.speak("Camera not attached");
       requestOpModeStop();
