@@ -53,6 +53,11 @@ public class IntoTheDeepPlus extends OpMode {
 
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       rightBumperLast = true;
+      try {
+        this.camera.resume();
+      } catch (Camera.CameraNotAttachedException _e) {
+        telemetry.speak("Camera not attached");
+      }
       if (this.robot.intake.clearLift()) {
         this.robot.lift.raise();
       }
@@ -63,6 +68,11 @@ public class IntoTheDeepPlus extends OpMode {
       }
     } else if (gamepad1.left_bumper) {
       rightBumperLast = false;
+      try {
+        this.camera.resume();
+      } catch (Camera.CameraNotAttachedException _e) {
+        telemetry.speak("Camera not attached");
+      }
       if (this.robot.intake.clearLift()) {
         this.robot.lift.halfRaise();
       }
@@ -132,11 +142,6 @@ public class IntoTheDeepPlus extends OpMode {
       }
     } catch (Camera.CameraNotStreamingException e) {
       telemetry.speak("Camera not streaming");
-      try {
-        this.camera.resume();
-      } catch (Camera.CameraNotAttachedException _e) {
-        telemetry.speak("Camera not attached");
-      }
       this.robot.drive(-gamepad1.left_stick_x / 3, gamepad1.left_stick_y / 3, gamepad1.right_stick_x / 3);
     } catch (Camera.CameraNotAttachedException e) {
       telemetry.speak("Camera not attached");
@@ -206,5 +211,8 @@ public class IntoTheDeepPlus extends OpMode {
     telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
+
+    telemetry.addLine();
+    this.camera.telemetryAprilTag(telemetry);
   }
 }
