@@ -136,7 +136,6 @@ public class IntoTheDeepPlus extends OpMode {
         this.camera.resume();
       } catch (Camera.CameraNotAttachedException _e) {
         telemetry.speak("Camera not attached");
-        requestOpModeStop();
       }
       this.robot.drive(-gamepad1.left_stick_x / 3, gamepad1.left_stick_y / 3, gamepad1.right_stick_x / 3);
     } catch (Camera.CameraNotAttachedException e) {
