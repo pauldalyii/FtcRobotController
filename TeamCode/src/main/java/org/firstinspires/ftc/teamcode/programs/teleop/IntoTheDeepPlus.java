@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import java.util.List;
@@ -126,9 +127,9 @@ public class IntoTheDeepPlus extends OpMode {
             (this.parseSpeed(lastX) * 0.5)
                 + gamepad1.left_stick_y / 3,
             (-this.parseSpeed(lastRange) * 0.25) + gamepad1.right_stick_x / 3);
-        gamepad1.rumble(1);
+        gamepad1.rumble(1, 1, Gamepad.RUMBLE_DURATION_CONTINUOUS);
       } else {
-        gamepad1.rumble(0);
+        gamepad1.stopRumble();
       }
     } catch (Camera.CameraNotStreamingException e) {
       telemetry.speak("Camera not streaming");
