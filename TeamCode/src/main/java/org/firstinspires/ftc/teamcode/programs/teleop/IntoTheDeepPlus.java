@@ -46,16 +46,16 @@ public class IntoTheDeepPlus extends OpMode {
   void driverLoop() {
     double x = gamepad1.left_stick_x / 3;
     x *= 2;
-    x -= gamepad1.right_trigger * (gamepad1.left_stick_x / 3);
-    x += gamepad1.left_trigger * (gamepad1.left_stick_x / 3);
+    x += gamepad1.right_trigger * (gamepad1.left_stick_x / 3);
+    x -= gamepad1.left_trigger * (gamepad1.left_stick_x / 3);
     double y = -gamepad1.left_stick_y / 3;
     y *= 2;
-    y -= gamepad1.right_trigger * (-gamepad1.left_stick_y / 3);
-    y += gamepad1.left_trigger * (-gamepad1.left_stick_y / 3);
+    y += gamepad1.right_trigger * (-gamepad1.left_stick_y / 3);
+    y -= gamepad1.left_trigger * (-gamepad1.left_stick_y / 3);
     double z = gamepad1.right_stick_x / 3;
     z *= 2;
-    z -= gamepad1.right_trigger * (gamepad1.right_stick_x / 3);
-    z += gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
+    z += gamepad1.right_trigger * (gamepad1.right_stick_x / 3);
+    z -= gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       rightBumperLast = true;
