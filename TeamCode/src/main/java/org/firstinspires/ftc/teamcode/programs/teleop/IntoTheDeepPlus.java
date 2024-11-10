@@ -78,6 +78,7 @@ public class IntoTheDeepPlus extends OpMode {
         this.robot.liftBucket.setPosition(0.3);
       }
     } else {
+      gamepad1.stopRumble();
       this.robot.drive(x, y, z);
       this.lastRange = 0;
       this.lastX = 0;
