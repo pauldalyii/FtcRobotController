@@ -113,6 +113,19 @@ public class Robot {
       this.riserRight.setPower(0.5);
     }
 
+    public void setVelocity(float input) {
+      if (input >= -0.05 && input <= 0.05)
+        return;
+
+      float ticksPerRev = 537.6f;
+      int maxRPM = 312;
+
+      float targetVelocity = input * ((maxRPM * ticksPerRev) / 60);
+
+      this.riserLeft.setVelocity(targetVelocity);
+      this.riserRight.setVelocity(targetVelocity);
+    }
+
     public void lower() {
       this.riserLeft.setTargetPosition(0);
       this.riserRight.setTargetPosition(0);

@@ -60,7 +60,7 @@ public class IntoTheDeepPlus extends OpMode {
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       rightBumperLast = true;
       if (this.robot.intake.clearLift()) {
-        this.robot.lift.raise();
+        this.robot.lift.raise();  //raise to the highbasket
       }
       this.align(9, 2.2, 50);
       if (gamepad1.left_bumper) {
@@ -161,6 +161,10 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.lift.stop();
     }
 
+    if(gamepad2.back) {
+      this.robot.lift.setVelocity(gamepad2.right_stick_y);
+    }
+
     /*if (gamepad2.a) {
       this.robot.liftBucket.setPosition(1);
     } else if (!this.gamepad2.left_bumper) {
@@ -205,6 +209,7 @@ public class IntoTheDeepPlus extends OpMode {
     telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
+    telemetry.addData("Gamepad 2 Right Stick Y", gamepad2.right_stick_y);
 
     telemetry.addLine();
     this.camera.telemetryAprilTag(telemetry);
