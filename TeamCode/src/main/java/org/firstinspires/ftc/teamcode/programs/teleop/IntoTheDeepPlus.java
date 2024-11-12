@@ -161,6 +161,10 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.lift.stop();
     }
 
+    if(gamepad2.back) {
+      this.robot.lift.setVelocity(gamepad2.right_stick_y);
+    }
+
     /*if (gamepad2.a) {
       this.robot.liftBucket.setPosition(1);
     } else if (!this.gamepad2.left_bumper) {
