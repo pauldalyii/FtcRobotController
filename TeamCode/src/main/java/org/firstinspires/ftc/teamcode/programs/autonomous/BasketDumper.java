@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.hardware.Camera;
+import org.firstinspires.ftc.teamcode.hardware.RaiseHeight;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTag;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
@@ -61,13 +62,13 @@ public class BasketDumper extends OpMode {
     switch (stage) {
       case 0:
         this.robot.lift.raise();
-        if (this.align(12, -1.5, 45) && this.robot.lift.isRaised()) {
+        if (this.align(12, -1.5, 45) && this.robot.lift.isRaisedTo(RaiseHeight.HighBasket)) {
           stage = 1;
         }
         break;
       case 1:
         this.robot.lift.raise();
-        if ((this.align(9, 2.2, 50) && this.robot.lift.isRaised()) || this.runtime.seconds() > 15) {
+        if ((this.align(9, 2.2, 50) && this.robot.lift.isRaisedTo(RaiseHeight.HighBasket)) || this.runtime.seconds() > 15) {
           stage = 2;
         }
         timer = this.runtime.milliseconds();

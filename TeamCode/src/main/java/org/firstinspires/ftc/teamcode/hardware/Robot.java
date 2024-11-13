@@ -83,34 +83,35 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    int highBasket = 4250;
+    public void raise(RaiseHeight height, double power) {
+      this.riserLeft.setTargetPosition(height.getValue());
+      this.riserRight.setTargetPosition(height.getValue());
+
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
+      this.riserLeft.setPower(power);
+      this.riserRight.setPower(power);
+    }
+
 
     public void raise() {
-      this.riserLeft.setTargetPosition(highBasket);
-      this.riserRight.setTargetPosition(highBasket);
-
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-
-      this.riserLeft.setPower(0.75);
-      this.riserRight.setPower(0.75);
+      double power = 0.75;
+      this.raise(RaiseHeight.HighBasket, power);
     }
-
-    public boolean isRaised() {
-      return this.riserLeft.getCurrentPosition() >= highBasket;
-    }
-
-    int lowBasket = 2500;
-
     public void halfRaise() {
-      this.riserLeft.setTargetPosition(lowBasket);
-      this.riserRight.setTargetPosition(lowBasket);
+      double power = 0.5;
+      this.raise(RaiseHeight.LowBasket, power);
+    }
 
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+    int liftVariance = 10;
+    public boolean isRaisedTo(RaiseHeight height) {
+      return this.riserLeft.getCurrentPosition() >= height.getValue() - liftVariance;
+    }
 
-      this.riserLeft.setPower(0.5);
-      this.riserRight.setPower(0.5);
+    public boolean isLoweredTo(RaiseHeight height) {
+      
+      return this.riserLeft.getCurrentPosition() <= height.getValue() + liftVariance;
     }
 
     public void setVelocity(float input) {
@@ -127,18 +128,20 @@ public class Robot {
     }
 
     public void lower() {
-      this.riserLeft.setTargetPosition(0);
-      this.riserRight.setTargetPosition(0);
+      this.raise(RaiseHeight.Minimum, 0.75);
+      // this.riserLeft.setTargetPosition(0);
+      // this.riserRight.setTargetPosition(0);
 
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      // this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      // this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-      this.riserLeft.setPower(0.75);
-      this.riserRight.setPower(0.75);
+      // this.riserLeft.setPower(0.75);
+      // this.riserRight.setPower(0.75);
     }
 
     public boolean isLowered() {
-      return this.riserLeft.getCurrentPosition() <= 10;
+      return this.isLoweredTo(RaiseHeight.Minimum);
+      //return this.riserLeft.getCurrentPosition() <= 10;
     }
 
     public void stop() {

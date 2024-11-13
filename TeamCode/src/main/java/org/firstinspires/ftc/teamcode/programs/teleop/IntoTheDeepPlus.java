@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 import java.util.List;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.hardware.Camera;
+import org.firstinspires.ftc.teamcode.hardware.RaiseHeight;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTag;
@@ -60,7 +61,8 @@ public class IntoTheDeepPlus extends OpMode {
     if (gamepad1.right_bumper && (rightBumperLast || !gamepad1.left_bumper)) {
       rightBumperLast = true;
       if (this.robot.intake.clearLift()) {
-        this.robot.lift.raise();  //raise to the highbasket
+        double power = 0.75;
+        this.robot.lift.raise(RaiseHeight.HighBasket, power);  //raise to the highbasket
       }
       this.align(9, 2.2, 50);
       if (gamepad1.left_bumper) {
@@ -71,7 +73,8 @@ public class IntoTheDeepPlus extends OpMode {
     } else if (gamepad1.left_bumper) {
       rightBumperLast = false;
       if (this.robot.intake.clearLift()) {
-        this.robot.lift.halfRaise();
+        double power = 0.75;
+        this.robot.lift.raise(RaiseHeight.LowBasket, power);
       }
       this.align(9, 2.2, 50);
       if (gamepad1.right_bumper) {
@@ -147,11 +150,13 @@ public class IntoTheDeepPlus extends OpMode {
   void operatorLoop() {
     if (gamepad2.dpad_up) {
       if (this.robot.intake.clearLift()) {
-        this.robot.lift.raise();
+        double power = 0.75;
+        this.robot.lift.raise(RaiseHeight.HighBasket, power);
       }
     } else if (gamepad2.dpad_left || gamepad2.dpad_right) {
       if (this.robot.intake.clearLift()) {
-        this.robot.lift.halfRaise();
+        double power = 0.75;
+        this.robot.lift.raise(RaiseHeight.LowBasket, power);
       }
     } else if (gamepad2.dpad_down) {
       if (gamepad2.y || this.robot.intake.clearLift()) {
