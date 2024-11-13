@@ -66,7 +66,7 @@ public class IntoTheDeepPlus extends OpMode {
       }
       this.align(9, 2.2, 50);
       if (gamepad1.left_bumper) {
-        this.robot.liftBucket.setPosition(1);
+        this.robot.liftBucket.setPosition(0.55);
       } else {
         this.robot.liftBucket.setPosition(0.3);
       }
@@ -78,7 +78,7 @@ public class IntoTheDeepPlus extends OpMode {
       }
       this.align(9, 2.2, 50);
       if (gamepad1.right_bumper) {
-        this.robot.liftBucket.setPosition(1);
+        this.robot.liftBucket.setPosition(0.55);
       } else {
         this.robot.liftBucket.setPosition(0.3);
       }
