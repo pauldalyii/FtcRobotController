@@ -210,7 +210,7 @@ public class Robot {
       /*if (this.extendingArm.getCurrentPosition() >= 450) {
         return true;
       }*/
-      this.intakeElbow.setPosition(0.5);
+      this.intakeElbow.setPosition(0.7);
       this.intakeWheel.setPower(0);
 
       ////this.extendingArm.setTargetPosition(500);
