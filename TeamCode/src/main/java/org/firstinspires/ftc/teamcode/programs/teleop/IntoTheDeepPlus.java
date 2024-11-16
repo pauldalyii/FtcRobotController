@@ -66,7 +66,7 @@ public class IntoTheDeepPlus extends OpMode {
       }
       this.align(9, 2.2, 50);
       if (gamepad1.left_bumper) {
-        this.robot.liftBucket.setPosition(0.55);
+        this.robot.liftBucket.setPosition(0.65);
       } else {
         this.robot.liftBucket.setPosition(0.3);
       }
@@ -195,7 +195,7 @@ public class IntoTheDeepPlus extends OpMode {
 
     // connect to specimen
     if (gamepad2.back) {
-      this.robot.liftBucket.setPosition(0.15);
+      this.robot.liftBucket.setPosition(0.1);
     }
 
     // lift specimen
