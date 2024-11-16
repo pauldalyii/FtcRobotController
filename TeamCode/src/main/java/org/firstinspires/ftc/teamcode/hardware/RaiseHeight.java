@@ -4,6 +4,7 @@ public enum RaiseHeight {
   Minimum(0),
   HighBasket(4370),
   LowBasket(2500),
+  LiftSpecimine(100),
   HighChamber(1),
   LowChamber(1),
   HighHangingRung(1),

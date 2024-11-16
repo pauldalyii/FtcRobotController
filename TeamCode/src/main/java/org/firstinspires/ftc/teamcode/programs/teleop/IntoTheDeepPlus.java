@@ -193,6 +193,14 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.intake.tip();
     }
 
+    // pick up specimen
+    if (gamepad2.x) {
+      this.robot.liftBucket.setPosition(0);
+    }
+    if (gamepad2.back) {
+      double power = 0.75;
+      this.robot.lift.raise(RaiseHeight.LiftSpecimine, power);
+    }
   }
 
   void telemetries() {
