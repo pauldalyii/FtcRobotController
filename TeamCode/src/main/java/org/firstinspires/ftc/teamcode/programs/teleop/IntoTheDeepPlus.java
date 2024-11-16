@@ -237,6 +237,8 @@ public class IntoTheDeepPlus extends OpMode {
   }
 
   void telemetries() {
+    telemetry.addData("Build Number:", System.getProperty("buildNumber", "unknown"));
+
     telemetry.addData("Front Left Motor Velocity", this.robot.frontLeft.getVelocity());
     telemetry.addData("Front Right Motor Velocity", this.robot.frontRight.getVelocity());
     telemetry.addData("Back Left Motor Velocity", this.robot.rearLeft.getVelocity());
