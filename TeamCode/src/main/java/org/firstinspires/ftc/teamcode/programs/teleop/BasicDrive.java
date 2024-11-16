@@ -48,7 +48,7 @@ public class BasicDrive extends OpMode {
     //this.robot.intakeWheel.setPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
     if (gamepad2.a) {
-      this.robot.intake.expand();
+      this.robot.intake.collect();
     }
     if (gamepad2.x) {
       this.robot.intake.tip();
