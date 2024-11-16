@@ -236,6 +236,12 @@ public class IntoTheDeepPlus extends OpMode {
     }
   }
 
+  @Override
+  public void stop() {
+    this.robot.stop();
+  }
+
+
   void telemetries() {
     telemetry.addData("Build Number:", System.getProperty("buildNumber", "unknown"));
 

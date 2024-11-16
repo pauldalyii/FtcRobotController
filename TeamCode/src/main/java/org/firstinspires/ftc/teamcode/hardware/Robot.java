@@ -68,6 +68,15 @@ public class Robot {
     rearRight.setVelocity(rearRightPower * this.driveVelocity);
   }
 
+  public void stop() {
+    this.frontLeft.setPower(0);
+    this.frontRight.setPower(0);
+    this.rearLeft.setPower(0);
+    this.rearRight.setPower(0);
+    this.lift.stop();
+    this.intake.stop();
+  }
+
   public class Lift {
     public DcMotorEx riserLeft;
     public DcMotorEx riserRight;
@@ -153,7 +162,6 @@ public class Robot {
   public class Intake {
     public Servo intakeElbow;
     public CRServo intakeWheel;
-    private ElapsedTime runtime = new ElapsedTime();
     ////public DcMotorEx extendingArm;
 
     Intake(Servo intakeElbow, CRServo intakeWheel/*////, DcMotorEx extendingArm*/) {
@@ -161,6 +169,11 @@ public class Robot {
       this.intakeWheel = intakeWheel;
       ////this.extendingArm = extendingArm;
     }
+
+    public void stop() {
+      this.intakeWheel.setPower(0);
+      ////this.extendingArm.setPower(0);
+    } 
 
     public void hover() {
       // this.intakeWheel.setPower(0); <-- PIII wants this line removed.  PII isn't so sure.
