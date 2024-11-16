@@ -148,18 +148,26 @@ public class IntoTheDeepPlus extends OpMode {
   }
 
   void operatorLoop() {
+    // if you press the up button on the dpad, the intake will move out of the way (if it isn't already)
     if (gamepad2.dpad_up && this.robot.intake.clearLift()) {
         double power = 0.75;
+        // and the lift will raise to the high basket
         this.robot.lift.raise(RaiseHeight.HighBasket, power);
     } 
+    // if you press the left or right button on the dpad, the intake will move out of the way (if it isn't already)
     else if ((gamepad2.dpad_left || gamepad2.dpad_right) && this.robot.intake.clearLift()) {
         double power = 0.75;
+        // and the lift will raise to the low basket
         this.robot.lift.raise(RaiseHeight.LowBasket, power);
     }
+    // if you press the down button on the dpad, the intake will move out of the way (if it isn't already)
     else if (gamepad2.dpad_down && (gamepad2.y || this.robot.intake.clearLift())) {
+        // and the lift will lower all the way down
         this.robot.lift.lower();
     }
+    // if player 1 isn't pressing both the left and the right bumpers
     else if (!gamepad1.left_bumper && !gamepad1.right_bumper) {
+      // the lift will stop?
       this.robot.lift.stop();
     }
 
@@ -169,47 +177,61 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.liftBucket.setPosition(0.3);
     }*/
 
+    // if you press the right bumper or right trigger
     if (gamepad2.right_bumper && gamepad2.right_trigger > 0.5) {
-      this.robot.intake.collect();
-      this.robot.intakeWheel.setPower(1);
+        // the intake will collect samples
+        this.robot.intake.collect();
+    // if you press just the right trigger
     } else if (gamepad2.right_trigger > 0.5) {
-      this.robot.intake.hover();
-      this.robot.intakeWheel.setPower(0);
+        // the intake will hover into or out of the submersible chamber and the intake wheel will stop
+        this.robot.intake.hover();
+        this.robot.intakeWheel.setPower(0);
+    // if you press just the right bumper
     } else if (gamepad2.right_bumper) {
-      this.robot.intakeWheel.setPower(1);
+        // the intake wheel will spin to collect samples
+        this.robot.intakeWheel.setPower(1);
+      // if you press just the left bumper
     } else if (gamepad2.left_bumper) {
-      this.robot.intakeWheel.setPower(-1);
-      this.robot.liftBucket.setPosition(0.25);
+        // adjust lift bucket to catch specimen
+        this.robot.liftBucket.setPosition(0.25);
+        // transfer sample into lift bucket
+        this.robot.intakeWheel.setPower(-1);
+    // if you do none of these things
     } else {
+      // stop the intake wheel
       this.robot.intakeWheel.setPower(0);
     }
 
+    // if the left trigger is pulled
     if (gamepad2.left_trigger > 0.5) {
+      // bring the intake to the transfer position
       this.robot.intake.transfer();
+    // if the y button is pressed
     } else if (gamepad2.y) {
+      // tip the entire robot
       this.robot.intake.tip();
     }
 
-    // connect to specimen
     if (gamepad2.back) {
+         // allign the bucket to collect a specimen
       this.robot.liftBucket.setPosition(0.1);
     }
 
-    // lift specimen
     if (gamepad2.x) {
       double power = 0.75;
+      // lift specimen from perimeter wall
       this.robot.lift.raise(RaiseHeight.LiftSpecimen, power);
     }
 
-    // lift to high chamber
     if (gamepad2.a) {
       double power = 0.75;
+      // lift specimen to high chamber
       this.robot.lift.raise(RaiseHeight.AboveHighChamber, power);
     }
 
-    // lift to low chamber
     if (gamepad2.b) {
       double power = 0.75;
+      // lower specimen to low chamber
       this.robot.lift.raise(RaiseHeight.HighChamber, power);
     }
   }
