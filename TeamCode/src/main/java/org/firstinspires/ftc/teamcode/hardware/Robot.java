@@ -163,25 +163,25 @@ public class Robot {
     }
 
     public void hover() {
-      this.intakeElbow.setPosition(0.275);
-      this.intakeWheel.setPower(0);
-
+      // this.intakeWheel.setPower(0); <-- PIII wants this line removed.  PII isn't so sure.
+      this.intakeElbow.setPosition(IntakePositions.Hover.getValue());
+      
       ////this.extendingArm.setTargetPosition(750);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       ////this.extendingArm.setPower(0.25);
     }
 
-    public void expand() {
-      this.intakeElbow.setPosition(0.2);
+    public void collect() {  // was expand
       this.intakeWheel.setPower(1);
-
+      this.intakeElbow.setPosition(IntakePositions.Collect.getValue());
+      
       ////this.extendingArm.setTargetPosition(750);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       ////this.extendingArm.setPower(0.25);
     }
 
-    public void constrict() {
-      this.intakeElbow.setPosition(1);
+    public void transfer() {  // was constrict
+      this.intakeElbow.setPosition(IntakePositions.Transfer.getValue());
 
       ////this.extendingArm.setTargetPosition(150);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
@@ -189,29 +189,19 @@ public class Robot {
     }
 
     public void tip() {
-      this.intakeElbow.setPosition(0);
       this.intakeWheel.setPower(0);
+      this.intakeElbow.setPosition(IntakePositions.Tip.getValue());
 
       ////this.extendingArm.setTargetPosition(0);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
       ////this.extendingArm.setPower(0.25);
     }
 
-    double timer = 0;
-
     public boolean clearLift() {
-      if (this.intakeElbow.getPosition() == 0.7) {
-        if (this.runtime.milliseconds() - this.timer > 1000) {
-          return true;
-        }
-      } else {
-        this.timer = this.runtime.milliseconds();
-      }
-      /*if (this.extendingArm.getCurrentPosition() >= 450) {
-        return true;
-      }*/
-      this.intakeElbow.setPosition(0.7);
       this.intakeWheel.setPower(0);
+      if (this.intakeElbow.getPosition() > IntakePositions.ClearLift.getValue()) {
+        this.intakeElbow.setPosition(IntakePositions.ClearLift.getValue());
+      }
 
       ////this.extendingArm.setTargetPosition(500);
       ////this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);

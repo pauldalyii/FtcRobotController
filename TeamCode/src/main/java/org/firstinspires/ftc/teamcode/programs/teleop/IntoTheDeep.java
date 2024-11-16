@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
-import org.firstinspires.ftc.teamcode.hardware.Robot;
+import org.firstinspires.ftc.teamcode.hardware.*;
 
 @TeleOp(name = "Into The Deep")
 @Disabled
@@ -19,7 +19,7 @@ public class IntoTheDeep extends OpMode {
 
   @Override
   public void start() {
-    this.robot.intake.constrict();
+    this.robot.intake.transfer();
   }
 
   @Override
@@ -108,7 +108,7 @@ public class IntoTheDeep extends OpMode {
     }
 
     if (gamepad2.right_bumper && gamepad2.right_trigger > 0.5) {
-      this.robot.intake.expand();
+      this.robot.intake.collect();
       this.robot.intakeWheel.setPower(1);
     } else if (gamepad2.right_trigger > 0.5) {
       this.robot.intake.hover();
@@ -123,7 +123,7 @@ public class IntoTheDeep extends OpMode {
     }
 
     if (gamepad2.left_trigger > 0.5) {
-      this.robot.intake.constrict();
+      this.robot.intake.transfer();
     } else if (gamepad2.y) {
       this.robot.intake.tip();
     }

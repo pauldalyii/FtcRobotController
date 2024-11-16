@@ -32,7 +32,7 @@ public class IntoTheDeepPlus extends OpMode {
 
   @Override
   public void start() {
-    this.robot.intake.constrict();
+    this.robot.intake.transfer();
   }
 
   @Override
@@ -148,21 +148,18 @@ public class IntoTheDeepPlus extends OpMode {
   }
 
   void operatorLoop() {
-    if (gamepad2.dpad_up) {
-      if (this.robot.intake.clearLift()) {
+    if (gamepad2.dpad_up && this.robot.intake.clearLift()) {
         double power = 0.75;
         this.robot.lift.raise(RaiseHeight.HighBasket, power);
-      }
-    } else if (gamepad2.dpad_left || gamepad2.dpad_right) {
-      if (this.robot.intake.clearLift()) {
+    } 
+    else if ((gamepad2.dpad_left || gamepad2.dpad_right) && this.robot.intake.clearLift()) {
         double power = 0.75;
         this.robot.lift.raise(RaiseHeight.LowBasket, power);
-      }
-    } else if (gamepad2.dpad_down) {
-      if (gamepad2.y || this.robot.intake.clearLift()) {
+    }
+    else if (gamepad2.dpad_down && (gamepad2.y || this.robot.intake.clearLift())) {
         this.robot.lift.lower();
-      }
-    } else if (!gamepad1.left_bumper && !gamepad1.right_bumper) {
+    }
+    else if (!gamepad1.left_bumper && !gamepad1.right_bumper) {
       this.robot.lift.stop();
     }
 
@@ -173,7 +170,7 @@ public class IntoTheDeepPlus extends OpMode {
     }*/
 
     if (gamepad2.right_bumper && gamepad2.right_trigger > 0.5) {
-      this.robot.intake.expand();
+      this.robot.intake.collect();
       this.robot.intakeWheel.setPower(1);
     } else if (gamepad2.right_trigger > 0.5) {
       this.robot.intake.hover();
@@ -188,7 +185,7 @@ public class IntoTheDeepPlus extends OpMode {
     }
 
     if (gamepad2.left_trigger > 0.5) {
-      this.robot.intake.constrict();
+      this.robot.intake.transfer();
     } else if (gamepad2.y) {
       this.robot.intake.tip();
     }
