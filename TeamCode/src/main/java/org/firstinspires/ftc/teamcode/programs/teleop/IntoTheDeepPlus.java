@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.util.Range;
 import java.util.List;
 import org.firstinspires.ftc.robotcore.external.navigation.CurrentUnit;
 import org.firstinspires.ftc.teamcode.hardware.Camera;
+import org.firstinspires.ftc.teamcode.hardware.LiftBucketPositions;
 import org.firstinspires.ftc.teamcode.hardware.RaiseHeight;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
@@ -171,12 +172,6 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.lift.stop();
     }
 
-    /*if (gamepad2.a) {
-      this.robot.liftBucket.setPosition(1);
-    } else if (!this.gamepad2.left_bumper) {
-      this.robot.liftBucket.setPosition(0.3);
-    }*/
-
     // if you press the right bumper or right trigger
     if (gamepad2.right_bumper && gamepad2.right_trigger > 0.5) {
         // the intake will collect samples
@@ -193,7 +188,7 @@ public class IntoTheDeepPlus extends OpMode {
       // if you press just the left bumper
     } else if (gamepad2.left_bumper) {
         // adjust lift bucket to catch specimen
-        this.robot.liftBucket.setPosition(0.25);
+        this.robot.liftBucket.setPosition(LiftBucketPositions.Catch.getValue());
         // transfer sample into lift bucket
         this.robot.intakeWheel.setPower(-1);
     // if you do none of these things
@@ -214,7 +209,7 @@ public class IntoTheDeepPlus extends OpMode {
 
     if (gamepad2.back) {
          // allign the bucket to collect a specimen
-      this.robot.liftBucket.setPosition(0.1);
+      this.robot.liftBucket.setPosition(LiftBucketPositions.SpecimenPickup.getValue());
     }
 
     if (gamepad2.x) {
