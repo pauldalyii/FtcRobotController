@@ -166,10 +166,6 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.lift.stop();
     }
 
-    if(gamepad2.back) {
-      this.robot.lift.setVelocity(gamepad2.right_stick_y);
-    }
-
     /*if (gamepad2.a) {
       this.robot.liftBucket.setPosition(1);
     } else if (!this.gamepad2.left_bumper) {
@@ -214,7 +210,6 @@ public class IntoTheDeepPlus extends OpMode {
     telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
-    telemetry.addData("Gamepad 2 Right Stick Y", gamepad2.right_stick_y);
 
     telemetry.addLine();
     this.camera.telemetryAprilTag(telemetry);
