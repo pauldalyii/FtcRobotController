@@ -181,7 +181,7 @@ public class IntoTheDeepPlus extends OpMode {
     } else if (gamepad2.right_bumper) {
       this.robot.intakeWheel.setPower(1);
     } else if (gamepad2.left_bumper) {
-      this.robot.intakeWheel.setPower(-0.5);
+      this.robot.intakeWheel.setPower(-0.75);
       this.robot.liftBucket.setPosition(0.3);
     } else {
       this.robot.intakeWheel.setPower(0);
