@@ -193,13 +193,27 @@ public class IntoTheDeepPlus extends OpMode {
       this.robot.intake.tip();
     }
 
-    // pick up specimen
-    if (gamepad2.x) {
+    // connect to specimen
+    if (gamepad2.back) {
       this.robot.liftBucket.setPosition(0);
     }
-    if (gamepad2.back) {
+
+    // lift specimine
+    if (gamepad2.x) {
       double power = 0.75;
       this.robot.lift.raise(RaiseHeight.LiftSpecimine, power);
+    }
+
+    // lift to high chamber
+    if (gamepad2.a) {
+      double power = 0.75;
+      this.robot.lift.raise(RaiseHeight.AboveHighChamber, power);
+    }
+
+    // lift to low chamber
+    if (gamepad2.b) {
+      double power = 0.75;
+      this.robot.lift.raise(RaiseHeight.HighChamber, power);
     }
   }
 
