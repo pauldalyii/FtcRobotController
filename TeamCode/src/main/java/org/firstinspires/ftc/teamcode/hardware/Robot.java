@@ -200,7 +200,7 @@ public class Robot {
     double timer = 0;
 
     public boolean clearLift() {
-      if (this.intakeElbow.getPosition() == 0.5) {
+      if (this.intakeElbow.getPosition() == 0.7) {
         if (this.runtime.milliseconds() - this.timer > 1000) {
           return true;
         }
