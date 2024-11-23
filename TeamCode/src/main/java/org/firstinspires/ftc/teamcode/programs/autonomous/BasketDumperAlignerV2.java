@@ -21,6 +21,7 @@ public class BasketDumperAlignerV2 extends OpMode {
   public void init() {
     frontLeft = hardwareMap.get(DcMotorEx.class, "DRIVE_FRONT_LEFT");
     frontRight = hardwareMap.get(DcMotorEx.class, "DRIVE_FRONT_RIGHT");
+    frontRight.setDirection(DcMotorEx.Direction.REVERSE);
     rearLeft = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_LEFT");
     rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
 
@@ -40,7 +41,7 @@ public class BasketDumperAlignerV2 extends OpMode {
     double leftDistance = this.leftDistanceSensor.getDistance(DistanceUnit.INCH);
     double rightDistance = this.rightDistanceSensor.getDistance(DistanceUnit.INCH);
 
-    double targetDistance = 24.0;
+    double targetDistance = 12.0;
     double errorMargin = 1.0;
 
     if (Math.abs(leftDistance - targetDistance) > errorMargin
