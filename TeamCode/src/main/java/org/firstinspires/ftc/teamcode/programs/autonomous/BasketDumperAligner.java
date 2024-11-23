@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
@@ -14,6 +15,7 @@ import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
 import com.qualcomm.robotcore.util.Range;
 
 @Autonomous(name = "Basket Dumper Aligner")
+@Disabled
 public class BasketDumperAligner extends OpMode {
   private Robot robot;
   private Camera camera;

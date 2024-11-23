@@ -27,7 +27,9 @@
 				"antonydalmiere.android-support",
 				"redhat.java",
 				"aaron-bond.better-comments",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"bierner.github-markdown-preview",
+				"pdconsec.vscode-print"
 			],
 			"settings": {
 				"java.server.launchMode": "LightWeight", //Make sure `redhat.java` dosen't try to start a server, it just needs to do syntax highlighting
