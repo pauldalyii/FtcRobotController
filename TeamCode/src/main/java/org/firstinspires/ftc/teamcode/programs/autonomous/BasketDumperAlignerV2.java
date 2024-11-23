@@ -50,16 +50,16 @@ public class BasketDumperAlignerV2 extends OpMode {
       double y = 0;
       double rotate = 0;
 
-      if (leftDistance > targetDistance) {
-        y = -0.2;
-      } else if (leftDistance < targetDistance) {
-        y = 0.2;
+      if ((leftDistance + rightDistance) / 2 > targetDistance + errorMargin) {
+        y = 0.1;
+      } else if ((leftDistance + rightDistance) / 2 < targetDistance - errorMargin) {
+        y = -0.1;
       }
 
-      if (rightDistance > targetDistance) {
-        rotate = 0.2;
-      } else if (rightDistance < targetDistance) {
-        rotate = -0.2;
+      if (leftDistance > rightDistance - errorMargin) {
+        x = 0.1;
+      } else if (leftDistance < rightDistance + errorMargin) {
+        x = -0.1;
       }
 
       drive(x, y, rotate);
