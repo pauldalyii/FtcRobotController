@@ -65,7 +65,7 @@ public class IntoTheDeepPro extends OpMode {
       double leftDistance = this.robot.leftDistance.getDistance(DistanceUnit.INCH);
       double rightDistance = this.robot.rightDistance.getDistance(DistanceUnit.INCH);
 
-      double targetDistance = 12.0;
+      double targetDistance = 16.0;
       double errorMargin = 1.0;
 
       if (Math.abs(leftDistance - targetDistance) > errorMargin
