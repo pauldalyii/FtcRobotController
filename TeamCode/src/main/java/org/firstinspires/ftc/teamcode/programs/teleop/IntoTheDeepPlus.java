@@ -13,8 +13,10 @@ import org.firstinspires.ftc.teamcode.hardware.RaiseHeight;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTagPosition;
 import org.firstinspires.ftc.teamcode.hardware.Camera.AprilTag;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 @TeleOp(name = "Into The Deep+")
+@Disabled()
 public class IntoTheDeepPlus extends OpMode {
   private Robot robot;
   private Camera camera;
@@ -62,7 +64,7 @@ public class IntoTheDeepPlus extends OpMode {
       rightBumperLast = true;
       if (this.robot.intake.clearLift()) {
         double power = 0.75;
-        this.robot.lift.raise(RaiseHeight.HighBasket, power);  //raise to the highbasket
+        this.robot.lift.raise(RaiseHeight.HighBasket, power); //raise to the highbasket
       }
       this.align(9, 2.2, 50);
       if (gamepad1.left_bumper) {
