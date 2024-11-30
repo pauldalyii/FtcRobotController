@@ -59,6 +59,8 @@ public class IntoTheDeepPro extends OpMode {
     z -= gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
     if (gamepad1.left_bumper) {
+      x *= -1;
+      y *= -1;
 
       double leftDistance = this.robot.leftDistance.getDistance(DistanceUnit.INCH);
       double rightDistance = this.robot.rightDistance.getDistance(DistanceUnit.INCH);
