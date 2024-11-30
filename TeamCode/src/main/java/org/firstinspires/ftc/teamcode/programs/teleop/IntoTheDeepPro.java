@@ -61,12 +61,23 @@ public class IntoTheDeepPro extends OpMode {
     if (gamepad1.left_bumper) {
       x *= -1;
       y *= -1;
-
-      double leftDistance = this.robot.leftDistance.getDistance(DistanceUnit.INCH);
-      double rightDistance = this.robot.rightDistance.getDistance(DistanceUnit.INCH);
-
       double targetDistance = 16.0;
       double errorMargin = 1.0;
+
+      double leftDistance = this.robot.leftDistance.getDistance(DistanceUnit.INCH);
+      boolean leftFaulted = false;
+      if (leftDistance > 100) {
+        leftDistance = targetDistance;
+        leftFaulted = true;
+      }
+      double rightDistance = this.robot.rightDistance.getDistance(DistanceUnit.INCH);
+      boolean rightFaulted = false;
+      if (rightDistance > 100) {
+        rightDistance = targetDistance;
+        rightFaulted = true;
+      }
+
+      gamepad1.rumble(leftFaulted ? 1 : 0, rightFaulted ? 1 : 0, Gamepad.RUMBLE_DURATION_CONTINUOUS);
 
       if (Math.abs(leftDistance - targetDistance) > errorMargin
           || Math.abs(rightDistance - targetDistance) > errorMargin) {
