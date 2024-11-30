@@ -101,8 +101,8 @@ public class Robot {
     }
 
     public void setVelocity(float input) {
-      if (input >= -0.05 && input <= 0.05)
-        return;
+      /*if (input >= -0.05 && input <= 0.05)
+        return;*/
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
       this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
