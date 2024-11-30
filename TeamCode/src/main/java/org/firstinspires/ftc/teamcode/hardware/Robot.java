@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.hardware;
 
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import org.firstinspires.ftc.teamcode.hardware.drivers.GoBildaPinpointDriver;
+
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -21,6 +24,11 @@ public class Robot {
   public Servo intakeElbow;
   public CRServo intakeWheel;
   public Servo liftBucket;
+
+  public DistanceSensor leftDistance;
+  public DistanceSensor rightDistance;
+
+  public GoBildaPinpointDriver odometry;
 
   public Intake intake;
 
@@ -54,6 +62,15 @@ public class Robot {
     this.intake = new Intake(this.intakeElbow, this.intakeWheel/*////, this.extendingArm*/);
     this.lift = new Lift(this.riserLeft, this.riserRight);
 
+    this.leftDistance = hardwareMap.get(DistanceSensor.class, "LEFT_DISTANCE");
+    this.rightDistance = hardwareMap.get(DistanceSensor.class, "RIGHT_DISTANCE");
+
+    this.odometry = hardwareMap.get(GoBildaPinpointDriver.class, "GOBILDA_ODOMETRY");
+    this.odometry.setOffsets(-84.0, -168.0);
+    this.odometry.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+    this.odometry.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD,
+        GoBildaPinpointDriver.EncoderDirection.FORWARD);
+    this.odometry.resetPosAndIMU();
   }
 
   public void drive(double x, double y, double rotate) {
@@ -94,23 +111,24 @@ public class Robot {
       this.riserRight.setPower(power);
     }
 
-
     public void raise() {
       double power = 0.75;
       this.raise(RaiseHeight.HighBasket, power);
     }
+
     public void halfRaise() {
       double power = 0.5;
       this.raise(RaiseHeight.LowBasket, power);
     }
 
     int liftVariance = 10;
+
     public boolean isRaisedTo(RaiseHeight height) {
       return this.riserLeft.getCurrentPosition() >= height.getValue() - liftVariance;
     }
 
     public boolean isLoweredTo(RaiseHeight height) {
-      
+
       return this.riserLeft.getCurrentPosition() <= height.getValue() + liftVariance;
     }
 
