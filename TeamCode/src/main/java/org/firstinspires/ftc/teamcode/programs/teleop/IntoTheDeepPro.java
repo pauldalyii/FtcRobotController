@@ -61,7 +61,7 @@ public class IntoTheDeepPro extends OpMode {
     if (gamepad1.left_bumper) {
       x *= -1;
       y *= -1;
-      double targetDistance = 16.0;
+      double targetDistance = 17.0;
       double errorMargin = 1.0;
 
       double leftDistance = this.robot.leftDistance.getDistance(DistanceUnit.INCH);
@@ -118,6 +118,7 @@ public class IntoTheDeepPro extends OpMode {
     this.robot.odometry.update();
     telemetry.addData("Odometry X", this.robot.odometry.getPosX());
     telemetry.addData("Odometry Y", this.robot.odometry.getPosY());
+    telemetry.addData("Odometry Heading", this.robot.odometry.getHeading());
 
     telemetry.addLine();
 
