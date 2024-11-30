@@ -85,6 +85,13 @@ public class Robot {
     rearRight.setVelocity(rearRightPower * this.driveVelocity);
   }
 
+  public void drive(double x, double y, double rotate, double gyro) {
+    double tempX = x * Math.cos(gyro) + y * Math.sin(gyro);
+    double tempY = -x * Math.sin(gyro) + y * Math.cos(gyro);
+
+    this.drive(tempX, tempY, rotate);
+  }
+
   public class Lift {
     public DcMotorEx riserLeft;
     public DcMotorEx riserRight;
