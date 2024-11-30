@@ -31,8 +31,8 @@ This document helps track exactly what is plugged into each of the Control Hub's
 | I2C Bus | Sensor Name       | Description
 |---------|-------------------|------------------------------------
 | 0       | GOBILDA_ODOMETRY  | GoBilda Pinpoint Odometry Sensor
-| 1       |                   |
-| 2       |                   |
+| 1       | LEFT_DISTANCE     | Rev 2M Distance Sensor
+| 2       | RIGHT_DISTANCE    | Rev 2M Distance Sensor
 | 3       |                   |
 
 ### Digital Devices
