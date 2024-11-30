@@ -69,9 +69,9 @@ public class IntoTheDeepPro extends OpMode {
       if (Math.abs(leftDistance - targetDistance) > errorMargin
           || Math.abs(rightDistance - targetDistance) > errorMargin) {
         if ((leftDistance + rightDistance) / 2 > targetDistance + errorMargin) {
-          y += 0.1;
-        } else if ((leftDistance + rightDistance) / 2 < targetDistance - errorMargin) {
           y -= 0.1;
+        } else if ((leftDistance + rightDistance) / 2 < targetDistance - errorMargin) {
+          y += 0.1;
         }
 
         if (leftDistance > rightDistance + errorMargin) {
