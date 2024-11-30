@@ -100,7 +100,7 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    public void setVelocity(float input) {
+    public void setVelocity(double left, double right) {
       /*if (input >= -0.05 && input <= 0.05)
         return;*/
       this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
@@ -109,10 +109,11 @@ public class Robot {
       float ticksPerRev = 537.6f;
       int maxRPM = 312;
 
-      float targetVelocity = input * ((maxRPM * ticksPerRev) / 60);
+      double leftTargetVelocity = left * ((maxRPM * ticksPerRev) / 60);
+      double rightTargetVelocity = right * ((maxRPM * ticksPerRev) / 60);
 
-      this.riserLeft.setVelocity(targetVelocity);
-      this.riserRight.setVelocity(targetVelocity);
+      this.riserLeft.setVelocity(leftTargetVelocity);
+      this.riserRight.setVelocity(rightTargetVelocity);
     }
   }
 

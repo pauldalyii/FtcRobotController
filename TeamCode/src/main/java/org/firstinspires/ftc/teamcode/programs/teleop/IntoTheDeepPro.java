@@ -75,9 +75,9 @@ public class IntoTheDeepPro extends OpMode {
         }
 
         if (leftDistance > rightDistance + errorMargin) {
-          x -= 0.1;
-        } else if (leftDistance < rightDistance - errorMargin) {
           x += 0.1;
+        } else if (leftDistance < rightDistance - errorMargin) {
+          x -= 0.1;
         }
       }
     }
@@ -85,7 +85,7 @@ public class IntoTheDeepPro extends OpMode {
   }
 
   void operatorLoop() {
-    this.robot.lift.setVelocity(-gamepad2.left_stick_y);
+    this.robot.lift.setVelocity(-gamepad2.left_stick_y, 0);
 
     double currentPos = this.robot.intake.intakeElbow.getPosition();
     this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.01);
