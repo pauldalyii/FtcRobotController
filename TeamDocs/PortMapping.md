@@ -19,7 +19,7 @@ This document helps track exactly what is plugged into each of the Control Hub's
 
 | Port | Servo Name         | Description
 |------|--------------------|------------------------------------
-| 0    | INTAKE_ELBOW       | GoBilda Gearbox Servo
+| 0    | INTAKE_ELBOW       | GoBilda Torque Servo
 | 1    | INTAKE_WHEEL       | GoBilda CONTINUOS Rotation Speed Servo
 | 2    | LIFT_BUCKET        | GoBilda Speed Servo
 | 3    |                    |
@@ -30,7 +30,7 @@ This document helps track exactly what is plugged into each of the Control Hub's
 
 | I2C Bus | Sensor Name       | Description
 |---------|-------------------|------------------------------------
-| 0       |                   |
+| 0       | GOBILDA_ODOMETRY  | GoBilda Pinpoint Odometry Sensor
 | 1       |                   |
 | 2       |                   |
 | 3       |                   |
