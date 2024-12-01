@@ -26,12 +26,12 @@
  import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  
 import com.qualcomm.robotcore.hardware.DcMotor;
- import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
- import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
- import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
  
- import java.util.Locale;
- import org.firstinspires.ftc.teamcode.hardware.*;
+import java.util.Locale;
+import org.firstinspires.ftc.teamcode.hardware.*;
  
  /*
  This opmode shows how to use the goBILDA® Pinpoint Odometry Computer.
@@ -212,13 +212,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             double targetY = 1.0;
 
             // Create the OdometryRobot
-            OdometryRobot robot = new OdometryRobot(mecanumDrive, odometry, targetX, targetY);
+            OdometryRobot robot = new OdometryRobot(mecanumDrive, odometry);
 
             // Wait for the start button
             waitForStart();
 
             // Drive to the target
-            robot.driveToTarget();
+            robot.driveToTarget(targetX, targetY);
         }
         
         // Stop all motion 

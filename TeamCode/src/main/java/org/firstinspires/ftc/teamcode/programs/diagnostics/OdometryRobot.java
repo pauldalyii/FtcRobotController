@@ -9,14 +9,12 @@ public class OdometryRobot {
     // Define the target position
     private double targetX, targetY;
 
-    public OdometryRobot(MecanumDrive mecanumDrive, GoBildaPinpointDriver odometry, double targetX, double targetY) {
+    public OdometryRobot(MecanumDrive mecanumDrive, GoBildaPinpointDriver odometry) {
         this.mecanumDrive = mecanumDrive;
         this.odometry = odometry;
-        this.targetX = targetX;
-        this.targetY = targetY;
     }
 
-    public void driveToTarget() {
+    public void driveToTarget(double targetX, double targetY) {
         // Continue looping until the robot is close enough to the target position
         while (Math.abs(targetX - odometry.getPosX()) >= 10 || Math.abs(targetY - odometry.getPosY()) >= 10) {
             // Get the current position
