@@ -39,7 +39,7 @@ public class IntoTheDeepPro extends OpMode {
   public void loop() {
     driverLoop();
     operatorLoop();
-    //telemetries();
+    telemetries();
   }
 
   boolean rightBumperLast = true;
@@ -151,6 +151,6 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addData("Lift Bucket Position", this.robot.intake.getBucket());
 
     telemetry.addLine();
-    this.camera.telemetryAprilTag(telemetry);
+    //this.camera.telemetryAprilTag(telemetry);
   }
 }
