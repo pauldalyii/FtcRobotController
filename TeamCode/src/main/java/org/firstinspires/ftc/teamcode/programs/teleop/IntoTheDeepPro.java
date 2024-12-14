@@ -119,8 +119,8 @@ public class IntoTheDeepPro extends OpMode {
     this.robot.intake.setWheelPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
     if (gamepad2.x) {
-      this.robot.intake.setElbow(0.125);
-      this.robot.intake.setWrist(0.575);
+      this.robot.intake.setElbow(0.1);
+      this.robot.intake.setWrist(0.57);
     } else if (gamepad2.y) {
       this.robot.intake.setElbow(0.75);
       this.robot.intake.setWrist(1);
