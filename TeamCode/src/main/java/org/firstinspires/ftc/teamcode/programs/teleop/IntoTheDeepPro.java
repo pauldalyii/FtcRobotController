@@ -105,20 +105,23 @@ public class IntoTheDeepPro extends OpMode {
         gamepad2.left_trigger > 0.5 ? (gamepad2.dpad_up ? 0.75 : gamepad2.dpad_down ? -0.75 : 0) : 0);
 
     double currentPos = this.robot.intake.intakeElbow.getPosition();
-    this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.01);
+    this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.075);
 
     currentPos = this.robot.intake.intakeWrist.getPosition();
-    this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * 0.01);
+    this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * -0.075);
+
+    currentPos = this.robot.liftBucket.getPosition();
+    this.robot.liftBucket.setPosition(currentPos + gamepad2.left_stick_x * -0.075);
 
     this.robot.intake.setArmVelocity(gamepad2.right_stick_x * 0.25);
 
     this.robot.intake.setWheelPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
-    if (gamepad2.b) {
+    /*if (gamepad2.b) {
       this.robot.liftBucket.setPosition(0.9);
     } else {
       this.robot.liftBucket.setPosition(0.5);
-    }
+    }*/
   }
 
   void telemetries() {
