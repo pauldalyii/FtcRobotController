@@ -158,5 +158,9 @@ public class Robot {
 
       this.extendingArm.setVelocity(targetVelocity);
     }
+
+    public void setWheelPower(double power) {
+      this.intakeWheel.setPower(power);
+    }
   }
 }

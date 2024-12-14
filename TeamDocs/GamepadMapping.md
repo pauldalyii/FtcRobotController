@@ -28,12 +28,12 @@
 | 3      | y-axis: pivot wrist                                  |              |          |
 | 4      |                                               |              |          |
 | 5      |                                               |              |          |
-| 6      |                                               |              |          |
+| 6      | intake out                                              |              |          |
 | 7      |                                               |              |          |
 | 8      |                                               |              |          |
 | 9      | intake in                                     |              |          |
 | 10     |                                               |              |          |
-| A      | intake elbows in                              |              |          |
+| A      | intake elbows in                              |              |    TODO      |
 | B      | dump bucket                                   |              |          |
 | X      |                                               |              |          |
 | Y      |                                               |              |          |
