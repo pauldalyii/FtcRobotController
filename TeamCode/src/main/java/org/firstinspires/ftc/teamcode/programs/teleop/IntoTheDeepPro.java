@@ -38,6 +38,7 @@ public class IntoTheDeepPro extends OpMode {
 
   @Override
   public void loop() {
+    this.robot.odometry.update();
     driverLoop();
     operatorLoop();
     telemetries();
