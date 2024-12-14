@@ -115,9 +115,9 @@ public class IntoTheDeepPro extends OpMode {
     this.robot.intake.setWheelPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
     if (gamepad2.b) {
-      this.robot.liftBucket.setPosition(0.5);
+      this.robot.liftBucket.setPosition(0.9);
     } else {
-      this.robot.liftBucket.setPosition(0.0);
+      this.robot.liftBucket.setPosition(0.5);
     }
   }
 
