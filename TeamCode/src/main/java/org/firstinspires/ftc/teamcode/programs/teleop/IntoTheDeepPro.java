@@ -33,6 +33,7 @@ public class IntoTheDeepPro extends OpMode {
 
   @Override
   public void start() {
+    this.robot.intake.resetServos();
   }
 
   @Override

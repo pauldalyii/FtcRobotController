@@ -162,5 +162,10 @@ public class Robot {
     public void setWheelPower(double power) {
       this.intakeWheel.setPower(power);
     }
+
+    public void resetServos() {
+      this.intakeElbow.setPosition(0.5);
+      this.intakeWrist.setPosition(0.5);
+    }
   }
 }
