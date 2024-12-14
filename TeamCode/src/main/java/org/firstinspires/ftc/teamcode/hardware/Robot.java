@@ -54,11 +54,12 @@ public class Robot {
     this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
     this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_JOINT_1");
+    this.intakeElbow.setDirection(Servo.Direction.REVERSE);
     this.intakeElbow.scaleRange(0.0, 1.0);
     this.intakeWrist = hardwareMap.get(Servo.class, "INTAKE_JOINT_2");
     this.intakeWrist.scaleRange(0.0, 1.0);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
-    //this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
+    this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
     this.liftBucket.setDirection(Servo.Direction.REVERSE);
 

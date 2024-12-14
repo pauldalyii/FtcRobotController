@@ -110,7 +110,7 @@ public class IntoTheDeepPro extends OpMode {
     currentPos = this.robot.intake.intakeWrist.getPosition();
     this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * 0.01);
 
-    this.robot.intake.setArmVelocity(gamepad2.right_stick_x);
+    this.robot.intake.setArmVelocity(gamepad2.right_stick_x * 0.25);
 
     this.robot.intake.setWheelPower(gamepad2.right_trigger - gamepad2.left_trigger);
 
@@ -144,6 +144,7 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addData("Riser Right Current", this.robot.lift.riserRight.getCurrent(CurrentUnit.AMPS));
 
     telemetry.addData("Intake Elbow Position", this.robot.intake.intakeElbow.getPosition());
+    telemetry.addData("Intake Wrist Position", this.robot.intake.intakeWrist.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intake.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
 
