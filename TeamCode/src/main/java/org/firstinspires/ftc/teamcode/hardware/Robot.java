@@ -15,14 +15,15 @@ public class Robot {
   public DcMotorEx rearLeft;
   public DcMotorEx rearRight;
 
-  public DcMotorEx extendingArm;
+  private DcMotorEx extendingArm;
 
   private DcMotorEx riserLeft;
   private DcMotorEx riserRight;
   public Lift lift;
 
-  public Servo intakeElbow;
-  public CRServo intakeWheel;
+  private Servo intakeElbow;
+  private Servo intakeWrist;
+  private CRServo intakeWheel;
   public Servo liftBucket;
 
   public DistanceSensor leftDistance;
@@ -52,14 +53,16 @@ public class Robot {
     this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
     this.extendingArm.setDirection(DcMotorEx.Direction.REVERSE);
     this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-    this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_ELBOW");
-    this.intakeElbow.scaleRange(0.0, 0.6);
+    this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_JOINT_1");
+    this.intakeElbow.scaleRange(0.0, 1.0);
+    this.intakeWrist = hardwareMap.get(Servo.class, "INTAKE_JOINT_2");
+    this.intakeWrist.scaleRange(0.0, 1.0);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
     //this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
     this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
     this.liftBucket.setDirection(Servo.Direction.REVERSE);
 
-    this.intake = new Intake(this.intakeElbow, this.intakeWheel, this.extendingArm);
+    this.intake = new Intake(this.intakeElbow, this.intakeWrist, this.intakeWheel, this.extendingArm);
     this.lift = new Lift(this.riserLeft, this.riserRight);
 
     this.leftDistance = hardwareMap.get(DistanceSensor.class, "LEFT_DISTANCE");
@@ -126,18 +129,24 @@ public class Robot {
 
   public class Intake {
     public Servo intakeElbow;
+    public Servo intakeWrist;
     public CRServo intakeWheel;
     private ElapsedTime runtime = new ElapsedTime();
     public DcMotorEx extendingArm;
 
-    Intake(Servo intakeElbow, CRServo intakeWheel, DcMotorEx extendingArm) {
+    Intake(Servo intakeElbow, Servo intakeWrist, CRServo intakeWheel, DcMotorEx extendingArm) {
       this.intakeElbow = intakeElbow;
+      this.intakeWrist = intakeWrist;
       this.intakeWheel = intakeWheel;
       this.extendingArm = extendingArm;
     }
 
     public void setElbow(double position) {
       this.intakeElbow.setPosition(position);
+    }
+
+    public void setWrist(double position) {
+      this.intakeWrist.setPosition(position);
     }
 
     public void setArmVelocity(double power) {

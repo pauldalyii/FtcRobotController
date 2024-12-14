@@ -93,15 +93,20 @@ public class IntoTheDeepPro extends OpMode {
           x -= 0.1;
         }
       }
+      this.robot.drive(x, y, z);
+    } else {
+      this.robot.drive(x, y, z, this.robot.odometry.getHeading());
     }
-    this.robot.drive(x, y, z);
   }
 
   void operatorLoop() {
-    this.robot.lift.setVelocity(-gamepad2.left_stick_y, gamepad2.left_trigger > 0.5 ? -gamepad2.left_stick_y : 0);
+    this.robot.lift.setVelocity(gamepad2.right_stick_x, gamepad2.left_trigger > 0.5 ? -gamepad2.left_stick_y : 0);
 
     double currentPos = this.robot.intake.intakeElbow.getPosition();
     this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.01);
+
+    currentPos = this.robot.intake.intakeWrist.getPosition();
+    this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * 0.01);
 
     this.robot.intake.setArmVelocity(-gamepad2.right_stick_y);
   }
@@ -122,14 +127,14 @@ public class IntoTheDeepPro extends OpMode {
 
     telemetry.addLine();
 
-    telemetry.addData("Extending Arm Position", this.robot.extendingArm.getCurrentPosition());
+    telemetry.addData("Extending Arm Position", this.robot.intake.extendingArm.getCurrentPosition());
     telemetry.addData("Riser Left Position", this.robot.lift.riserLeft.getCurrentPosition());
     telemetry.addData("Riser Right Position", this.robot.lift.riserRight.getCurrentPosition());
     telemetry.addData("Riser Left Current", this.robot.lift.riserLeft.getCurrent(CurrentUnit.AMPS));
     telemetry.addData("Riser Right Current", this.robot.lift.riserRight.getCurrent(CurrentUnit.AMPS));
 
-    telemetry.addData("Intake Elbow Position", this.robot.intakeElbow.getPosition());
-    telemetry.addData("Intake Wheel Power", this.robot.intakeWheel.getPower());
+    telemetry.addData("Intake Elbow Position", this.robot.intake.intakeElbow.getPosition());
+    telemetry.addData("Intake Wheel Power", this.robot.intake.intakeWheel.getPower());
     telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
 
     telemetry.addLine();
