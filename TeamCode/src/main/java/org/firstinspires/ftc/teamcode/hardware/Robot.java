@@ -148,12 +148,24 @@ public class Robot {
       this.intakeElbow.setPosition(Range.scale(position, 0, 1, 0.325, 0.9));
     }
 
+    public double getElbow() {
+      return Range.scale(this.intakeElbow.getPosition(), 0.325, 0.9, 0, 1);
+    }
+
     public void setWrist(double position) {
       this.intakeWrist.setPosition(Range.scale(position, 0, 1, 0.25, 1));
     }
 
+    public double getWrist() {
+      return Range.scale(this.intakeWrist.getPosition(), 0.25, 1, 0, 1);
+    }
+
     public void setBucket(double position) {
       this.bucket.setPosition(Range.scale(position, 0, 1, 0.55, 0.85));
+    }
+
+    public double getBucket() {
+      return Range.scale(this.bucket.getPosition(), 0.55, 0.85, 0, 1);
     }
 
     public void setArmVelocity(double power) {
