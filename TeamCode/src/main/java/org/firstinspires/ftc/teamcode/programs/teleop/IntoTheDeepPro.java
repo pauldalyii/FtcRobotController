@@ -39,7 +39,7 @@ public class IntoTheDeepPro extends OpMode {
   public void loop() {
     driverLoop();
     operatorLoop();
-    telemetries();
+    //telemetries();
   }
 
   boolean rightBumperLast = true;
