@@ -19,9 +19,9 @@ This document helps track exactly what is plugged into each of the Control Hub's
 
 | Port | Servo Name         | Description
 |------|--------------------|------------------------------------
-| 0    | INTAKE_ELBOW       | GoBilda Torque Servo
-| 1    | INTAKE_WHEEL       | GoBilda CONTINUOS Rotation Speed Servo
-| 2    |         | 
+| 0    | INTAKE_WHEEL       | GoBilda Speed Servo
+| 1    | INTAKE_JOINT_1     | GoBilda Torque Servo
+| 2    | INTAKE_JOINT_2     | GoBilda Torque Servo
 | 3    |                    |
 | 4    |                    |
 | 5    |                    |
