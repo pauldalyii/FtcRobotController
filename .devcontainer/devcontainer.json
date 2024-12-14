@@ -29,7 +29,8 @@
 				"aaron-bond.better-comments",
 				"eamodio.gitlens",
 				"bierner.github-markdown-preview",
-				"pdconsec.vscode-print"
+				"pdconsec.vscode-print",
+				"GitHub.vscode-pull-request-github"
 			],
 			"settings": {
 				"java.server.launchMode": "LightWeight", //Make sure `redhat.java` dosen't try to start a server, it just needs to do syntax highlighting
