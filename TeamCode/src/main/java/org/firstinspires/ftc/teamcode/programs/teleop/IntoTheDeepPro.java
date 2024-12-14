@@ -34,6 +34,7 @@ public class IntoTheDeepPro extends OpMode {
   @Override
   public void start() {
     this.robot.intake.resetServos();
+    this.robot.liftBucket.setPosition(0.5);
   }
 
   @Override
