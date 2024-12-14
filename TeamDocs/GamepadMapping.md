@@ -21,19 +21,19 @@
 | Y      |                                                    |                                               |                                               |
 
 # Gamepad 2:
-| Button | Function                                | Combinations | Comments |
-|--------|-----------------------------------------|--------------|----------|
-| 1      | x-axis: pivot elbow; y-axis: extend/retract arm |              |          |
-| 2      |                                         |              |          |
-| 3      | lift up/down                                        |              |          |
-| 4      |                                         |              |          |
-| 5      |                                         |              |          |
-| 6      |                                         |              |          |
-| 7      |                                         |              |          |
-| 8      |                                         |              |          |
-| 9      | intake in                                        |              |          |
-| 10     |                                         |              |          |
-| A      |                                         |              |          |
-| B      |                                         |              |          |
-| X      |                                         |              |          |
-| Y      |                                         |              |          |
+| Button | Function                                      | Combinations | Comments |
+|--------|-----------------------------------------------|--------------|----------|
+| 1      | x-axis: extend/retract arm; y-axis: pivot elbow |              |          |
+| 2      | lift up/down                                              |              |          |
+| 3      | y-axis: pivot wrist                                  |              |          |
+| 4      |                                               |              |          |
+| 5      |                                               |              |          |
+| 6      |                                               |              |          |
+| 7      |                                               |              |          |
+| 8      |                                               |              |          |
+| 9      | intake in                                     |              |          |
+| 10     |                                               |              |          |
+| A      | intake elbows in                              |              |          |
+| B      | dump bucket                                   |              |          |
+| X      |                                               |              |          |
+| Y      |                                               |              |          |
