@@ -95,6 +95,7 @@ public class IntoTheDeepPro extends OpMode {
       }
       this.robot.drive(x, y, z);
     } else {
+      gamepad1.rumble(0, 0, Gamepad.RUMBLE_DURATION_CONTINUOUS);
       this.robot.drive(x, y, z, this.robot.odometry.getHeading());
     }
   }
