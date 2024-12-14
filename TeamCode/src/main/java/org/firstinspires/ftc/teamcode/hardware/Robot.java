@@ -144,28 +144,35 @@ public class Robot {
       this.bucket = bucket;
     }
 
+    private double scale(double input, double lower, double upper, boolean inverted) {
+      if (inverted) {
+        return Range.clip(Range.scale(input, lower, upper, 0, 1), 0, 1);
+      }
+      return Range.clip(Range.scale(input, 0, 1, lower, upper), 0, 1);
+    }
+
     public void setElbow(double position) {
-      this.intakeElbow.setPosition(Range.scale(position, 0, 1, 0.325, 0.9));
+      this.intakeElbow.setPosition(this.scale(position, 0.325, 0.9, false));
     }
 
     public double getElbow() {
-      return Range.scale(this.intakeElbow.getPosition(), 0.325, 0.9, 0, 1);
+      return this.scale(this.intakeElbow.getPosition(), 0.325, 0.9, true);
     }
 
     public void setWrist(double position) {
-      this.intakeWrist.setPosition(Range.scale(position, 0, 1, 0.25, 1));
+      this.intakeWrist.setPosition(this.scale(position, 0.25, 1, false));
     }
 
     public double getWrist() {
-      return Range.scale(this.intakeWrist.getPosition(), 0.25, 1, 0, 1);
+      return this.scale(this.intakeWrist.getPosition(), 0.25, 1, true);
     }
 
     public void setBucket(double position) {
-      this.bucket.setPosition(Range.scale(position, 0, 1, 0.55, 0.85));
+      this.bucket.setPosition(this.scale(position, 0.55, 0.85, false));
     }
 
     public double getBucket() {
-      return Range.scale(this.bucket.getPosition(), 0.55, 0.85, 0, 1);
+      return this.scale(this.bucket.getPosition(), 0.55, 0.85, true);
     }
 
     public void setArmVelocity(double power) {

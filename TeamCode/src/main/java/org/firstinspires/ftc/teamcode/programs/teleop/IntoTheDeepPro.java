@@ -131,12 +131,12 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addData("Back Right Motor Velocity", this.robot.rearRight.getVelocity());
     telemetry.addLine();
 
-    telemetry.addData("Left Distance Sensor", this.robot.leftDistance.getDistance(DistanceUnit.INCH));
-    telemetry.addData("Right Distance Sensor", this.robot.rightDistance.getDistance(DistanceUnit.INCH));
-    this.robot.odometry.update();
-    telemetry.addData("Odometry X", this.robot.odometry.getPosX());
-    telemetry.addData("Odometry Y", this.robot.odometry.getPosY());
-    telemetry.addData("Odometry Heading", this.robot.odometry.getHeading());
+    //telemetry.addData("Left Distance Sensor", this.robot.leftDistance.getDistance(DistanceUnit.INCH));
+    //telemetry.addData("Right Distance Sensor", this.robot.rightDistance.getDistance(DistanceUnit.INCH));
+    //this.robot.odometry.update();
+    //telemetry.addData("Odometry X", this.robot.odometry.getPosX());
+    //telemetry.addData("Odometry Y", this.robot.odometry.getPosY());
+    //telemetry.addData("Odometry Heading", this.robot.odometry.getHeading());
 
     telemetry.addLine();
 
@@ -152,6 +152,6 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addData("Lift Bucket Position", this.robot.intake.getBucket());
 
     telemetry.addLine();
-    //this.camera.telemetryAprilTag(telemetry);
+    this.camera.telemetryAprilTag(telemetry);
   }
 }
