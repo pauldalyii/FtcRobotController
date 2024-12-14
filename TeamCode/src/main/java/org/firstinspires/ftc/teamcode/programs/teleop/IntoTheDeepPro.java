@@ -34,7 +34,6 @@ public class IntoTheDeepPro extends OpMode {
   @Override
   public void start() {
     this.robot.intake.resetServos();
-    this.robot.liftBucket.setPosition(0.5);
   }
 
   @Override
@@ -111,8 +110,8 @@ public class IntoTheDeepPro extends OpMode {
     currentPos = this.robot.intake.intakeWrist.getPosition();
     this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * -0.075);
 
-    currentPos = this.robot.liftBucket.getPosition();
-    this.robot.liftBucket.setPosition(currentPos + gamepad2.left_stick_x * -0.075);
+    currentPos = this.robot.intake.bucket.getPosition();
+    this.robot.intake.bucket.setPosition(currentPos + gamepad2.left_stick_x * -0.075);
 
     this.robot.intake.setArmVelocity(gamepad2.right_stick_x * 0.25);
 
@@ -150,7 +149,7 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addData("Intake Elbow Position", this.robot.intake.intakeElbow.getPosition());
     telemetry.addData("Intake Wrist Position", this.robot.intake.intakeWrist.getPosition());
     telemetry.addData("Intake Wheel Power", this.robot.intake.intakeWheel.getPower());
-    telemetry.addData("Lift Bucket Position", this.robot.liftBucket.getPosition());
+    telemetry.addData("Lift Bucket Position", this.robot.intake.bucket.getPosition());
 
     telemetry.addLine();
     this.camera.telemetryAprilTag(telemetry);

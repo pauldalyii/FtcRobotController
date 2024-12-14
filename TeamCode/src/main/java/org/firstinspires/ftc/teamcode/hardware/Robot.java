@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.hardware;
 
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.hardware.drivers.GoBildaPinpointDriver;
 
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -24,7 +25,7 @@ public class Robot {
   private Servo intakeElbow;
   private Servo intakeWrist;
   private CRServo intakeWheel;
-  public Servo liftBucket;
+  private Servo bucket;
 
   public DistanceSensor leftDistance;
   public DistanceSensor rightDistance;
@@ -55,16 +56,14 @@ public class Robot {
     this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     this.intakeElbow = hardwareMap.get(Servo.class, "INTAKE_JOINT_1");
     this.intakeElbow.setDirection(Servo.Direction.REVERSE);
-    this.intakeElbow.scaleRange(0.325, 0.9);
     this.intakeWrist = hardwareMap.get(Servo.class, "INTAKE_JOINT_2");
     this.intakeWrist.setDirection(Servo.Direction.REVERSE);
-    this.intakeWrist.scaleRange(0.25, 1);
     this.intakeWheel = hardwareMap.get(CRServo.class, "INTAKE_WHEEL");
     this.intakeWheel.setDirection(CRServo.Direction.REVERSE);
-    this.liftBucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
-    this.liftBucket.setDirection(Servo.Direction.REVERSE);
+    this.bucket = hardwareMap.get(Servo.class, "LIFT_BUCKET");
+    this.bucket.setDirection(Servo.Direction.REVERSE);
 
-    this.intake = new Intake(this.intakeElbow, this.intakeWrist, this.intakeWheel, this.extendingArm);
+    this.intake = new Intake(this.intakeElbow, this.intakeWrist, this.intakeWheel, this.extendingArm, this.bucket);
     this.lift = new Lift(this.riserLeft, this.riserRight);
 
     this.leftDistance = hardwareMap.get(DistanceSensor.class, "LEFT_DISTANCE");
@@ -133,22 +132,28 @@ public class Robot {
     public Servo intakeElbow;
     public Servo intakeWrist;
     public CRServo intakeWheel;
+    public Servo bucket;
     private ElapsedTime runtime = new ElapsedTime();
     public DcMotorEx extendingArm;
 
-    Intake(Servo intakeElbow, Servo intakeWrist, CRServo intakeWheel, DcMotorEx extendingArm) {
+    Intake(Servo intakeElbow, Servo intakeWrist, CRServo intakeWheel, DcMotorEx extendingArm, Servo bucket) {
       this.intakeElbow = intakeElbow;
       this.intakeWrist = intakeWrist;
       this.intakeWheel = intakeWheel;
       this.extendingArm = extendingArm;
+      this.bucket = bucket;
     }
 
     public void setElbow(double position) {
-      this.intakeElbow.setPosition(position);
+      this.intakeElbow.setPosition(Range.scale(position, 0, 1, 0.325, 0.9));
     }
 
     public void setWrist(double position) {
-      this.intakeWrist.setPosition(position);
+      this.intakeWrist.setPosition(Range.scale(position, 0, 1, 0.25, 1));
+    }
+
+    public void setBucket(double position) {
+      this.bucket.setPosition(Range.scale(position, 0, 1, 0.55, 0.85));
     }
 
     public void setArmVelocity(double power) {
@@ -168,6 +173,7 @@ public class Robot {
     public void resetServos() {
       this.intakeElbow.setPosition(0.5);
       this.intakeWrist.setPosition(0.5);
+      this.bucket.setPosition(0.5);
     }
   }
 }
