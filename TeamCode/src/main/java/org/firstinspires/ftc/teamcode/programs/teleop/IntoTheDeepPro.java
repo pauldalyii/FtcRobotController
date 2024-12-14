@@ -111,9 +111,6 @@ public class IntoTheDeepPro extends OpMode {
     currentPos = this.robot.intake.getWrist();
     this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * -0.01);
 
-    currentPos = this.robot.intake.getBucket();
-    this.robot.intake.setBucket(currentPos + gamepad2.left_stick_x * -0.01);
-
     this.robot.intake.setArmVelocity(gamepad2.left_bumper ? -0.5 : gamepad2.right_bumper ? 0.5 : 0);
 
     this.robot.intake.setWheelPower(gamepad2.right_trigger - gamepad2.left_trigger);
@@ -126,11 +123,11 @@ public class IntoTheDeepPro extends OpMode {
       this.robot.intake.setWrist(1);
     }
 
-    /*if (gamepad2.b) {
-      this.robot.liftBucket.setPosition(0.9);
+    if (gamepad2.b) {
+      this.robot.intake.setBucket(1);
     } else {
-      this.robot.liftBucket.setPosition(0.5);
-    }*/
+      this.robot.intake.setBucket(0);
+    }
   }
 
   void telemetries() {
