@@ -197,14 +197,22 @@ public class Robot {
       return this.scale(this.bucket.getPosition(), 0.55, 0.85, true);
     }
 
+    private final int MAX_ARM_EXTENSION = 1500;
+
     public void setArmVelocity(double power) {
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-      float ticksPerRev = 537.6f;
-      int maxRPM = 312;
+      if (power > 0) {
+        this.extendingArm.setTargetPosition(1500);
+        this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.extendingArm.setPower(power);
+      } else {
+        this.extendingArm.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
+        float ticksPerRev = 537.6f;
+        int maxRPM = 312;
 
-      double targetVelocity = power * ((maxRPM * ticksPerRev) / 60);
+        double targetVelocity = power * ((maxRPM * ticksPerRev) / 60);
 
-      this.extendingArm.setVelocity(targetVelocity);
+        this.extendingArm.setVelocity(targetVelocity);
+      }
     }
 
     public void setWheelPower(double power) {
