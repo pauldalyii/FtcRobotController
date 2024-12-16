@@ -201,7 +201,7 @@ public class Robot {
 
     public void setArmVelocity(double power) {
       if (power > 0) {
-        this.extendingArm.setTargetPosition(1500);
+        this.extendingArm.setTargetPosition(MAX_ARM_EXTENSION);
         this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.extendingArm.setPower(power);
       } else {
