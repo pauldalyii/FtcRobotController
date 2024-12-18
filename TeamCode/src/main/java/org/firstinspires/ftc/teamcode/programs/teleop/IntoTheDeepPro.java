@@ -60,7 +60,7 @@ public class IntoTheDeepPro extends OpMode {
     z += gamepad1.right_trigger * (gamepad1.right_stick_x / 3);
     z -= gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
-    if (gamepad1.left_bumper) {
+    if (gamepad1.a) {
       x *= -1;
       y *= -1;
       double targetDistance = 17.0;
@@ -103,8 +103,32 @@ public class IntoTheDeepPro extends OpMode {
   }
 
   void operatorLoop() {
-    this.robot.lift.setVelocity(gamepad2.dpad_up ? 0.75 : gamepad2.dpad_down ? -0.75 : 0,
-        gamepad2.left_trigger > 0.5 ? (gamepad2.dpad_up ? 0.75 : gamepad2.dpad_down ? -0.75 : 0) : 0); //MAX: -4000
+    this.robot.intake.setArmVelocity(-gamepad2.right_stick_y);
+
+    if (gamepad2.dpad_up) {
+      this.robot.lift.setVelocity(0.75, 0.75);
+    } else if (gamepad2.dpad_down) {
+      this.robot.lift.setVelocity(-0.75, -0.75);
+    } else {
+      if (gamepad2.left_stick_button) {
+        this.robot.lift.setVelocity(0, -gamepad2.left_stick_y);
+      } else {
+        this.robot.lift.setVelocity(-gamepad2.right_stick_y, 0);
+      }
+    }
+
+    this.robot.intake.setWheelPower((gamepad2.right_trigger * 0.5) - gamepad2.left_trigger);
+
+    if (gamepad2.a) {
+      this.robot.intake.setElbow(0.05);
+      this.robot.intake.setWrist(0.7);
+    } else if (gamepad2.b) {
+      this.robot.intake.setElbow(0.75);
+      this.robot.intake.setWrist(1);
+    } else if (gamepad2.y) {//TODO: Refine the values from 0.5
+      this.robot.intake.setElbow(0.5);
+      this.robot.intake.setWrist(0.5);
+    }
 
     double currentPos = this.robot.intake.getElbow();
     this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.01);
@@ -112,19 +136,7 @@ public class IntoTheDeepPro extends OpMode {
     currentPos = this.robot.intake.getWrist();
     this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * -0.01);
 
-    this.robot.intake.setArmVelocity(gamepad2.left_bumper ? -0.5 : gamepad2.right_bumper ? 0.5 : 0); //MAX: 1500
-
-    this.robot.intake.setWheelPower((gamepad2.right_trigger * 0.5) - gamepad2.left_trigger);
-
-    if (gamepad2.x) {
-      this.robot.intake.setElbow(0.05);
-      this.robot.intake.setWrist(0.7);
-    } else if (gamepad2.y) {
-      this.robot.intake.setElbow(0.75);
-      this.robot.intake.setWrist(1);
-    }
-
-    if (gamepad2.b) {
+    if (gamepad2.left_bumper) {
       this.robot.intake.setBucket(1);
     } else {
       this.robot.intake.setBucket(0);
