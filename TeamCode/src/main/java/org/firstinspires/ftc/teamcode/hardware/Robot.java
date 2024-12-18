@@ -127,7 +127,6 @@ public class Robot {
         double leftTargetVelocity = left * ((maxRPM * ticksPerRev) / 60);
 
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        this.riserLeft.setVelocity(left * 1500);
 
         this.riserLeft.setVelocity(leftTargetVelocity);
       }
@@ -143,7 +142,6 @@ public class Robot {
         double rightTargetVelocity = right * ((maxRPM * ticksPerRev) / 60);
 
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
-        this.riserRight.setVelocity(right * 1500);
 
         this.riserRight.setVelocity(rightTargetVelocity);
       }
