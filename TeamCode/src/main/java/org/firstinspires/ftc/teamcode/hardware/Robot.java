@@ -111,7 +111,7 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    private final int MAX_HEIGHT = -4000; //? Not quite sure if it should be negative, but it is in the telemetries
+    private final int MAX_HEIGHT = 4000; //? Not quite sure if it should be negative, but it is in the telemetries
 
     public void setVelocity(double left, double right) {
       /*if (input >= -0.05 && input <= 0.05)
