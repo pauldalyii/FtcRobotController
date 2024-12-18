@@ -46,9 +46,9 @@ public class Robot {
     this.rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
 
     this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
-    this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserLeft.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     this.riserRight = hardwareMap.get(DcMotorEx.class, "RISER_RIGHT");
+    this.riserRight.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserRight.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
     this.extendingArm = hardwareMap.get(DcMotorEx.class, "EXTENDING_ARM");
