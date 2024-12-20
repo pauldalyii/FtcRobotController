@@ -118,7 +118,7 @@ public class Robot {
       if (left == 0) {
         this.riserLeft.setTargetPosition(lastLeftPosition);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        this.riserLeft.setPower(0.25);
+        this.riserLeft.setPower(lastLeftPosition < 300 ? 0 : 0.25);
       } else if (left > 0) {
         this.riserLeft.setTargetPosition(MAX_HEIGHT);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
@@ -140,7 +140,7 @@ public class Robot {
       if (right == 0) {
         this.riserRight.setTargetPosition(lastRightPosition);
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        this.riserRight.setPower(0.25);
+        this.riserRight.setPower(lastRightPosition < 300 ? 0 : 0.25);
       } else if (right > 0) {
         this.riserRight.setTargetPosition(MAX_HEIGHT);
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
