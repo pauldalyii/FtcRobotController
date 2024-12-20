@@ -108,7 +108,7 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    private final int MAX_HEIGHT = 4500; //? Was 4000 but it couldn't reach
+    private final int MAX_HEIGHT = 4250; //? Was 4000 but it couldn't reach
     private int lastLeftPosition = 0;
     private int lastRightPosition = 0;
 
