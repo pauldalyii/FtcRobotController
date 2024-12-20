@@ -151,7 +151,7 @@ public class IntoTheDeepPro extends OpMode {
       this.robot.intake.setElbow(0.75);
       this.robot.intake.setWrist(1);
     } else if (gamepad2.y) {//TODO: Refine the values from 0.5
-      this.robot.intake.setElbow(0.5);
+      this.robot.intake.setElbow(0.25);
       this.robot.intake.setWrist(0.5);
     }
 
