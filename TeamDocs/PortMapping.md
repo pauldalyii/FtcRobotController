@@ -33,7 +33,7 @@ This document helps track exactly what is plugged into each of the Control Hub's
 | 0       | GOBILDA_ODOMETRY  | GoBilda Pinpoint Odometry Sensor
 | 1       | LEFT_DISTANCE     | Rev 2M Distance Sensor
 | 2       | RIGHT_DISTANCE    | Rev 2M Distance Sensor
-| 3       |                   |
+| 3       | CENTER_DISTANCE   | Rev 2M Distance Sensor
 
 ### Digital Devices
 

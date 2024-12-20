@@ -29,6 +29,7 @@ public class Robot {
 
   public DistanceSensor leftDistance;
   public DistanceSensor rightDistance;
+  public DistanceSensor centerDistance;
 
   public GoBildaPinpointDriver odometry;
 
@@ -68,6 +69,7 @@ public class Robot {
 
     this.leftDistance = hardwareMap.get(DistanceSensor.class, "LEFT_DISTANCE");
     this.rightDistance = hardwareMap.get(DistanceSensor.class, "RIGHT_DISTANCE");
+    this.centerDistance = hardwareMap.get(DistanceSensor.class, "CENTER_DISTANCE");
 
     this.odometry = hardwareMap.get(GoBildaPinpointDriver.class, "GOBILDA_ODOMETRY");
     this.odometry.setOffsets(-84.0, -168.0);
