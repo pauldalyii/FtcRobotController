@@ -49,16 +49,16 @@ public class IntoTheDeepPro extends OpMode {
   void driverLoop() {
     double x = gamepad1.left_stick_x / 3;
     x *= 2;
-    x += gamepad1.right_trigger * (gamepad1.left_stick_x / 4);
-    x -= gamepad1.left_trigger * (gamepad1.left_stick_x / 4);
-    double y = -gamepad1.left_stick_y / 4;
+    x += gamepad1.right_trigger * (gamepad1.left_stick_x / 3);
+    x -= gamepad1.left_trigger * (gamepad1.left_stick_x * (2 / 3));
+    double y = -gamepad1.left_stick_y / 3;
     y *= 2;
     y += gamepad1.right_trigger * (-gamepad1.left_stick_y / 3);
-    y -= gamepad1.left_trigger * (-gamepad1.left_stick_y / 3);
+    y -= gamepad1.left_trigger * (-gamepad1.left_stick_y * (2 / 3));
     double z = gamepad1.right_stick_x / 3;
     z *= 2;
     z += gamepad1.right_trigger * (gamepad1.right_stick_x / 3);
-    z -= gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
+    z -= gamepad1.left_trigger * (gamepad1.right_stick_x * (2 / 3));
 
     if (gamepad1.a) {
       //Try to make the center distance sensor equal 15in by driving forward and backwards (no heading should be inputted)
