@@ -117,7 +117,7 @@ public class IntoTheDeepPro extends OpMode {
       if (gamepad2.left_stick_button) {
         this.robot.lift.setVelocity(0, -gamepad2.left_stick_y);
       } else {
-        this.robot.lift.setVelocity(-gamepad2.right_stick_y, 0);
+        this.robot.lift.setVelocity(-gamepad2.left_stick_y, 0);
       }
     }
 
@@ -135,10 +135,10 @@ public class IntoTheDeepPro extends OpMode {
     }
 
     double currentPos = this.robot.intake.getElbow();
-    this.robot.intake.setElbow(currentPos + gamepad2.right_stick_y * -0.01);
+    this.robot.intake.setElbow(currentPos + gamepad2.right_stick_x * -0.01);
 
     currentPos = this.robot.intake.getWrist();
-    this.robot.intake.setWrist(currentPos + gamepad2.left_stick_y * -0.01);
+    this.robot.intake.setWrist(currentPos + gamepad2.left_stick_x * -0.01);
 
     if (gamepad2.left_bumper) {
       this.robot.intake.setBucket(1);
