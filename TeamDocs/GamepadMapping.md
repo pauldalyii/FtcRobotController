@@ -33,7 +33,7 @@
 | 8      |                                               |              |                                      |
 | 9      | intake in                                     |              |                                      |
 | 10     |                                               |              |                                      |
-| A      | pivot intake down                             |              |                                      |
-| B      | pivot intake to bucket                        |              |                                      |
+| A      | pivot intake to bucket                             |              |                                      |
+| B      | pivot intake down                        |              |                                      |
 | X      |                                               |              |                                      |
 | Y      | pivot intake to neutral position              |              |                                      |
