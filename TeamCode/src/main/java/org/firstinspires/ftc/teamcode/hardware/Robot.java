@@ -235,9 +235,9 @@ public class Robot {
     }
 
     public void resetServos() {
-      this.intakeElbow.setPosition(0.5);
-      this.intakeWrist.setPosition(0.5);
-      this.bucket.setPosition(0.5);
+      this.setElbow(0.75);
+      this.setWrist(1);
+      this.setBucket(0);
     }
   }
 }
