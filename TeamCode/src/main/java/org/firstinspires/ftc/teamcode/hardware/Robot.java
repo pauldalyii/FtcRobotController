@@ -108,7 +108,7 @@ public class Robot {
       this.riserRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    private final int MAX_HEIGHT = 4000; //? Not quite sure if it should be negative, but it is in the telemetries
+    private final int MAX_HEIGHT = 4500; //? Was 4000 but it couldn't reach
     private int lastLeftPosition = 0;
     private int lastRightPosition = 0;
 
@@ -119,7 +119,6 @@ public class Robot {
         this.riserLeft.setTargetPosition(lastLeftPosition);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.riserLeft.setPower(0.25);
-        return;
       } else if (left > 0) {
         this.riserLeft.setTargetPosition(MAX_HEIGHT);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
