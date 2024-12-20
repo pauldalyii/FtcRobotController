@@ -100,6 +100,10 @@ public class IntoTheDeepPro extends OpMode {
       gamepad1.rumble(0, 0, Gamepad.RUMBLE_DURATION_CONTINUOUS);
       this.robot.drive(x, y, z, this.robot.odometry.getHeading());
     }
+    if (gamepad1.back) {
+      this.robot.drive(0, 0, 0);
+      this.robot.odometry.resetPosAndIMU();
+    }
   }
 
   void operatorLoop() {

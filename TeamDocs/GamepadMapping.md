@@ -8,7 +8,7 @@
 | 1      | left/right rotation of the robot                   |                                               |                                               |
 | 2      |                                                    |                                               |                                               |
 | 3      | forward/backward/left/right movement of the robot  |                                               |                                               |
-| 4      |                                                    |                                               |                                               |
+| 4      | reset heading                                                   |                                               |                                               |
 | 5      |                                                    |                                               |                                               |
 | 6      | Slow down robot (33% speed when fully pushed down) | `6 + 9`: Cancels each other out (66% speed)   | The further you push it down, the more it slows the robot down |
 | 7      |                                                    |                                               |                                               |
