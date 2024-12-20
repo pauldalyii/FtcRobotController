@@ -109,14 +109,22 @@ public class Robot {
     }
 
     private final int MAX_HEIGHT = 4000; //? Not quite sure if it should be negative, but it is in the telemetries
+    private int lastLeftPosition = 0;
+    private int lastRightPosition = 0;
 
     public void setVelocity(double left, double right) {
       /*if (input >= -0.05 && input <= 0.05)
         return;*/
-      if (left > 0) {
+      if (left == 0) {
+        this.riserLeft.setTargetPosition(lastLeftPosition);
+        this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.riserLeft.setPower(0.25);
+        return;
+      } else if (left > 0) {
         this.riserLeft.setTargetPosition(MAX_HEIGHT);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.riserLeft.setPower(left);
+        lastLeftPosition = this.riserLeft.getCurrentPosition();
       } else {
         float ticksPerRev = 537.6f;
         int maxRPM = 312;
@@ -126,12 +134,20 @@ public class Robot {
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
         this.riserLeft.setVelocity(leftTargetVelocity);
+
+        lastLeftPosition = this.riserLeft.getCurrentPosition();
       }
 
-      if (right > 0) {
+      if (right == 0) {
+        this.riserRight.setTargetPosition(lastRightPosition);
+        this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.riserRight.setPower(0.25);
+      } else if (right > 0) {
         this.riserRight.setTargetPosition(MAX_HEIGHT);
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.riserRight.setPower(right);
+
+        lastRightPosition = this.riserRight.getCurrentPosition();
       } else {
         float ticksPerRev = 537.6f;
         int maxRPM = 312;
@@ -141,7 +157,10 @@ public class Robot {
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_USING_ENCODER);
 
         this.riserRight.setVelocity(rightTargetVelocity);
+
+        lastRightPosition = this.riserRight.getCurrentPosition();
       }
+
     }
   }
 
