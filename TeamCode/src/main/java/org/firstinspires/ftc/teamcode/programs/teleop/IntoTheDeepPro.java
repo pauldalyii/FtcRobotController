@@ -61,6 +61,27 @@ public class IntoTheDeepPro extends OpMode {
     z -= gamepad1.left_trigger * (gamepad1.right_stick_x / 3);
 
     if (gamepad1.a) {
+      //Try to make the center distance sensor equal 15in by driving forward and backwards (no heading should be inputted)
+      double targetDistance = 15.0;
+      double errorMargin = 1.0;
+      double centerDistance = this.robot.centerDistance.getDistance(DistanceUnit.INCH);
+      boolean centerFaulted = false;
+      if (centerDistance > 100) {
+        centerDistance = targetDistance;
+        centerFaulted = true;
+      }
+
+      gamepad1.rumble(0, 0, centerFaulted ? Gamepad.RUMBLE_DURATION_CONTINUOUS : 0);
+
+      if (Math.abs(centerDistance - targetDistance) > errorMargin) {
+        if (centerDistance > targetDistance + errorMargin) {
+          y -= 0.1;
+        } else if (centerDistance < targetDistance - errorMargin) {
+          y += 0.1;
+        }
+      }
+      this.robot.drive(x, y, z);
+    } else if (gamepad1.y) {
       x *= -1;
       y *= -1;
       double targetDistance = 17.0;
