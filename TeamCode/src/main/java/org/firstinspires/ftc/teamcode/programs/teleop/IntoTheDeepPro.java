@@ -186,6 +186,7 @@ public class IntoTheDeepPro extends OpMode {
     telemetry.addLine();
 
     telemetry.addData("Extending Arm Position", this.robot.intake.extendingArm.getCurrentPosition());
+    telemetry.addData("Extending Arm Power", this.robot.intake.extendingArm.getPower());
     telemetry.addData("Riser Left Position", this.robot.lift.riserLeft.getCurrentPosition());
     telemetry.addData("Riser Right Position", this.robot.lift.riserRight.getCurrentPosition());
     telemetry.addData("Riser Left Power", this.robot.lift.riserLeft.getPower());
