@@ -177,6 +177,8 @@ public class Robot {
     }
 
     public void retract() {
+      lastLeftPosition = 0;
+      lastRightPosition = 0;
       if (this.riserLeft.getCurrentPosition() > 300) {
         this.riserLeft.setTargetPosition(100);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
