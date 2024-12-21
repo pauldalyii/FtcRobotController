@@ -205,7 +205,7 @@ public class Robot {
     }
 
     public void setBucket(double position) {
-      this.bucket.setPosition(this.scale(position, 0.5, 0.85, false));
+      this.bucket.setPosition(this.scale(position, 0.55, 0.85, false));
     }
 
     public double getBucket() {
