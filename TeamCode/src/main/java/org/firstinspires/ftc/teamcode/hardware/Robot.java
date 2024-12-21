@@ -274,6 +274,10 @@ public class Robot {
       this.setBucket(0);
     }
 
+    public void resetArm() {
+      this.extendingArm.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
     public void retract() {
       if (this.extendingArm.getCurrentPosition() > 100) {
         this.extendingArm.setTargetPosition(0);
