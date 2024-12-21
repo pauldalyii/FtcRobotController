@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.hardware.Robot;
 
-@Autonomous(name = "Strafe Right", preselectTeleOp = "Into The Deep")
+@Autonomous(name = "Strafe Right", preselectTeleOp = "Into The Deep Pro")
 public class StrafeRight extends OpMode {
   private Robot robot;
 
@@ -17,6 +17,6 @@ public class StrafeRight extends OpMode {
 
   @Override
   public void loop() {
-    this.robot.drive(0, 0.25, 0);
+    this.robot.drive(0.25, 0, 0);
   }
 }
