@@ -172,13 +172,16 @@ public class Robot {
     }
 
     public void retract() {
-      this.riserLeft.setTargetPosition(300);
-      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserLeft.setPower(0.5);
-
-      this.riserRight.setTargetPosition(300);
-      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.riserRight.setPower(0.5);
+      if (this.riserLeft.getCurrentPosition() > 300) {
+        this.riserLeft.setTargetPosition(100);
+        this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.riserLeft.setPower(1);
+      }
+      if (this.riserRight.getCurrentPosition() > 300) {
+        this.riserRight.setTargetPosition(100);
+        this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.riserRight.setPower(1);
+      }
     }
   }
 
@@ -261,9 +264,11 @@ public class Robot {
     }
 
     public void retract() {
-      this.extendingArm.setTargetPosition(100);
-      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-      this.extendingArm.setPower(0.5);
+      if (this.extendingArm.getCurrentPosition() > 100) {
+        this.extendingArm.setTargetPosition(0);
+        this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        this.extendingArm.setPower(1);
+      }
     }
 
     public double getArmPower() {
