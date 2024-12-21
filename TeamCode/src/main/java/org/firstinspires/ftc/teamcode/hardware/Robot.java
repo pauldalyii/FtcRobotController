@@ -46,6 +46,11 @@ public class Robot {
     this.rearLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.rearRight = hardwareMap.get(DcMotorEx.class, "DRIVE_REAR_RIGHT");
 
+    this.frontLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    this.frontRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    this.rearLeft.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+    this.rearRight.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
     this.riserLeft = hardwareMap.get(DcMotorEx.class, "RISER_LEFT");
     this.riserLeft.setDirection(DcMotorEx.Direction.REVERSE);
     this.riserLeft.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
