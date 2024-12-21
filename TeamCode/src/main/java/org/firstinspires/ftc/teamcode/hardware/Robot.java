@@ -114,7 +114,10 @@ public class Robot {
     private int lastLeftPosition = 0;
     private int lastRightPosition = 0;
 
+    private double liftPower = 0;
+
     public void setVelocity(double left, double right) {
+      liftPower = (left + right) / 2;
       /*if (input >= -0.05 && input <= 0.05)
         return;*/
       if (left == 0) {
@@ -165,7 +168,7 @@ public class Robot {
     }
 
     public double getPower() {
-      return (this.riserLeft.getPower() + this.riserRight.getPower()) / 2;
+      return this.liftPower;
     }
 
     public void retract() {
@@ -228,7 +231,10 @@ public class Robot {
 
     private final int MAX_ARM_EXTENSION = 1500;
 
+    double armPower = 0;
+
     public void setArmVelocity(double power) {
+      this.armPower = power;
       if (power > 0.05) {
         this.extendingArm.setTargetPosition(MAX_ARM_EXTENSION);
         this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
@@ -261,7 +267,7 @@ public class Robot {
     }
 
     public double getArmPower() {
-      return this.extendingArm.getPower();
+      return this.armPower;
     }
   }
 }
