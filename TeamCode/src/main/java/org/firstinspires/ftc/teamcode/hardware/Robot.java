@@ -181,11 +181,15 @@ public class Robot {
         this.riserLeft.setTargetPosition(100);
         this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.riserLeft.setPower(1);
+      } else {
+        this.riserLeft.setPower(0);
       }
       if (this.riserRight.getCurrentPosition() > 300) {
         this.riserRight.setTargetPosition(100);
         this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.riserRight.setPower(1);
+      } else {
+        this.riserRight.setPower(0);
       }
     }
   }
@@ -273,6 +277,8 @@ public class Robot {
         this.extendingArm.setTargetPosition(0);
         this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         this.extendingArm.setPower(1);
+      } else {
+        this.extendingArm.setPower(0);
       }
     }
 
