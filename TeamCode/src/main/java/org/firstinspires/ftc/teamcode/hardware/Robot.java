@@ -163,6 +163,20 @@ public class Robot {
       }
 
     }
+
+    public double getPower() {
+      return (this.riserLeft.getPower() + this.riserRight.getPower()) / 2;
+    }
+
+    public void retract() {
+      this.riserLeft.setTargetPosition(300);
+      this.riserLeft.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserLeft.setPower(0.5);
+
+      this.riserRight.setTargetPosition(300);
+      this.riserRight.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.riserRight.setPower(0.5);
+    }
   }
 
   public class Intake {
@@ -238,6 +252,16 @@ public class Robot {
       this.setElbow(0.75);
       this.setWrist(1);
       this.setBucket(0);
+    }
+
+    public void retract() {
+      this.extendingArm.setTargetPosition(100);
+      this.extendingArm.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+      this.extendingArm.setPower(0.5);
+    }
+
+    public double getArmPower() {
+      return this.extendingArm.getPower();
     }
   }
 }

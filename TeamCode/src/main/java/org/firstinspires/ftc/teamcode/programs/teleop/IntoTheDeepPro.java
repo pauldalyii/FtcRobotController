@@ -128,18 +128,26 @@ public class IntoTheDeepPro extends OpMode {
   }
 
   void operatorLoop() {
-    this.robot.intake.setArmVelocity(-gamepad2.right_stick_y);
-
-    if (gamepad2.dpad_up) {
-      this.robot.lift.setVelocity(0.75, 0.75);
-    } else if (gamepad2.dpad_down) {
-      this.robot.lift.setVelocity(-0.75, -0.75);
+    if (this.robot.intake.getArmPower() > 0.1) {
+      this.robot.lift.retract();
     } else {
-      if (gamepad2.left_stick_button) {
-        this.robot.lift.setVelocity(0, -gamepad2.left_stick_y);
+      if (gamepad2.dpad_up) {
+        this.robot.lift.setVelocity(0.75, 0.75);
+      } else if (gamepad2.dpad_down) {
+        this.robot.lift.setVelocity(-0.75, -0.75);
       } else {
-        this.robot.lift.setVelocity(-gamepad2.left_stick_y, 0);
+        if (gamepad2.left_stick_button) {
+          this.robot.lift.setVelocity(0, -gamepad2.left_stick_y);
+        } else {
+          this.robot.lift.setVelocity(-gamepad2.left_stick_y, 0);
+        }
       }
+    }
+
+    if (this.robot.lift.getPower() > 0.1) {
+      this.robot.intake.retract();
+    } else {
+      this.robot.intake.setArmVelocity(-gamepad2.right_stick_y);
     }
 
     this.robot.intake.setWheelPower((gamepad2.right_trigger * 0.5) - gamepad2.left_trigger);
