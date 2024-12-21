@@ -35,7 +35,7 @@ public class Robot {
 
   public Intake intake;
 
-  private double driveVelocity = 2750;//1250;//2000;
+  private double driveVelocity = 2250;//2750;//1250;//2000;
 
   public Robot(HardwareMap hardwareMap) {
     this.frontLeft = hardwareMap.get(DcMotorEx.class, "DRIVE_FRONT_LEFT");
