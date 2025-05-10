@@ -28,6 +28,14 @@ public class ClawTester extends OpMode {
   }
 
   @Override
+  public void start() {
+    // Initialize servos to starting positions
+    elbow.setPosition(0.5);
+    wrist.setPosition(0.5);
+    claw.setPosition(0.5);
+  }
+
+  @Override
   public void loop() {
     // --- Drivetrain ---
     double x = gamepad1.left_stick_x; // strafe
@@ -84,3 +92,16 @@ public class ClawTester extends OpMode {
     telemetry.update();
   }
 }
+
+/*
+Controls:
+- Gamepad 1:
+  - Left stick: Strafe (X), Forward/Backward (Y)
+  - Right stick X: Turn
+
+- Gamepad 2:
+  - Right stick Y: Move elbow servo
+  - Left stick Y: Move wrist servo
+  - Right bumper: Open claw
+  - Left bumper: Close claw
+*/
