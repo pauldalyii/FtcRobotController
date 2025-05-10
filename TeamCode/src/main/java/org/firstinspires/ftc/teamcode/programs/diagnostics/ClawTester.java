@@ -64,14 +64,14 @@ public class ClawTester extends OpMode {
     // --- Arm Servos ---
     // Elbow: right stick y (gamepad2)
     double elbowPos = elbow.getPosition();
-    elbowPos += -gamepad2.right_stick_y * 0.01;
-    elbowPos = Math.max(0, Math.min(1, elbowPos));
+    elbowPos += gamepad2.right_stick_y * 0.005;
+    elbowPos = Math.max(0.3, Math.min(1, elbowPos)); // Adjusted range to 0.3 - 1
     elbow.setPosition(elbowPos);
 
     // Wrist: left stick y (gamepad2)
     double wristPos = wrist.getPosition();
-    wristPos += -gamepad2.left_stick_y * 0.01;
-    wristPos = Math.max(0, Math.min(1, wristPos));
+    wristPos += gamepad2.left_stick_y * 0.005; // Inverted control
+    wristPos = Math.max(0.25, Math.min(0.7, wristPos)); // Adjusted range to 0.25 - 0.7
     wrist.setPosition(wristPos);
 
     // --- Claw Servo ---
