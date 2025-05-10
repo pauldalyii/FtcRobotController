@@ -23,8 +23,7 @@ public class ClawTester extends OpMode {
     claw = hardwareMap.get(Servo.class, "CLAW");
 
     // Set motor directions if needed
-    frontLeft.setDirection(DcMotorEx.Direction.REVERSE);
-    rearLeft.setDirection(DcMotorEx.Direction.REVERSE);
+    frontRight.setDirection(DcMotorEx.Direction.REVERSE);
   }
 
   @Override
