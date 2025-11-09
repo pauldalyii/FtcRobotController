@@ -36,15 +36,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
- * This OpMode demonstrates how to use the PortMapping enum to configure
- * robot hardware in a generic and reusable way.
+ * This OpMode demonstrates how to use the ControlHubPorts and ExpansionHubPorts
+ * enums to configure robot hardware in a generic and reusable way.
  * 
- * The PortMapping enum provides consistent, season-agnostic port names
- * that can be used across different robot configurations.
+ * The separate enums make it clear which device (Control Hub or Expansion Hub)
+ * each port belongs to, providing clarity in hardware configuration.
  * 
  * To use this example:
  * 1. Configure your robot hardware in the Driver Station using the port names
- *    from PortMapping (e.g., "motor_0", "motor_1", "servo_0", etc.)
+ *    from ControlHubPorts and ExpansionHubPorts (e.g., "ch_motor_0", "eh_motor_0")
  * 2. Remove or comment out the @Disabled annotation below
  * 3. Select this OpMode from the Driver Station
  */
@@ -53,21 +53,29 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class PortMappingExample extends LinearOpMode {
     
     // Declare motors using descriptive names
+    // Drive motors on Control Hub
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
+    
+    // Arm motor on Expansion Hub
     private DcMotor armMotor = null;
     
     // Declare servos using descriptive names
+    // Claw servo on Control Hub
     private Servo clawServo = null;
     
     @Override
     public void runOpMode() {
-        // Initialize hardware using PortMapping enum
-        // This makes it clear which physical port each device is connected to
-        leftDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_0.getConfigName());
-        rightDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_1.getConfigName());
-        armMotor = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_2.getConfigName());
-        clawServo = hardwareMap.get(Servo.class, PortMapping.SERVO_0.getConfigName());
+        // Initialize hardware using ControlHubPorts and ExpansionHubPorts enums
+        // This makes it crystal clear which hub and physical port each device is connected to
+        
+        // Control Hub devices
+        leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
+        rightDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_1.getConfigName());
+        clawServo = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.getConfigName());
+        
+        // Expansion Hub devices
+        armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
         
         // Configure motor directions
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -84,10 +92,12 @@ public class PortMappingExample extends LinearOpMode {
         
         // Display hardware configuration info
         telemetry.addData("Status", "Hardware Initialized");
-        telemetry.addData("Left Drive", "Port: %s", PortMapping.MOTOR_0.getConfigName());
-        telemetry.addData("Right Drive", "Port: %s", PortMapping.MOTOR_1.getConfigName());
-        telemetry.addData("Arm Motor", "Port: %s", PortMapping.MOTOR_2.getConfigName());
-        telemetry.addData("Claw Servo", "Port: %s", PortMapping.SERVO_0.getConfigName());
+        telemetry.addData("=== Control Hub ===", "");
+        telemetry.addData("Left Drive", "Port: %s", ControlHubPorts.MOTOR_0.getConfigName());
+        telemetry.addData("Right Drive", "Port: %s", ControlHubPorts.MOTOR_1.getConfigName());
+        telemetry.addData("Claw Servo", "Port: %s", ControlHubPorts.SERVO_0.getConfigName());
+        telemetry.addData("=== Expansion Hub ===", "");
+        telemetry.addData("Arm Motor", "Port: %s", ExpansionHubPorts.MOTOR_0.getConfigName());
         telemetry.addData(">", "Press START to begin");
         telemetry.update();
         

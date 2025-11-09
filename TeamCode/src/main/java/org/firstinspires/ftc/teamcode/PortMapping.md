@@ -1,87 +1,103 @@
-# PortMapping Enum
+# Control Hub and Expansion Hub Port Mapping Enums
 
-The `PortMapping` enum provides a generic way to map hardware ports when assigning motors, servos, and other devices to Control Hubs and Expansion Hubs.
+The `ControlHubPorts` and `ExpansionHubPorts` enums provide a generic way to map hardware ports when assigning motors, servos, and other devices to Control Hubs and Expansion Hubs.
 
 ## Purpose
 
-This enum uses generic port names (e.g., `MOTOR_0`, `SERVO_0`) instead of season-specific hardware configurations, making it reusable across different seasons and robot designs.
+These enums use generic port names with clear hub identification (e.g., `ControlHubPorts.MOTOR_0`, `ExpansionHubPorts.MOTOR_0`) instead of season-specific hardware configurations, making them reusable across different seasons and robot designs.
+
+## Key Benefits
+
+1. **Clear Device Identification**: The enum name immediately tells you which hub the port belongs to
+2. **Separate Namespaces**: Control Hub and Expansion Hub ports are in separate enums, preventing confusion
+3. **Configuration Name Prefix**: Port names include "ch_" (Control Hub) or "eh_" (Expansion Hub) prefixes
+4. **Consistency**: All team members use the same port naming convention
 
 ## Port Naming Convention
 
-The enum follows this naming convention:
+### Control Hub Ports (`ControlHubPorts`)
 
-- **Motors**: `MOTOR_0` through `MOTOR_7`
-  - Ports 0-3: Typically used for Control Hub
-  - Ports 4-7: Typically used for Expansion Hub
+Configuration names are prefixed with `ch_`:
 
-- **Servos**: `SERVO_0` through `SERVO_11`
-  - Ports 0-5: Typically used for Control Hub
-  - Ports 6-11: Typically used for Expansion Hub
+- **Motors**: `MOTOR_0` through `MOTOR_3` (config names: `ch_motor_0` to `ch_motor_3`)
+- **Servos**: `SERVO_0` through `SERVO_5` (config names: `ch_servo_0` to `ch_servo_5`)
+- **Digital Devices**: `DIGITAL_0` through `DIGITAL_7` (config names: `ch_digital_0` to `ch_digital_7`)
+- **Analog Devices**: `ANALOG_0` through `ANALOG_3` (config names: `ch_analog_0` to `ch_analog_3`)
+- **I2C Devices**: `I2C_0` through `I2C_3` (config names: `ch_i2c_0` to `ch_i2c_3`)
 
-- **Digital Devices**: `DIGITAL_0` through `DIGITAL_15`
-  - Ports 0-7: Typically used for Control Hub
-  - Ports 8-15: Typically used for Expansion Hub
+### Expansion Hub Ports (`ExpansionHubPorts`)
 
-- **Analog Devices**: `ANALOG_0` through `ANALOG_7`
-  - Ports 0-3: Typically used for Control Hub
-  - Ports 4-7: Typically used for Expansion Hub
+Configuration names are prefixed with `eh_`:
 
-- **I2C Devices**: `I2C_0` through `I2C_7`
-  - Ports 0-3: Typically used for Control Hub
-  - Ports 4-7: Typically used for Expansion Hub
+- **Motors**: `MOTOR_0` through `MOTOR_3` (config names: `eh_motor_0` to `eh_motor_3`)
+- **Servos**: `SERVO_0` through `SERVO_5` (config names: `eh_servo_0` to `eh_servo_5`)
+- **Digital Devices**: `DIGITAL_0` through `DIGITAL_7` (config names: `eh_digital_0` to `eh_digital_7`)
+- **Analog Devices**: `ANALOG_0` through `ANALOG_3` (config names: `eh_analog_0` to `eh_analog_3`)
+- **I2C Devices**: `I2C_0` through `I2C_3` (config names: `eh_i2c_0` to `eh_i2c_3`)
 
 ## Usage
 
 ### Basic Usage
 
 ```java
-// In your OpMode
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_0.getConfigName());
-Servo claw = hardwareMap.get(Servo.class, PortMapping.SERVO_0.getConfigName());
+// In your OpMode - Control Hub devices
+DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
+Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.getConfigName());
+
+// Expansion Hub devices
+DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
+Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_1.getConfigName());
 ```
 
 ### Hardware Configuration
 
 When configuring your robot hardware in the Driver Station:
 
-1. Use the configuration names from the enum (e.g., `motor_0`, `servo_0`)
-2. These names are returned by the `getConfigName()` method
-3. This ensures consistency between your code and hardware configuration
+1. For Control Hub devices, use names like: `ch_motor_0`, `ch_servo_0`, etc.
+2. For Expansion Hub devices, use names like: `eh_motor_0`, `eh_servo_0`, etc.
+3. The prefixes make it immediately clear which hub each device is connected to
+4. This ensures consistency between your code and hardware configuration
 
 ### Example OpMode
 
 See `PortMappingExample.java` for a complete working example that demonstrates:
-- How to initialize motors and servos using PortMapping
-- How to display port information in telemetry
+- How to initialize motors and servos using both enums
+- How to clearly organize devices by hub
+- How to display port information in telemetry grouped by hub
 - How to configure motor directions and behaviors
 
-## Benefits
+## Migration from Old Single Enum
 
-1. **Consistency**: All team members use the same port naming convention
-2. **Clarity**: Port assignments are clear and explicit in the code
-3. **Maintainability**: Easy to update port assignments across seasons
-4. **Documentation**: Self-documenting code that shows which physical port each device uses
-5. **Reusability**: Can be used across different robot configurations and seasons
-
-## Migration from Existing Code
-
-If you have existing code that uses hardcoded port names:
+If you were using the previous single `PortMapping` enum:
 
 **Before:**
 ```java
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
+DcMotor leftDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_0.getConfigName());
+DcMotor armMotor = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_4.getConfigName());
 ```
 
 **After:**
 ```java
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_0.getConfigName());
+// Now it's clear which hub each device is on
+DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
+DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
 ```
 
-You'll also need to update your hardware configuration in the Driver Station to use the new port names.
+You'll also need to update your hardware configuration in the Driver Station to use the new prefixed names.
+
+## Design Rationale
+
+The separation into two enums provides several advantages:
+
+1. **Type Safety**: You can't accidentally mix Control Hub and Expansion Hub ports
+2. **Self-Documenting**: Code is more readable and immediately shows hub assignments
+3. **Namespace Clarity**: Each hub has its own `MOTOR_0`, `SERVO_0`, etc., matching physical labels
+4. **Configuration Safety**: The `ch_` and `eh_` prefixes in config names prevent naming conflicts
 
 ## Additional Notes
 
-- The port numbering (0-3 for Control Hub, 4-7 for Expansion Hub) is a convention, not a requirement
+- Both hubs support the same number of each port type (4 motors, 6 servos, etc.)
+- Port numbering (0-3, 0-5, 0-7) matches the physical port labels on the hubs
 - You can use any port assignment that makes sense for your robot
-- The enum simply provides a consistent naming scheme across your codebase
+- The enums simply provide a consistent naming scheme across your codebase
 - Remember to update your Driver Station hardware configuration to match the port names used in your code
