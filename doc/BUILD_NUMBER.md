@@ -18,9 +18,23 @@ To view the build number on your Driver Station:
 
 1. Deploy the APK to your Robot Controller
 2. On the Driver Station app, select the OpMode list
-3. Find and select **"Diagnostic: Build Number"** under the "Diagnostic" group
+3. Find and select **"Build Number"** under the "Diagnostic" group
 4. Initialize and start the OpMode
 5. The build number will be displayed on the telemetry screen
+
+## Accessing Build Number in Your Programs
+
+To display the build number in your TeleOp or Autonomous programs, use the `BuildInfo` utility class:
+
+```java
+import org.firstinspires.ftc.teamcode.BuildInfo;
+
+// In your OpMode
+String buildNumber = BuildInfo.getBuildNumber();
+telemetry.addData("Build", buildNumber);
+```
+
+The `BuildInfo.getBuildNumber()` method returns the build number string (e.g., "1.0.2511.42") or "Unknown" if the build number is not available.
 
 ## GitHub Actions Build Pipeline
 
@@ -60,7 +74,8 @@ export BUILD_NUMBER=1.0.2511.1
 
 ## Implementation Details
 
-- The build number is stored in `BuildConfig.BUILD_NUMBER` and is accessible from Java code
+- The build number is stored in `BuildConfig.BUILD_NUMBER` and is accessible from Java code via the `BuildInfo` utility class
+- The `BuildInfo` class provides a centralized, reusable way to access the build number from any OpMode
 - The APK filename includes the build number for easy identification
 - The build number is calculated automatically by the GitHub Actions workflow
-- The diagnostic TeleOp uses reflection to access the BuildConfig at runtime
+- The build number retrieval uses reflection and is cached for performance

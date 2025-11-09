@@ -29,38 +29,40 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 /**
- * Diagnostic TeleOp program that displays the build number on the Driver Station.
- * This OpMode is useful for verifying which build version is running on the robot.
+ * Utility class for accessing build information.
+ * This class provides a centralized way to retrieve the build number
+ * for display in TeleOp and Autonomous programs.
  */
-@TeleOp(name="Build Number", group="Diagnostic")
-public class DiagnosticTeleOp extends LinearOpMode {
-
-    @Override
-    public void runOpMode() {
-        // Get the build number from BuildInfo utility
-        String buildNumber = BuildInfo.getBuildNumber();
-        
-        // Display build number before starting
-        telemetry.addData("Build Number", buildNumber);
-        telemetry.addData("Status", "Waiting for start");
-        telemetry.update();
-
-        // Wait for the game to start (driver presses START)
-        waitForStart();
-
-        // Run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-            // Display build number continuously
-            telemetry.addData("Build Number", buildNumber);
-            telemetry.addData("Status", "Running");
-            telemetry.update();
-
-            // Small sleep to reduce CPU usage
-            sleep(100);
+public class BuildInfo {
+    
+    private static String cachedBuildNumber = null;
+    
+    /**
+     * Gets the build number from BuildConfig.
+     * The build number is cached after the first retrieval for performance.
+     * 
+     * @return The build number string, or "Unknown" if not available
+     */
+    public static String getBuildNumber() {
+        if (cachedBuildNumber == null) {
+            cachedBuildNumber = retrieveBuildNumber();
+        }
+        return cachedBuildNumber;
+    }
+    
+    /**
+     * Retrieves the build number from BuildConfig using reflection.
+     * Falls back to "Unknown" if BuildConfig is not available.
+     */
+    private static String retrieveBuildNumber() {
+        try {
+            // Access BuildConfig from FtcRobotController module
+            Class<?> buildConfigClass = Class.forName("com.qualcomm.ftcrobotcontroller.BuildConfig");
+            java.lang.reflect.Field buildNumberField = buildConfigClass.getField("BUILD_NUMBER");
+            return (String) buildNumberField.get(null);
+        } catch (Exception e) {
+            return "Unknown";
         }
     }
 }
