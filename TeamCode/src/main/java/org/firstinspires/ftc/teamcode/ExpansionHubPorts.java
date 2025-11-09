@@ -29,6 +29,11 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+
 /**
  * ExpansionHubPorts provides a generic way to map hardware ports specifically
  * for the Expansion Hub.
@@ -39,8 +44,12 @@ package org.firstinspires.ftc.teamcode;
  * 
  * Usage Example:
  * <pre>
- * DcMotor rightDrive = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
- * Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_0.toString());
+ * // Using helper methods (no .toString() needed)
+ * DcMotor rightDrive = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
+ * Servo gripper = ExpansionHubPorts.SERVO_0.getServo(hardwareMap);
+ * 
+ * // Or with generic method for any hardware type
+ * CRServo crServo = ExpansionHubPorts.SERVO_1.get(hardwareMap, CRServo.class);
  * </pre>
  */
 public enum ExpansionHubPorts {
@@ -200,5 +209,52 @@ public enum ExpansionHubPorts {
     @Override
     public String toString() {
         return configName;
+    }
+    
+    /**
+     * Generic method to retrieve any hardware device from the hardware map.
+     * This method provides type-safe hardware retrieval without needing to call toString().
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @param deviceClass The class of the hardware device to retrieve
+     * @param <T> The type of hardware device
+     * @return The hardware device instance
+     * @throws IllegalArgumentException if the device is not found in the configuration
+     */
+    public <T> T get(HardwareMap hardwareMap, Class<? extends T> deviceClass) {
+        return hardwareMap.get(deviceClass, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a DcMotor from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The DcMotor instance
+     * @throws IllegalArgumentException if the motor is not found in the configuration
+     */
+    public DcMotor getMotor(HardwareMap hardwareMap) {
+        return hardwareMap.get(DcMotor.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a Servo from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The Servo instance
+     * @throws IllegalArgumentException if the servo is not found in the configuration
+     */
+    public Servo getServo(HardwareMap hardwareMap) {
+        return hardwareMap.get(Servo.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a CRServo (Continuous Rotation Servo) from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The CRServo instance
+     * @throws IllegalArgumentException if the CR servo is not found in the configuration
+     */
+    public CRServo getCRServo(HardwareMap hardwareMap) {
+        return hardwareMap.get(CRServo.class, configName);
     }
 }

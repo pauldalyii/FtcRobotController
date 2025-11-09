@@ -67,15 +67,15 @@ public class PortMappingExample extends LinearOpMode {
     @Override
     public void runOpMode() {
         // Initialize hardware using ControlHubPorts and ExpansionHubPorts enums
-        // This makes it crystal clear which hub and physical port each device is connected to
+        // Using the helper methods eliminates the need for .toString() calls
         
         // Control Hub devices
-        leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.toString());
-        rightDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_1.toString());
-        clawServo = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.toString());
+        leftDrive = ControlHubPorts.MOTOR_0.getMotor(hardwareMap);
+        rightDrive = ControlHubPorts.MOTOR_1.getMotor(hardwareMap);
+        clawServo = ControlHubPorts.SERVO_0.getServo(hardwareMap);
         
         // Expansion Hub devices
-        armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
+        armMotor = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
         
         // Configure motor directions
         leftDrive.setDirection(DcMotor.Direction.REVERSE);

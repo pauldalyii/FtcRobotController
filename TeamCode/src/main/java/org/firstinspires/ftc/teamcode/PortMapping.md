@@ -40,13 +40,17 @@ Configuration names are prefixed with `eh_`:
 ### Basic Usage
 
 ```java
-// In your OpMode - Control Hub devices
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.toString());
-Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.toString());
+// Using helper methods (recommended - no .toString() needed)
+// Control Hub devices
+DcMotor leftDrive = ControlHubPorts.MOTOR_0.getMotor(hardwareMap);
+Servo claw = ControlHubPorts.SERVO_0.getServo(hardwareMap);
 
 // Expansion Hub devices
-DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
-Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_1.toString());
+DcMotor armMotor = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
+Servo gripper = ExpansionHubPorts.SERVO_1.getServo(hardwareMap);
+
+// For other hardware types, use the generic get() method
+CRServo crServo = ControlHubPorts.SERVO_2.get(hardwareMap, CRServo.class);
 ```
 
 ### Hardware Configuration
