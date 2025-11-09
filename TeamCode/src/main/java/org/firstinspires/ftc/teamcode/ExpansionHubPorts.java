@@ -39,8 +39,8 @@ package org.firstinspires.ftc.teamcode;
  * 
  * Usage Example:
  * <pre>
- * DcMotor rightDrive = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
- * Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_0.getConfigName());
+ * DcMotor rightDrive = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
+ * Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_0.toString());
  * </pre>
  */
 public enum ExpansionHubPorts {
@@ -191,22 +191,14 @@ public enum ExpansionHubPorts {
     }
     
     /**
-     * Gets the configuration name for this Expansion Hub port mapping.
+     * Returns the configuration name for this Expansion Hub port mapping.
      * This name should be used when configuring hardware in the Robot Configuration
      * and when retrieving hardware from the hardwareMap.
      * 
      * @return The configuration name string with "eh_" prefix indicating Expansion Hub
      */
-    public String getConfigName() {
-        return configName;
-    }
-    
-    /**
-     * Returns a string representation of this Expansion Hub port mapping
-     * @return The enum constant name
-     */
     @Override
     public String toString() {
-        return name();
+        return configName;
     }
 }

@@ -41,12 +41,12 @@ Configuration names are prefixed with `eh_`:
 
 ```java
 // In your OpMode - Control Hub devices
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
-Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.getConfigName());
+DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.toString());
+Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.toString());
 
 // Expansion Hub devices
-DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
-Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_1.getConfigName());
+DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
+Servo gripper = hardwareMap.get(Servo.class, ExpansionHubPorts.SERVO_1.toString());
 ```
 
 ### Hardware Configuration
@@ -65,25 +65,6 @@ See `PortMappingExample.java` for a complete working example that demonstrates:
 - How to clearly organize devices by hub
 - How to display port information in telemetry grouped by hub
 - How to configure motor directions and behaviors
-
-## Migration from Old Single Enum
-
-If you were using the previous single `PortMapping` enum:
-
-**Before:**
-```java
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_0.getConfigName());
-DcMotor armMotor = hardwareMap.get(DcMotor.class, PortMapping.MOTOR_4.getConfigName());
-```
-
-**After:**
-```java
-// Now it's clear which hub each device is on
-DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
-DcMotor armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
-```
-
-You'll also need to update your hardware configuration in the Driver Station to use the new prefixed names.
 
 ## Design Rationale
 

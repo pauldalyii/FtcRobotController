@@ -70,12 +70,12 @@ public class PortMappingExample extends LinearOpMode {
         // This makes it crystal clear which hub and physical port each device is connected to
         
         // Control Hub devices
-        leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
-        rightDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_1.getConfigName());
-        clawServo = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.getConfigName());
+        leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.toString());
+        rightDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_1.toString());
+        clawServo = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.toString());
         
         // Expansion Hub devices
-        armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.getConfigName());
+        armMotor = hardwareMap.get(DcMotor.class, ExpansionHubPorts.MOTOR_0.toString());
         
         // Configure motor directions
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -93,11 +93,11 @@ public class PortMappingExample extends LinearOpMode {
         // Display hardware configuration info
         telemetry.addData("Status", "Hardware Initialized");
         telemetry.addData("=== Control Hub ===", "");
-        telemetry.addData("Left Drive", "Port: %s", ControlHubPorts.MOTOR_0.getConfigName());
-        telemetry.addData("Right Drive", "Port: %s", ControlHubPorts.MOTOR_1.getConfigName());
-        telemetry.addData("Claw Servo", "Port: %s", ControlHubPorts.SERVO_0.getConfigName());
+        telemetry.addData("Left Drive", "Port: %s", ControlHubPorts.MOTOR_0);
+        telemetry.addData("Right Drive", "Port: %s", ControlHubPorts.MOTOR_1);
+        telemetry.addData("Claw Servo", "Port: %s", ControlHubPorts.SERVO_0);
         telemetry.addData("=== Expansion Hub ===", "");
-        telemetry.addData("Arm Motor", "Port: %s", ExpansionHubPorts.MOTOR_0.getConfigName());
+        telemetry.addData("Arm Motor", "Port: %s", ExpansionHubPorts.MOTOR_0);
         telemetry.addData(">", "Press START to begin");
         telemetry.update();
         

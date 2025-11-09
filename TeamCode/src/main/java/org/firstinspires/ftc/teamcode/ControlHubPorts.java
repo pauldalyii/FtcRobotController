@@ -39,8 +39,8 @@ package org.firstinspires.ftc.teamcode;
  * 
  * Usage Example:
  * <pre>
- * DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.getConfigName());
- * Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.getConfigName());
+ * DcMotor leftDrive = hardwareMap.get(DcMotor.class, ControlHubPorts.MOTOR_0.toString());
+ * Servo claw = hardwareMap.get(Servo.class, ControlHubPorts.SERVO_0.toString());
  * </pre>
  */
 public enum ControlHubPorts {
@@ -191,22 +191,14 @@ public enum ControlHubPorts {
     }
     
     /**
-     * Gets the configuration name for this Control Hub port mapping.
+     * Returns the configuration name for this Control Hub port mapping.
      * This name should be used when configuring hardware in the Robot Configuration
      * and when retrieving hardware from the hardwareMap.
      * 
      * @return The configuration name string with "ch_" prefix indicating Control Hub
      */
-    public String getConfigName() {
-        return configName;
-    }
-    
-    /**
-     * Returns a string representation of this Control Hub port mapping
-     * @return The enum constant name
-     */
     @Override
     public String toString() {
-        return name();
+        return configName;
     }
 }
