@@ -64,7 +64,7 @@ The artifact is retained for 30 days and can be downloaded from the workflow run
 
 ## Local Development
 
-When building locally (not via GitHub Actions), the build number defaults to `1.0.0.0-dev`.
+When building locally (not via GitHub Actions), the build number defaults to `1.0.0.0`.
 
 To specify a custom build number when building locally:
 ```bash

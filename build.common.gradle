@@ -87,7 +87,7 @@ android {
         versionName vName
         
         // Build number for diagnostic purposes
-        def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0-dev"
+        def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0"
         buildConfigField "String", "BUILD_NUMBER", "\"${buildNumber}\""
     }
 
@@ -116,7 +116,7 @@ android {
     
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0-dev"
+            def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0"
             outputFileName = "FtcRobotController-${buildNumber}-${variant.buildType.name}.apk"
         }
     }
