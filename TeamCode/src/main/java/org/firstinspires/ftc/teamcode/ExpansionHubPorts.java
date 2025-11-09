@@ -29,10 +29,20 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.I2cDevice;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.LED;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
  * ExpansionHubPorts provides a generic way to map hardware ports specifically
@@ -45,7 +55,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Usage Example:
  * <pre>
  * // Using helper methods (no .toString() needed)
- * DcMotor rightDrive = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
+ * DcMotor rightDrive = ExpansionHubPorts.MOTOR_0.getDcMotor(hardwareMap);
  * Servo gripper = ExpansionHubPorts.SERVO_0.getServo(hardwareMap);
  * 
  * // Or with generic method for any hardware type
@@ -232,8 +242,20 @@ public enum ExpansionHubPorts {
      * @return The DcMotor instance
      * @throws IllegalArgumentException if the motor is not found in the configuration
      */
-    public DcMotor getMotor(HardwareMap hardwareMap) {
+    public DcMotor getDcMotor(HardwareMap hardwareMap) {
         return hardwareMap.get(DcMotor.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a DcMotorEx from the hardware map.
+     * DcMotorEx provides extended motor functionality with velocity control and additional features.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The DcMotorEx instance
+     * @throws IllegalArgumentException if the motor is not found in the configuration
+     */
+    public DcMotorEx getDcMotorEx(HardwareMap hardwareMap) {
+        return hardwareMap.get(DcMotorEx.class, configName);
     }
     
     /**
@@ -256,5 +278,96 @@ public enum ExpansionHubPorts {
      */
     public CRServo getCRServo(HardwareMap hardwareMap) {
         return hardwareMap.get(CRServo.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a DigitalChannel from the hardware map.
+     * Used for digital input/output devices.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The DigitalChannel instance
+     * @throws IllegalArgumentException if the device is not found in the configuration
+     */
+    public DigitalChannel getDigitalChannel(HardwareMap hardwareMap) {
+        return hardwareMap.get(DigitalChannel.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve an AnalogInput from the hardware map.
+     * Used for analog sensors and inputs.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The AnalogInput instance
+     * @throws IllegalArgumentException if the device is not found in the configuration
+     */
+    public AnalogInput getAnalogInput(HardwareMap hardwareMap) {
+        return hardwareMap.get(AnalogInput.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a TouchSensor from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The TouchSensor instance
+     * @throws IllegalArgumentException if the sensor is not found in the configuration
+     */
+    public TouchSensor getTouchSensor(HardwareMap hardwareMap) {
+        return hardwareMap.get(TouchSensor.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a ColorSensor from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The ColorSensor instance
+     * @throws IllegalArgumentException if the sensor is not found in the configuration
+     */
+    public ColorSensor getColorSensor(HardwareMap hardwareMap) {
+        return hardwareMap.get(ColorSensor.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve a DistanceSensor from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The DistanceSensor instance
+     * @throws IllegalArgumentException if the sensor is not found in the configuration
+     */
+    public DistanceSensor getDistanceSensor(HardwareMap hardwareMap) {
+        return hardwareMap.get(DistanceSensor.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve an IMU (Inertial Measurement Unit) from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The IMU instance
+     * @throws IllegalArgumentException if the IMU is not found in the configuration
+     */
+    public IMU getIMU(HardwareMap hardwareMap) {
+        return hardwareMap.get(IMU.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve an LED from the hardware map.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The LED instance
+     * @throws IllegalArgumentException if the LED is not found in the configuration
+     */
+    public LED getLED(HardwareMap hardwareMap) {
+        return hardwareMap.get(LED.class, configName);
+    }
+    
+    /**
+     * Convenience method to retrieve an I2cDevice from the hardware map.
+     * Used for custom I2C devices.
+     * 
+     * @param hardwareMap The hardware map from the OpMode
+     * @return The I2cDevice instance
+     * @throws IllegalArgumentException if the device is not found in the configuration
+     */
+    public I2cDevice getI2cDevice(HardwareMap hardwareMap) {
+        return hardwareMap.get(I2cDevice.class, configName);
     }
 }

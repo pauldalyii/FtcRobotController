@@ -70,12 +70,12 @@ public class PortMappingExample extends LinearOpMode {
         // Using the helper methods eliminates the need for .toString() calls
         
         // Control Hub devices
-        leftDrive = ControlHubPorts.MOTOR_0.getMotor(hardwareMap);
-        rightDrive = ControlHubPorts.MOTOR_1.getMotor(hardwareMap);
+        leftDrive = ControlHubPorts.MOTOR_0.getDcMotor(hardwareMap);
+        rightDrive = ControlHubPorts.MOTOR_1.getDcMotor(hardwareMap);
         clawServo = ControlHubPorts.SERVO_0.getServo(hardwareMap);
         
         // Expansion Hub devices
-        armMotor = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
+        armMotor = ExpansionHubPorts.MOTOR_0.getDcMotor(hardwareMap);
         
         // Configure motor directions
         leftDrive.setDirection(DcMotor.Direction.REVERSE);

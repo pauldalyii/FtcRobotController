@@ -42,15 +42,23 @@ Configuration names are prefixed with `eh_`:
 ```java
 // Using helper methods (recommended - no .toString() needed)
 // Control Hub devices
-DcMotor leftDrive = ControlHubPorts.MOTOR_0.getMotor(hardwareMap);
+DcMotor leftDrive = ControlHubPorts.MOTOR_0.getDcMotor(hardwareMap);
 Servo claw = ControlHubPorts.SERVO_0.getServo(hardwareMap);
 
 // Expansion Hub devices
-DcMotor armMotor = ExpansionHubPorts.MOTOR_0.getMotor(hardwareMap);
+DcMotor armMotor = ExpansionHubPorts.MOTOR_0.getDcMotor(hardwareMap);
 Servo gripper = ExpansionHubPorts.SERVO_1.getServo(hardwareMap);
 
 // For other hardware types, use the generic get() method
 CRServo crServo = ControlHubPorts.SERVO_2.get(hardwareMap, CRServo.class);
+
+// Additional convenience methods available for common hardware types:
+DcMotorEx motorEx = ControlHubPorts.MOTOR_1.getDcMotorEx(hardwareMap);
+DigitalChannel touchSensor = ControlHubPorts.DIGITAL_0.getDigitalChannel(hardwareMap);
+AnalogInput potentiometer = ControlHubPorts.ANALOG_0.getAnalogInput(hardwareMap);
+ColorSensor colorSensor = ControlHubPorts.I2C_0.getColorSensor(hardwareMap);
+DistanceSensor distanceSensor = ExpansionHubPorts.I2C_1.getDistanceSensor(hardwareMap);
+IMU imu = ControlHubPorts.I2C_0.getIMU(hardwareMap);
 ```
 
 ### Hardware Configuration
