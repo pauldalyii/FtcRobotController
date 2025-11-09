@@ -22,6 +22,10 @@ apply plugin: 'com.android.application'
 android {
 
     compileSdkVersion 30
+    
+    buildFeatures {
+        buildConfig = true
+    }
 
     signingConfigs {
         release {
@@ -81,6 +85,10 @@ android {
         //
         versionCode vCode
         versionName vName
+        
+        // Build number for diagnostic purposes
+        def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0-dev"
+        buildConfigField "String", "BUILD_NUMBER", "\"${buildNumber}\""
     }
 
     // http://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.BuildType.html
@@ -104,6 +112,13 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def buildNumber = System.getenv("BUILD_NUMBER") ?: "1.0.0.0-dev"
+            outputFileName = "FtcRobotController-${buildNumber}-${variant.buildType.name}.apk"
+        }
     }
 
     packagingOptions {
