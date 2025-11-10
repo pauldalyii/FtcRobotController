@@ -41,13 +41,11 @@ When suggesting code:
 
 Remember: The goal is to help students learn robotics programming while building competitive robots for FIRST Tech Challenge!
 
-## OpMode Architecture Overview
-
-When developing OpModes for FTC Robot Controller, it's crucial to understand the distinction between **annotations** and **base classes**.
+## OpMode Architecture
 
 ### Annotations: Declaring OpMode Type
 
-Annotations are used to declare the **type** of OpMode and control how it appears in the Driver Station:
+Annotations declare the **type** of OpMode and control how it appears in the Driver Station:
 
 - **`@TeleOp`**: Marks an OpMode as a teleoperated (driver-controlled) program
   - Example: `@TeleOp(name="My TeleOp", group="TeleOp")`
@@ -60,13 +58,11 @@ Annotations are used to declare the **type** of OpMode and control how it appear
 - **`@Disabled`**: Prevents the OpMode from appearing in the Driver Station menu
   - Used for sample code or work-in-progress OpModes
 
-### Base Classes: Choosing the Implementation Pattern
+### Base Class: Use `OpMode` for This Repository
 
-The base class determines **how your OpMode executes**. This is a separate decision from choosing the annotation:
+**This repository uses the `OpMode` base class exclusively.** Get comfortable with `OpMode` - it's what you'll use for all robot code in this repo.
 
-#### `OpMode` (Event-Driven/Iterative) - **RECOMMENDED FOR MOST IMPLEMENTATIONS**
-
-The `OpMode` base class provides an **event-driven, iterative execution model**:
+The `OpMode` base class provides an **event-driven, iterative execution model** with lifecycle methods:
 
 ```java
 @TeleOp(name="My TeleOp", group="TeleOp")
@@ -99,70 +95,19 @@ public class MyTeleOp extends OpMode {
 }
 ```
 
-**Advantages of `OpMode`:**
+**Why `OpMode` is better:**
 - Non-blocking: The `loop()` method is called repeatedly, allowing for responsive control
 - Better for complex state machines and real-time control
 - More efficient handling of gamepad input and telemetry
-- Recommended by FTC for production robot code
 - Better performance characteristics for competition use
 
-**Use `OpMode` for:**
-- Competition robot code (TeleOp and Autonomous)
-- Complex robot control logic
-- State machine implementations
-- Any code requiring responsive, real-time control
-
-#### `LinearOpMode` (Sequential) - **FOR BASIC DIAGNOSTIC PROGRAMS ONLY**
-
-The `LinearOpMode` base class provides a **sequential, blocking execution model**:
-
-```java
-@TeleOp(name="My Linear TeleOp", group="Linear")
-public class MyLinearTeleOp extends LinearOpMode {
-    @Override
-    public void runOpMode() {
-        // Setup code
-        
-        waitForStart(); // Blocks until START is pressed
-        
-        // Sequential code - executes line by line
-        while (opModeIsActive()) {
-            // Loop body
-        }
-    }
-}
-```
-
-**Limitations of `LinearOpMode`:**
-- Blocking: Code executes sequentially, which can lead to unresponsive behavior
-- Harder to implement complex control logic
-- Can miss gamepad input or sensor updates if code blocks too long
-- Not recommended for production competition code
-
-**Use `LinearOpMode` ONLY for:**
-- Simple diagnostic programs
-- Basic sensor testing
-- Educational examples for beginners
-- Quick prototypes and experiments
-
-### Key Principle: Annotations and Base Classes are Independent
-
-Remember that annotations and base classes serve different purposes and can be combined:
-
-- `@TeleOp` can be used with **either** `OpMode` or `LinearOpMode`
-- `@Autonomous` can be used with **either** `OpMode` or `LinearOpMode`
-
-**However, for production code, strongly prefer:**
-- `@TeleOp` with `OpMode` for teleoperated programs
-- `@Autonomous` with `OpMode` for autonomous programs
-
-Reserve `LinearOpMode` for the most basic diagnostic and testing scenarios.
+**Note about `LinearOpMode`:** You might see `LinearOpMode` in online examples or tutorials. `LinearOpMode` uses a sequential, blocking execution model that is easier for absolute beginners to understand, but it's less responsive and harder to use for complex robot behaviors. **Do not use `LinearOpMode` in this repository.** Stick with `OpMode` - it's the better choice for competitive robotics.
 
 ## Best Practices
 
-1. **Default to `OpMode`**: Unless you have a specific reason to use `LinearOpMode` (basic diagnostics), always extend `OpMode`
+1. **Always use `OpMode`**: All robot code in this repository should extend `OpMode`
 
-2. **Use Appropriate Annotations**: Choose `@TeleOp` or `@Autonomous` based on when the OpMode should run, not based on the base class
+2. **Use Appropriate Annotations**: Choose `@TeleOp` or `@Autonomous` based on when the OpMode should run
 
 3. **Sample Code**: When creating sample code, use the `@Disabled` annotation to prevent it from appearing in the Driver Station until ready
 
