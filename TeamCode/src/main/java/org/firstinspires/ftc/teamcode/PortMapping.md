@@ -59,6 +59,9 @@ AnalogInput potentiometer = ControlHubPorts.ANALOG_0.getAnalogInput(hardwareMap)
 ColorSensor colorSensor = ControlHubPorts.I2C_0.getColorSensor(hardwareMap);
 DistanceSensor distanceSensor = ExpansionHubPorts.I2C_1.getDistanceSensor(hardwareMap);
 IMU imu = ControlHubPorts.I2C_0.getIMU(hardwareMap);
+
+// USB Webcam support (Control Hub)
+WebcamName webcam = ControlHubPorts.WEBCAM.getWebcamName(hardwareMap);
 ```
 
 ### Hardware Configuration
