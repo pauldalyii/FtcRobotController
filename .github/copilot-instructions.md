@@ -39,4 +39,32 @@ When suggesting code:
    - Motor and servo control
    - Sensor reading and processing
 
+## Header Comments and Copyright
+
+**IMPORTANT:** Do NOT replicate FIRST's copyright header comments in team code.
+
+FIRST Tech Challenge SDK sample files contain copyright headers like this:
+```
+/* Copyright (c) 2017 FIRST. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted (subject to the limitations in the disclaimer below) provided that
+ * ...
+ */
+```
+
+**These copyright headers should ONLY appear in FIRST-provided sample code, NOT in team code.**
+
+### Guidelines for Team Code Headers
+
+- Header comments are **not required** for team code
+- It is **acceptable to have no header comments at all** in team code files
+- If teams want to add header comments, they should:
+  - Keep them simple and focused on describing the purpose of the file
+  - NOT include copyright statements claiming ownership by FIRST
+  - NOT replicate the BSD-style license text from FIRST samples
+- Team code files can start directly with package declarations and imports
+
+## Summary
+
 Remember: The goal is to help students learn robotics programming while building competitive robots for FIRST Tech Challenge!
